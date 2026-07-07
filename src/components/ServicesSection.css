@@ -1,0 +1,87 @@
+.services-section {
+  background-color: var(--color-secondary-cream);
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.service-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s var(--ease-smooth);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-icon {
+  color: var(--color-primary-green);
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s;
+}
+
+.service-card h3 {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.service-card p {
+  font-size: 0.9rem;
+  color: rgba(10,10,10,0.7);
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.service-cta {
+  background: none;
+  border: none;
+  color: var(--color-accent-emerald);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+  display: inline-flex;
+  align-items: center;
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  border-color: var(--color-accent-emerald);
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
+  color: var(--color-accent-emerald);
+}
+
+.service-card:hover .service-cta {
+  transform: translateX(5px);
+}
+
+/* Hover accent line */
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background: var(--color-accent-emerald);
+  transition: width 0.3s var(--ease-smooth);
+}
+.service-card:hover::after {
+  width: 100%;
+}

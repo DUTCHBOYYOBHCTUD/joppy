@@ -1,0 +1,77 @@
+.scholarship-section {
+  background-color: var(--color-secondary-cream);
+}
+
+.finder-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.finder-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  align-items: end;
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-primary-green);
+}
+
+.input-group select, .input-group input {
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: var(--color-secondary-cream);
+  font-family: var(--font-body);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.input-group select:focus, .input-group input:focus {
+  border-color: var(--color-accent-emerald);
+}
+
+.search-btn {
+  height: 48px;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.finder-results {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.result-placeholder {
+  text-align: center;
+  color: rgba(10,10,10,0.4);
+}
+
+.placeholder-icon {
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .finder-form {
+    grid-template-columns: 1fr;
+  }
+}

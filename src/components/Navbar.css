@@ -1,0 +1,148 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  transition: all 0.4s var(--ease-smooth);
+}
+.navbar.scrolled {
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-primary-black);
+}
+.navbar.scrolled .brand {
+  color: var(--color-secondary-cream);
+}
+.brand-icon {
+  color: var(--color-accent-emerald);
+}
+.brand-text {
+  font-family: var(--font-heading);
+  line-height: 1;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+}
+.brand-text small {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  font-family: var(--font-body);
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-item {
+  position: relative;
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: var(--color-primary-black);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  transition: color 0.3s;
+}
+.navbar.scrolled .nav-item {
+  color: var(--color-secondary-cream);
+}
+.nav-item:hover {
+  color: var(--color-accent-emerald);
+}
+
+.dropdown {
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  min-width: 220px;
+  padding: 1rem 0;
+  border-radius: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s var(--ease-smooth);
+}
+.nav-item:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+.dropdown a {
+  display: block;
+  padding: 0.75rem 1.5rem;
+  color: var(--color-secondary-cream);
+  font-size: 0.9rem;
+  transition: background 0.3s, color 0.3s;
+}
+.dropdown a:hover {
+  background: rgba(255,255,255,0.1);
+  color: var(--color-accent-emerald);
+}
+
+.mobile-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+.navbar.scrolled .mobile-toggle {
+  color: var(--color-secondary-cream);
+}
+
+@media (max-width: 992px) {
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100vh;
+    background: var(--color-primary-black);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 6rem 2rem;
+    transition: right 0.4s var(--ease-smooth);
+  }
+  .nav-links.open {
+    right: 0;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+  }
+  .nav-item {
+    color: var(--color-secondary-cream);
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    justify-content: space-between;
+  }
+  .dropdown {
+    position: static;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    background: transparent;
+    border: none;
+    padding: 0;
+    display: none; /* simple toggle would be needed for mobile, keeping it simple for now */
+  }
+  .mobile-toggle {
+    display: block;
+    z-index: 1001;
+  }
+}

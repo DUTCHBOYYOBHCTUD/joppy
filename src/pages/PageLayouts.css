@@ -1,0 +1,144 @@
+.page-wrapper {
+  width: 100%;
+}
+
+.text-secondary-cream {
+  color: var(--color-secondary-cream);
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+/* Pathways Grid */
+.pathways-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.pathway-card {
+  padding: 2.5rem;
+  border-radius: 16px;
+  text-align: left;
+}
+
+.pathway-card h3 {
+  color: var(--color-secondary-cream);
+  font-family: var(--font-body);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-transform: none;
+}
+
+.pathway-card p {
+  color: var(--color-secondary-cream);
+  opacity: 0.7;
+}
+
+/* Campus Grid */
+.campus-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.campus-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  transition: transform 0.4s;
+}
+
+.campus-img:hover {
+  transform: scale(1.05);
+}
+
+.campus-img-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Cost Grid */
+.cost-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.cost-card {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.cost-card h3 {
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  margin: 1rem 0;
+  text-transform: none;
+}
+
+.cost-value {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--color-accent-emerald);
+}
+
+/* Contact Grid */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(0,0,0,0.1);
+  font-family: var(--font-body);
+  outline: none;
+  background: var(--color-secondary-cream);
+  transition: border-color 0.3s;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+  border-color: var(--color-accent-emerald);
+}
+
+.office-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.office-card h4 {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-transform: none;
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+}

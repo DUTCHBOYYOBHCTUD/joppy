@@ -1,0 +1,101 @@
+.top-universities {
+  overflow: hidden;
+}
+
+.carousel {
+  cursor: grab;
+  overflow: hidden;
+}
+
+.inner-carousel {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+  width: max-content;
+}
+
+.uni-card {
+  min-width: 350px;
+  max-width: 400px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.4s;
+  background: var(--color-primary-black);
+}
+
+.uni-card:hover {
+  transform: translateY(-10px);
+}
+
+.uni-image {
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.uni-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to bottom, rgba(10,10,10,0) 0%, rgba(10,10,10,0.8) 100%);
+}
+
+.uni-content {
+  padding: 1.5rem;
+  position: relative;
+  margin-top: -60px; /* pull content up into the image area */
+  border-radius: 20px;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.uni-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  color: var(--color-secondary-cream);
+  margin-bottom: 1rem;
+  letter-spacing: 0;
+}
+
+.uni-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.uni-stats span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: rgba(248, 246, 240, 0.8);
+}
+
+.uni-stats span svg {
+  color: var(--color-accent-emerald);
+}
+
+.uni-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 0.9rem;
+}
+
+/* Hover glow effect */
+.uni-card::before {
+  content: '';
+  position: absolute;
+  top: -2px; left: -2px; right: -2px; bottom: -2px;
+  background: linear-gradient(45deg, var(--color-accent-emerald), var(--color-accent-gold), transparent);
+  z-index: -1;
+  border-radius: 22px;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.uni-card:hover::before {
+  opacity: 0.5;
+}

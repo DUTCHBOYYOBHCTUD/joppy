@@ -1,0 +1,120 @@
+.timeline-section {
+  background-color: var(--color-primary-green);
+  color: var(--color-secondary-cream);
+}
+
+.timeline-container {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.timeline-line-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-50%);
+}
+
+.timeline-line-fill {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  background: var(--color-accent-emerald);
+  transform: translateX(-50%);
+  transform-origin: top;
+}
+
+.timeline-item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4rem;
+  width: 100%;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-accent-gold);
+  box-shadow: 0 0 0 4px var(--color-primary-green), 0 0 15px var(--color-accent-gold);
+  z-index: 2;
+}
+
+.timeline-content {
+  width: 45%;
+  padding: 1.5rem;
+  border-radius: 12px;
+  position: relative;
+  background: rgba(10, 10, 10, 0.4);
+}
+
+.timeline-item.left .timeline-content {
+  margin-right: auto;
+  text-align: right;
+}
+
+.timeline-item.right .timeline-content {
+  margin-left: auto;
+  text-align: left;
+}
+
+.timeline-item.left .timeline-icon {
+  margin-left: auto;
+}
+
+.timeline-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 168, 107, 0.2);
+  color: var(--color-accent-emerald);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.timeline-content h3 {
+  font-family: var(--font-body);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-transform: none;
+}
+
+.timeline-content p {
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .timeline-line-bg, .timeline-line-fill {
+    left: 20px;
+  }
+  .timeline-dot {
+    left: 20px;
+  }
+  .timeline-content {
+    width: calc(100% - 60px);
+    margin-left: auto !important;
+    text-align: left !important;
+  }
+  .timeline-item.left .timeline-icon {
+    margin-left: 0;
+  }
+}
