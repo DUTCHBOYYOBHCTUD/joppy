@@ -15,20 +15,33 @@ const Contact = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    emailjs.sendForm(
+    // Send email to company
+    const sendToCompany = emailjs.sendForm(
       import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID_COMPANY,
       form.current,
       import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    )
-    .then((result) => {
+    );
+
+    // Send auto-reply to student
+    const sendToStudent = emailjs.sendForm(
+      import.meta.env.VITE_EMAILJS_SERVICE_ID,
+      import.meta.env.VITE_EMAILJS_TEMPLATE_ID_STUDENT,
+      form.current,
+      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    );
+
+    Promise.all([sendToCompany, sendToStudent])
+      .then(() => {
         setIsSubmitting(false);
         setSubmitStatus('success');
         e.target.reset();
-    }, (error) => {
+      })
+      .catch((error) => {
+        console.error("EmailJS Error:", error);
         setIsSubmitting(false);
         setSubmitStatus('error');
-    });
+      });
   };
 
   return (
@@ -85,17 +98,45 @@ const Contact = () => {
             >
               <h3 className="text-secondary-cream mb-4" style={{fontFamily: 'var(--font-heading)', fontSize: '2rem'}}>SEND A MESSAGE</h3>
               <form ref={form} className="contact-form" onSubmit={sendEmail}>
-                <input type="text" name="from_name" placeholder="Your Full Name" required />
-                <input type="email" name="user_email" placeholder="Your Email Address" required />
-                <input type="tel" name="phone_number" placeholder="Your Phone Number" />
-                <select name="subject" style={{ width: '100%', padding: '1rem', borderRadius: '8px', border: '1px solid rgba(0,0,0,0.1)', fontFamily: 'var(--font-body)', outline: 'none', background: 'var(--color-secondary-cream)' }}>
-                  <option value="">Subject of Inquiry</option>
-                  <option value="admission">University Admission</option>
-                  <option value="visa">Visa Assistance</option>
-                  <option value="scholarship">Scholarships</option>
-                  <option value="other">Other</option>
+                <div className="form-row">
+                  <input type="text" name="name" placeholder="Full Name" required />
+                  <input type="email" name="email" placeholder="Email Address" required />
+                </div>
+                
+                <div className="form-row">
+                  <input type="tel" name="phone" placeholder="Phone Number" required />
+                  <input type="text" name="country" placeholder="Country of Interest" required />
+                </div>
+
+                <div className="form-row">
+                  <input type="text" name="course" placeholder="Preferred Course (e.g. IT, Nursing)" required />
+                  <select name="intake" required>
+                    <option value="">Preferred Intake</option>
+                    <option value="February / March">February / March</option>
+                    <option value="July / August">July / August</option>
+                    <option value="November">November</option>
+                  </select>
+                </div>
+
+                <div className="form-row">
+                  <select name="qualification" required>
+                    <option value="">Highest Qualification</option>
+                    <option value="High School">High School</option>
+                    <option value="Diploma">Diploma</option>
+                    <option value="Bachelors Degree">Bachelor's Degree</option>
+                    <option value="Masters Degree">Master's Degree</option>
+                  </select>
+                  <input type="text" name="english_score" placeholder="IELTS / PTE Score (if any)" />
+                </div>
+
+                <select name="budget" required>
+                  <option value="">Estimated Budget (NZD)</option>
+                  <option value="$15k - $25k">$15k - $25k</option>
+                  <option value="$25k - $35k">$25k - $35k</option>
+                  <option value="$35k+">$35k+</option>
                 </select>
-                <textarea name="message" placeholder="How can we help you?" rows="5" required></textarea>
+
+                <textarea name="message" placeholder="Any specific questions or details?" rows="4" required></textarea>
                 
                 <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem', opacity: isSubmitting ? 0.7 : 1 }} disabled={isSubmitting}>
                   {isSubmitting ? 'Sending...' : 'Submit Inquiry'}

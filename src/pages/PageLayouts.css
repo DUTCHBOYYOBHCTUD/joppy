@@ -108,7 +108,7 @@
   gap: 1.5rem;
 }
 
-.contact-form input, .contact-form textarea {
+.contact-form input, .contact-form textarea, .contact-form select {
   width: 100%;
   padding: 1rem;
   border-radius: 8px;
@@ -119,8 +119,20 @@
   transition: border-color 0.3s;
 }
 
-.contact-form input:focus, .contact-form textarea:focus {
+.contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
   border-color: var(--color-accent-emerald);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .office-card {
