@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 import './TopUniversities.css';
@@ -12,8 +12,8 @@ import logo7 from '../assets/image7.png';
 import logo8 from '../assets/image8.png';
 
 const universities = [
-  { name: "Skill New Zealand", image: logo2 },
-  { name: "Whitecliffe", image: logo3 },
+  { name: "Skill New Zealand", image: logo3 },
+  { name: "Whitecliffe", image: logo2 },
   { name: "Yoobee", image: logo4 },
   { name: "Auckland Institute of Studies", image: logo5 },
   { name: "New Zealand Tertiary College", image: logo6 },
@@ -21,16 +21,12 @@ const universities = [
   { name: "AKA Education Group", image: logo8 }
 ];
 
+// Duplicate the array to create a seamless infinite loop
+const doubledUniversities = [...universities, ...universities];
+
 const TopUniversities = () => {
-  const [width, setWidth] = useState(0);
-  const carousel = useRef();
-
-  useEffect(() => {
-    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
-  }, []);
-
   return (
-    <section className="top-universities section-padding bg-dark">
+    <section className="top-universities section-padding bg-dark" style={{ overflow: 'hidden' }}>
       <div className="container">
         <div className="section-header">
           <motion.h2 
@@ -44,20 +40,21 @@ const TopUniversities = () => {
           <p>We work with New Zealand's finest educational institutions.</p>
         </div>
 
-        <motion.div ref={carousel} className="carousel no-scrollbar" whileTap={{ cursor: "grabbing" }}>
+        <div className="carousel no-scrollbar" style={{ cursor: 'default' }}>
           <motion.div 
-            drag="x" 
-            dragConstraints={{ right: 0, left: -width }} 
             className="inner-carousel"
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ ease: "linear", duration: 30, repeat: Infinity }}
+            style={{ display: 'flex', width: 'fit-content' }}
           >
-            {universities.map((uni, idx) => (
-              <motion.div key={idx} className="uni-card" style={{ background: '#fff', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', height: '250px', minWidth: '250px' }}>
+            {doubledUniversities.map((uni, idx) => (
+              <div key={idx} className="uni-card" style={{ background: '#fff', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', height: '250px', minWidth: '250px', marginRight: '2rem' }}>
                 <img src={uni.image} alt={uni.name} style={{ maxWidth: '180px', maxHeight: '100px', objectFit: 'contain', marginBottom: '1rem' }} />
                 <h3 style={{ color: '#000', fontSize: '1.2rem', textAlign: 'center', margin: 0 }}>{uni.name}</h3>
-              </motion.div>
+              </div>
             ))}
           </motion.div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

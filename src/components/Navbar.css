@@ -1,17 +1,24 @@
 .navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  max-width: 1400px;
   z-index: 1000;
-  padding: 1.5rem 0;
-  background-color: var(--color-primary-green); /* Deep Navy Background */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 1rem 2rem;
+  background-color: rgba(9, 28, 46, 0.75); /* Frosted Navy */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(169, 199, 216, 0.3); /* Light Blue Accent */
+  border-radius: 100px; /* Pill shape */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   transition: all 0.4s var(--ease-smooth);
 }
 .navbar.scrolled {
-  padding: 1rem 0;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  padding: 0.8rem 2rem;
+  background-color: rgba(9, 28, 46, 0.95);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
 }
 
 .nav-container {
