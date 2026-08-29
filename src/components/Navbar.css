@@ -5,11 +5,13 @@
   width: 100%;
   z-index: 1000;
   padding: 1.5rem 0;
+  background-color: var(--color-primary-green); /* Deep Navy Background */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.4s var(--ease-smooth);
 }
 .navbar.scrolled {
   padding: 1rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
 .nav-container {
@@ -22,25 +24,20 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--color-primary-black);
-}
-.navbar.scrolled .brand {
-  color: var(--color-secondary-cream);
-}
-.brand-icon {
-  color: var(--color-accent-emerald);
+  color: var(--color-secondary-cream) !important;
 }
 .brand-text {
   font-family: var(--font-heading);
-  line-height: 1;
-  font-size: 1.2rem;
-  letter-spacing: 0.5px;
+  line-height: 1.2;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
 }
 .brand-text small {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   opacity: 0.7;
   font-family: var(--font-body);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 
 .nav-links {
@@ -52,19 +49,18 @@
 .nav-item {
   position: relative;
   font-weight: 500;
-  font-size: 0.95rem;
-  color: var(--color-primary-black);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-secondary-cream) !important;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 0.25rem;
   transition: color 0.3s;
 }
-.navbar.scrolled .nav-item {
-  color: var(--color-secondary-cream);
-}
 .nav-item:hover {
-  color: var(--color-accent-emerald);
+  color: var(--color-accent-emerald) !important;
 }
 
 .dropdown {

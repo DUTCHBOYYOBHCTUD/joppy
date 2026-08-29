@@ -40,7 +40,7 @@ const Navbar = () => {
           </div>
           <Link to="/contact" className="nav-item">Contact</Link>
           
-          <Link to="/contact" className="btn btn-primary nav-cta">Free Consultation</Link>
+          <Link to="/contact" className="btn btn-primary nav-cta">BOOK A CONSULTATION</Link>
         </nav>
 
         <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>

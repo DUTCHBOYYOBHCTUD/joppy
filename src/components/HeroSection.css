@@ -3,42 +3,62 @@
   display: flex;
   align-items: center;
   position: relative;
-  overflow: hidden;
-  padding-top: 80px; /* account for navbar */
+  overflow: visible; /* to allow feature bar to overlap */
+  padding-top: 100px; /* account for navbar */
+  background-image: url("https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(to right, rgba(9, 28, 46, 0.95) 0%, rgba(9, 28, 46, 0.4) 60%, rgba(9, 28, 46, 0.1) 100%);
+  z-index: 1;
 }
 
 .hero-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  padding-bottom: 5rem;
 }
 
 .hero-content {
-  position: relative;
-  z-index: 10;
+  max-width: 700px;
+}
+
+.hero-pretitle {
+  color: var(--color-accent-emerald);
+  font-family: var(--font-body);
+  letter-spacing: 4px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
 }
 
 .hero-title {
-  font-size: clamp(4rem, 8vw, 7rem);
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  color: white;
+  line-height: 1.1;
   margin-bottom: 1.5rem;
-  letter-spacing: -2px;
-}
-
-.hero-title .block {
-  display: block;
-}
-
-.text-accent {
-  color: var(--color-accent-emerald);
+  font-weight: 700;
+  text-transform: none;
 }
 
 .hero-subtitle {
   font-size: 1.2rem;
-  color: rgba(10, 10, 10, 0.7);
-  max-width: 500px;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 550px;
   margin-bottom: 2.5rem;
-  font-weight: 500;
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .hero-ctas {
@@ -46,60 +66,88 @@
   gap: 1rem;
 }
 
-.hero-visual {
-  position: relative;
-  height: 600px;
-  width: 100%;
+.btn-icon {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.4);
+  color: white;
+}
+.btn-icon:hover {
+  background: rgba(255,255,255,0.1);
+  border-color: white;
 }
 
-.floating-card {
+.fern-graphic {
   position: absolute;
-  padding: 1rem 1.5rem;
-  border-radius: 12px;
+  right: -5%;
+  bottom: 0;
+  height: 90vh;
+  opacity: 0.85;
+  pointer-events: none;
+  z-index: 5;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.3));
+}
+
+/* Feature Bar */
+.feature-bar {
+  position: absolute;
+  bottom: -40px; /* Overlaps the next section */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1400px;
+  background: white;
+  border-radius: 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   z-index: 20;
 }
 
-.floating-card strong {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+.feature-item:last-child {
+  border-right: none;
+}
+
+.feature-item svg {
   color: var(--color-primary-green);
-  line-height: 1.2;
+  flex-shrink: 0;
 }
 
-.floating-card small {
-  font-size: 0.85rem;
+.feature-text strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
   color: var(--color-primary-black);
-  opacity: 0.8;
+  text-transform: uppercase;
+  margin-bottom: 0.2rem;
 }
 
-.top-card {
-  top: 15%;
-  right: 10%;
+.feature-text small {
+  display: block;
+  font-size: 0.8rem;
+  color: #666;
+  line-height: 1.3;
 }
 
-.bottom-card {
-  bottom: 15%;
-  left: 10%;
+@media (max-width: 1200px) {
+  .feature-bar {
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 1.5rem;
+  }
+  .feature-item {
+    min-width: 250px;
+  }
 }
 
 @media (max-width: 992px) {
-  .hero-container {
-    grid-template-columns: 1fr;
-    text-align: center;
-    padding-top: 4rem;
-  }
-  .hero-subtitle {
-    margin: 0 auto 2.5rem auto;
-  }
-  .hero-ctas {
-    justify-content: center;
-  }
-  .hero-visual {
-    height: 400px;
-  }
-  .top-card { right: 0; }
-  .bottom-card { left: 0; }
+  .hero-title { font-size: 3.5rem; }
+  .fern-graphic { opacity: 0.3; right: -20%; }
 }

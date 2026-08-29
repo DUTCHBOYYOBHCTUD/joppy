@@ -1,15 +1,15 @@
 :root {
   /* Colors */
-  --color-primary-green: #0B3D2E;
-  --color-primary-black: #0A0A0A;
+  --color-primary-green: #091C2E; /* Deep Navy Blue */
+  --color-primary-black: #050E17; /* Darker Navy */
   --color-secondary-cream: #F8F6F0;
-  --color-secondary-beige: #D8CFC4;
-  --color-accent-emerald: #00A86B;
-  --color-accent-gold: #C8A951;
-  --color-accent-blue: #A9C7D8; /* Optional tertiary */
+  --color-secondary-beige: #E6E1D8;
+  --color-accent-emerald: #CFA461; /* Premium Gold */
+  --color-accent-gold: #B68B45; /* Darker Gold */
+  --color-accent-blue: #A9C7D8;
 
   /* Typography */
-  --font-heading: 'Oswald', sans-serif;
+  --font-heading: 'Playfair Display', serif;
   --font-body: 'Inter', sans-serif;
 
   /* Easing */
