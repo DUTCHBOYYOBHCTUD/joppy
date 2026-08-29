@@ -68,7 +68,7 @@ const Contact = () => {
                 <MapPin size={28} className="text-accent" />
                 <div>
                   <h4>Auckland Headquarters</h4>
-                  <p className="opacity-80">123 Education Blvd, Level 4<br/>Auckland CBD, 1010<br/>New Zealand</p>
+                  <p className="opacity-80">109 Oakdale Road, Hillsborough<br/>Auckland 1041<br/>New Zealand</p>
                 </div>
               </div>
 
@@ -76,7 +76,7 @@ const Contact = () => {
                 <Phone size={28} className="text-accent" />
                 <div>
                   <h4>Phone Support</h4>
-                  <p className="opacity-80">+64 123 456 789<br/>Mon - Fri, 9am - 5pm NZST</p>
+                  <p className="opacity-80">021 023 02460<br/>Mon - Fri, 9am - 5pm NZST</p>
                 </div>
               </div>
 
@@ -84,7 +84,7 @@ const Contact = () => {
                 <Mail size={28} className="text-accent" />
                 <div>
                   <h4>Email Us</h4>
-                  <p className="opacity-80">info@nzeducational.com<br/>admissions@nzeducational.com</p>
+                  <p className="opacity-80">support@necl.co.nz<br/>support.necl@gmail.com</p>
                 </div>
               </div>
             </motion.div>

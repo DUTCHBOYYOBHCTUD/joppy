@@ -1,15 +1,24 @@
 import { useRef, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, DollarSign, Award } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import './TopUniversities.css';
 
+import logo2 from '../assets/image2.png';
+import logo3 from '../assets/image3.png';
+import logo4 from '../assets/image4.png';
+import logo5 from '../assets/image5.png';
+import logo6 from '../assets/image6.png';
+import logo7 from '../assets/image7.png';
+import logo8 from '../assets/image8.png';
+
 const universities = [
-  { name: "University of Auckland", city: "Auckland", rank: "Top 100 Global", tuition: "$35k - $45k NZD", image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-  { name: "University of Otago", city: "Dunedin", rank: "Top 1% Global", tuition: "$32k - $40k NZD", image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-  { name: "Victoria University", city: "Wellington", rank: "Top 250 Global", tuition: "$30k - $38k NZD", image: "https://images.unsplash.com/photo-1562774053-701939374585?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-  { name: "University of Canterbury", city: "Christchurch", rank: "Top 300 Global", tuition: "$31k - $39k NZD", image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-  { name: "Massey University", city: "Palmerston North", rank: "Top 300 Global", tuition: "$29k - $36k NZD", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" },
-  { name: "AUT", city: "Auckland", rank: "Top 1% Global", tuition: "$32k - $38k NZD", image: "https://images.unsplash.com/photo-1571260899304-42507011ec6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" }
+  { name: "Skill New Zealand", image: logo2 },
+  { name: "Whitecliffe", image: logo3 },
+  { name: "Yoobee", image: logo4 },
+  { name: "Auckland Institute of Studies", image: logo5 },
+  { name: "New Zealand Tertiary College", image: logo6 },
+  { name: "NZMA", image: logo7 },
+  { name: "AKA Education Group", image: logo8 }
 ];
 
 const TopUniversities = () => {
@@ -30,9 +39,9 @@ const TopUniversities = () => {
             viewport={{ once: true }}
             className="section-title"
           >
-            TOP <span className="text-accent">UNIVERSITIES</span>
+            OUR <span className="text-accent">PARTNERS</span>
           </motion.h2>
-          <p>Partnering with New Zealand's finest educational institutions.</p>
+          <p>We work with New Zealand's finest educational institutions.</p>
         </div>
 
         <motion.div ref={carousel} className="carousel no-scrollbar" whileTap={{ cursor: "grabbing" }}>
@@ -42,19 +51,9 @@ const TopUniversities = () => {
             className="inner-carousel"
           >
             {universities.map((uni, idx) => (
-              <motion.div key={idx} className="uni-card">
-                <div className="uni-image" style={{ backgroundImage: `url(${uni.image})` }}>
-                  <div className="uni-overlay"></div>
-                </div>
-                <div className="uni-content glass-dark">
-                  <h3>{uni.name}</h3>
-                  <div className="uni-stats">
-                    <span><Award size={16}/> {uni.rank}</span>
-                    <span><MapPin size={16}/> {uni.city}</span>
-                    <span><DollarSign size={16}/> {uni.tuition}</span>
-                  </div>
-                  <button className="btn btn-primary uni-btn">Explore Courses</button>
-                </div>
+              <motion.div key={idx} className="uni-card" style={{ background: '#fff', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', height: '250px', minWidth: '250px' }}>
+                <img src={uni.image} alt={uni.name} style={{ maxWidth: '180px', maxHeight: '100px', objectFit: 'contain', marginBottom: '1rem' }} />
+                <h3 style={{ color: '#000', fontSize: '1.2rem', textAlign: 'center', margin: 0 }}>{uni.name}</h3>
               </motion.div>
             ))}
           </motion.div>

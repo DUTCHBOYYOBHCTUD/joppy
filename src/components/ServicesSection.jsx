@@ -3,14 +3,12 @@ import { BookOpen, MapPin, FileText, GraduationCap, Plane, Home, Users, CheckSqu
 import './ServicesSection.css';
 
 const services = [
-  { icon: MapPin, title: "University Selection", desc: "Expert guidance in finding the right institution for your goals." },
+  { icon: CheckSquare, title: "Visa Assistance", desc: "End-to-end support for a hassle-free student visa process." },
   { icon: BookOpen, title: "Course Selection", desc: "Aligning your career aspirations with the best programs." },
-  { icon: FileText, title: "SOP Guidance", desc: "Crafting compelling Statements of Purpose that stand out." },
-  { icon: GraduationCap, title: "Scholarship Assistance", desc: "Identifying and applying for eligible financial aid." },
-  { icon: CheckSquare, title: "Visa Filing", desc: "End-to-end support for a hassle-free visa process." },
-  { icon: Users, title: "Interview Prep", desc: "Mock interviews to build your confidence." },
-  { icon: Home, title: "Accommodation", desc: "Finding safe and comfortable living arrangements." },
-  { icon: Plane, title: "Pre-departure", desc: "Comprehensive briefing for your journey ahead." }
+  { icon: GraduationCap, title: "Admission Guidance", desc: "Expert guidance in finding and applying to the right institution." },
+  { icon: FileText, title: "Bank Loan Assistance", desc: "Support in securing educational loans and financial proof." },
+  { icon: Users, title: "Training", desc: "Interview preparation and skills training for your journey." },
+  { icon: Plane, title: "Travel Assistance", desc: "Comprehensive briefing and ticketing for your travel to NZ." }
 ];
 
 const ServicesSection = () => {

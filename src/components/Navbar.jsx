@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, Globe } from 'lucide-react';
 import './Navbar.css';
 
+import logoImage from '../assets/image1.png';
+
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -16,9 +18,9 @@ const Navbar = () => {
   return (
     <header className={`navbar ${scrolled ? 'scrolled glass-dark' : ''}`}>
       <div className="container nav-container">
-        <Link to="/" className="brand">
-          <Globe className="brand-icon" size={28} />
-          <span className="brand-text">NZ EDUCATIONAL<br/><small>SERVICES LTD</small></span>
+        <Link to="/" className="brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <img src={logoImage} alt="NECL Logo" style={{ height: '40px', objectFit: 'contain' }} />
+          <span className="brand-text">NECL<br/><small style={{ fontSize: '0.45em', opacity: 0.8, letterSpacing: '1px', fontWeight: 400 }}>NEW ZEALAND EDUCATION CONSULTANCY LTD</small></span>
         </Link>
 
         <nav className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
@@ -26,8 +28,7 @@ const Navbar = () => {
             <span>Study in NZ <ChevronDown size={16} /></span>
             <div className="dropdown glass-dark">
               <Link to="/why-nz">Why New Zealand</Link>
-              <Link to="/universities">Top Universities</Link>
-              <Link to="/student-life">Student Life</Link>
+              <Link to="/universities">Our Universities</Link>
             </div>
           </div>
           <div className="nav-item">
@@ -35,10 +36,8 @@ const Navbar = () => {
             <div className="dropdown glass-dark">
               <Link to="/admissions">Admissions</Link>
               <Link to="/visa">Visa Assistance</Link>
-              <Link to="/scholarships">Scholarships</Link>
             </div>
           </div>
-          <Link to="/testimonials" className="nav-item">Testimonials</Link>
           <Link to="/contact" className="nav-item">Contact</Link>
           
           <Link to="/contact" className="btn btn-primary nav-cta">Free Consultation</Link>
