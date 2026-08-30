@@ -4,7 +4,7 @@
   align-items: center;
   position: relative;
   overflow: visible; /* to allow feature bar to overlap */
-  padding-top: 100px; /* account for navbar */
+  padding-top: 180px; /* account for floating navbar */
   background-image: url("https://images.unsplash.com/photo-1507699622108-4be3abd695ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80");
   background-size: cover;
   background-position: center;
