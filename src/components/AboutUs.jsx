@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
-import Koru3D from './Koru3D';
+import Landmarks3D from './Landmarks3D';
 import './AboutUs.css';
 
 const AboutUs = () => {
@@ -50,8 +50,8 @@ const AboutUs = () => {
             className="about-image-wrapper"
             style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
           >
-            <Suspense fallback={<div style={{ textAlign: 'center', color: '#888' }}>Loading 3D Experience...</div>}>
-              <Koru3D />
+            <Suspense fallback={<div style={{ textAlign: 'center', color: '#888' }}>Loading High-Quality 3D Models...</div>}>
+              <Landmarks3D />
             </Suspense>
           </motion.div>
         </div>
