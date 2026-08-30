@@ -16,8 +16,8 @@ const SkyTowerModel = () => {
 
   return (
     <Center position={[0, -2, 0]}>
-      {/* Sky Tower is very tall, so scale is slightly smaller than beehive to fit in canvas */}
-      <primitive ref={meshRef} object={skytower.scene} scale={2.5} />
+      {/* Sky Tower was too small. Scale increased massively to 8 */}
+      <primitive ref={meshRef} object={skytower.scene} scale={8} />
     </Center>
   );
 };
@@ -25,13 +25,13 @@ const SkyTowerModel = () => {
 const SkyTower3D = () => {
   return (
     <div style={{ width: '100%', height: '100%', minHeight: '600px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      {/* Camera is slightly higher and further back to capture the tall spire */}
-      <Canvas camera={{ position: [0, 3, 10], fov: 40 }} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}>
-        <ambientLight intensity={1.2} />
+      {/* Camera moved closer (z: 8) to frame the tall spire */}
+      <Canvas camera={{ position: [0, 4, 8], fov: 45 }} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'transparent' }}>
+        <ambientLight intensity={1.5} />
         
-        <spotLight position={[10, 20, 10]} angle={0.4} penumbra={1} intensity={3} castShadow />
-        <spotLight position={[-15, 10, -10]} intensity={2} color="#CFA461" />
-        <spotLight position={[0, -5, 5]} intensity={1} color="#ffffff" />
+        <spotLight position={[10, 20, 10]} angle={0.4} penumbra={1} intensity={3.5} castShadow />
+        <spotLight position={[-15, 10, -10]} intensity={2.5} color="#CFA461" />
+        <spotLight position={[0, -5, 5]} intensity={1.5} color="#ffffff" />
 
         <Float speed={1.5} rotationIntensity={0.05} floatIntensity={0.5}>
           <SkyTowerModel />

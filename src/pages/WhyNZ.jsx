@@ -18,21 +18,22 @@ const WhyNZ = () => {
       <WhyNewZealand />
 
       {/* 3D Sky Tower Section */}
-      <section className="section-padding bg-light">
+      <section className="section-padding bg-dark">
         <div className="container">
           <div className="section-header text-center">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="section-title"
+              className="section-title text-secondary-cream"
             >
               SOARING <span className="text-accent">HIGH</span>
             </motion.h2>
-            <p>Experience world-class infrastructure alongside natural beauty.</p>
+            <p className="text-secondary-cream opacity-80">Experience world-class infrastructure alongside natural beauty.</p>
           </div>
-          <div style={{ maxWidth: '800px', margin: '0 auto', borderRadius: '20px', overflow: 'hidden' }}>
-            <Suspense fallback={<div style={{ textAlign: 'center', padding: '5rem', color: '#888' }}>Loading Sky Tower Model...</div>}>
+          {/* Removed border-radius and overflow so it blends natively into the page */}
+          <div style={{ maxWidth: '1000px', margin: '0 auto', position: 'relative' }}>
+            <Suspense fallback={<div style={{ textAlign: 'center', padding: '5rem', color: 'var(--color-secondary-cream)' }}>Loading Sky Tower Model...</div>}>
               <SkyTower3D />
             </Suspense>
           </div>
