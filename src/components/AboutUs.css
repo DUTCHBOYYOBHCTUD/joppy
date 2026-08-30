@@ -22,9 +22,7 @@
 
 .about-image-wrapper {
   position: relative;
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  /* Removed border-radius, box-shadow, and overflow: hidden so the 3D model floats cleanly without a box */
 }
 
 .about-image {

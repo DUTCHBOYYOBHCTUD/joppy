@@ -48,7 +48,7 @@ const AboutUs = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="about-image-wrapper"
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', background: 'radial-gradient(circle, rgba(234,193,112,0.1) 0%, transparent 70%)', borderRadius: '30px' }}
+            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}
           >
             <Suspense fallback={<div style={{ textAlign: 'center', color: '#888' }}>Loading 3D Experience...</div>}>
               <Koru3D />
