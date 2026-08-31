@@ -16,8 +16,8 @@ const SkyTowerModel = () => {
 
   return (
     <Center position={[0, -2, 0]}>
-      {/* Sky Tower was too small. Scale increased massively to 8 */}
-      <primitive ref={meshRef} object={skytower.scene} scale={8} />
+      {/* Increased scale massively to 11 based on feedback */}
+      <primitive ref={meshRef} object={skytower.scene} scale={11} />
     </Center>
   );
 };
@@ -25,8 +25,7 @@ const SkyTowerModel = () => {
 const SkyTower3D = () => {
   return (
     <div style={{ width: '100%', height: '100%', minHeight: '600px', position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      {/* Camera moved closer (z: 8) to frame the tall spire */}
-      <Canvas camera={{ position: [0, 4, 8], fov: 45 }} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'transparent' }}>
+      <Canvas camera={{ position: [0, 4.5, 9], fov: 45 }} style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'transparent' }}>
         <ambientLight intensity={1.5} />
         
         <spotLight position={[10, 20, 10]} angle={0.4} penumbra={1} intensity={3.5} castShadow />
