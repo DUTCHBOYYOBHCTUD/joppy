@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, ChevronDown, Globe } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import './Navbar.css';
 
 import logoImage from '../assets/image1.png';
@@ -18,9 +18,12 @@ const Navbar = () => {
   return (
     <header className={`navbar ${scrolled ? 'scrolled glass-dark' : ''}`}>
       <div className="container nav-container">
-        <Link to="/" className="brand" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <img src={logoImage} alt="NECL Logo" style={{ height: '40px', objectFit: 'contain' }} />
-          <span className="brand-text">NECL<br/><small style={{ fontSize: '0.45em', opacity: 0.8, letterSpacing: '1px', fontWeight: 400 }}>NEW ZEALAND EDUCATION CONSULTANCY LTD</small></span>
+        <Link to="/" className="brand">
+          <img src={logoImage} alt="NECL Logo" className="brand-logo-img" />
+          <div className="brand-text-block">
+            <span className="brand-title">NECL</span>
+            <span className="brand-subtitle">NEW ZEALAND EDUCATION CONSULTANCY LIMITED</span>
+          </div>
         </Link>
 
         <nav className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
@@ -40,7 +43,7 @@ const Navbar = () => {
           </div>
           <Link to="/contact" className="nav-item">Contact</Link>
           
-          <Link to="/contact" className="btn btn-primary nav-cta">BOOK A CONSULTATION</Link>
+          <a href="mailto:support@necl.co.nz?subject=Book%20a%20Consultation%20-%20NECL" className="btn btn-primary nav-cta">BOOK A CONSULTATION</a>
         </nav>
 
         <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>

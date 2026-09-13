@@ -28,7 +28,13 @@ const FloatingWidgets = () => {
 
   return (
     <>
-      <a href="#" className="floating-whatsapp" aria-label="Chat on WhatsApp">
+      <a 
+        href="https://wa.me/64220391397" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="floating-whatsapp" 
+        aria-label="Chat on WhatsApp (0064 220391397)"
+      >
         <MessageCircle size={28} />
       </a>
 

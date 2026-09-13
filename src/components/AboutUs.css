@@ -1,40 +1,236 @@
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+/* Beehive Scrollytelling Section */
+.beehive-scroll-section {
+  position: relative;
+  height: 270vh;
+  background-color: var(--color-primary-black);
+}
+
+.beehive-sticky-stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.beehive-stage-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 65% 50%, rgba(16, 185, 129, 0.08) 0%, rgba(9, 28, 46, 0.95) 75%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.beehive-stage-container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  height: 100%;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+}
+
+/* Left Column: Stack of overlapping story cards */
+.beehive-story-column {
+  position: relative;
+  height: 560px;
+  display: flex;
+  align-items: center;
+}
+
+.beehive-story-card {
+  position: absolute;
+  inset: 0;
+  margin: auto 0;
+  height: fit-content;
+  width: 100%;
+  max-width: 580px;
+  background: #091c2e;
+  border: 1px solid rgba(169, 199, 216, 0.35);
+  border-radius: 24px;
+  padding: 2.25rem 2.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.story-step-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-emerald);
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  margin-bottom: 1rem;
+}
+
+.story-heading {
+  font-family: var(--font-heading);
+  color: #ffffff;
+  font-size: 1.8rem;
+  line-height: 1.3;
+}
+
+.story-paragraph {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* Highlighted Services Card inside story stack */
+.about-services-highlight-card {
+  padding: 1.75rem 2rem;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(9, 28, 46, 0.95) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  border-radius: 20px;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(16, 185, 129, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.about-services-highlight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, #10b981, #609966);
+}
+
+.services-card-header {
+  margin-bottom: 1.25rem;
+}
+
+.services-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--color-accent-emerald);
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  margin-bottom: 0.5rem;
+}
+
+.services-card-title {
+  font-family: var(--font-heading);
+  color: #ffffff;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.5px;
 }
 
 .about-services-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.85rem;
 }
 
 .about-services-list li {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  font-size: 1.1rem;
-  color: #444;
+  gap: 0.85rem;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: #ffffff !important;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.about-image-wrapper {
+.about-services-list li:hover {
+  transform: translateX(4px);
+  color: #a7f3d0 !important;
+}
+
+.service-check-icon {
+  color: #10b981;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 6px rgba(16, 185, 129, 0.5));
+}
+
+/* Right Stage: 3D Canvas Canvas container */
+.beehive-3d-stage {
   position: relative;
-  /* Removed border-radius, box-shadow, and overflow: hidden so the 3D model floats cleanly without a box */
-}
-
-.about-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  display: block;
+  max-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (max-width: 900px) {
-  .about-grid {
+/* Floating Scroll Indicator */
+.beehive-scroll-indicator {
+  position: absolute;
+  bottom: 25px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.scroll-chevron-bounce {
+  color: var(--color-accent-emerald);
+  animation: bounceDown 1.5s infinite;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@media (max-width: 992px) {
+  .beehive-scroll-section {
+    height: 280vh;
+  }
+  .beehive-stage-container {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    position: relative;
+  }
+  .beehive-3d-stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.45;
+  }
+  .beehive-story-column {
+    z-index: 2;
+    height: 500px;
+    width: 100%;
+  }
+  .beehive-story-card {
+    max-width: 100%;
+    padding: 1.75rem;
+    background: rgba(9, 28, 46, 0.9);
   }
 }

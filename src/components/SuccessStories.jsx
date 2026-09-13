@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import './SuccessStories.css';
 
 const stories = [
@@ -9,21 +9,21 @@ const stories = [
     uni: "University of Auckland",
     scholarship: "$10,000 NZD Scholarship",
     quote: "NZ Educational Services made my dream a reality. Their visa process was seamless and they helped me secure a massive scholarship!",
-    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    emoji: "👩‍🎓"
   },
   {
     name: "Rahul Verma",
     uni: "University of Otago",
     scholarship: "Full Tuition Waiver",
     quote: "The SOP guidance I received was game-changing. I am now pursuing my Masters in Data Science with a full tuition waiver.",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    emoji: "👨‍🎓"
   },
   {
     name: "Sneha Patel",
     uni: "Victoria University",
     scholarship: "$5,000 NZD Grant",
     quote: "From course selection to finding accommodation, they were there for me. Highly recommend to anyone planning to study in NZ.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+    emoji: "🧑‍🎓"
   }
 ];
 
@@ -67,7 +67,9 @@ const SuccessStories = () => {
                 </div>
                 <p className="quote-text">"{stories[currentIndex].quote}"</p>
                 <div className="student-info">
-                  <img src={stories[currentIndex].image} alt={stories[currentIndex].name} className="student-img" />
+                  <div className="student-emoji-avatar" role="img" aria-label={stories[currentIndex].name}>
+                    <span className="emoji-icon">{stories[currentIndex].emoji}</span>
+                  </div>
                   <div>
                     <h4>{stories[currentIndex].name}</h4>
                     <span className="student-uni">{stories[currentIndex].uni}</span>

@@ -51,13 +51,24 @@
   gap: 1.5rem;
 }
 
-.student-img {
-  width: 70px;
-  height: 70px;
+.student-emoji-avatar {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--color-secondary-cream);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(9, 28, 46, 0.95) 100%);
+  border: 2px solid var(--color-accent-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px rgba(207, 164, 97, 0.35);
+  flex-shrink: 0;
+}
+
+.student-emoji-avatar .emoji-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  user-select: none;
 }
 
 .student-info h4 {
