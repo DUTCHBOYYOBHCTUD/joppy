@@ -95,6 +95,12 @@ const Home = () => {
   // Floating prompt opacity inside 3D section
   const promptOpacity = useTransform(scrollYProgress, (p) => (p <= 0.08 ? 1 - p / 0.08 : 0));
 
+  // 3D Canvas opacity - fades out cleanly as user approaches the footer
+  const canvasOpacity = useTransform(scrollYProgress, (p) => {
+    if (p >= 0.97) return Math.max(0, 1 - (p - 0.97) / 0.025);
+    return 1;
+  });
+
   const handleScrollToDrone = () => {
     const droneEl = document.getElementById('drone-tour-section');
     if (droneEl) {
@@ -208,7 +214,16 @@ const Home = () => {
       <div className="home-3d-universe" ref={containerRef} id="drone-tour-section">
         
         {/* Full-Screen 3D Beehive Landmark in Fixed Background Layer */}
-        <div className="home-3d-canvas-fixed-layer" style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+        <motion.div 
+          className="home-3d-canvas-fixed-layer" 
+          style={{ 
+            position: 'fixed', 
+            inset: 0, 
+            zIndex: 0, 
+            pointerEvents: 'none',
+            opacity: canvasOpacity
+          }}
+        >
           <ModelErrorBoundary 
             title="The Beehive (Wellington)" 
             description="Executive wing of the New Zealand Parliament Buildings in full 3D."
@@ -217,7 +232,7 @@ const Home = () => {
               <Beehive3D scrollProgress={scrollYProgress} />
             </Suspense>
           </ModelErrorBoundary>
-        </div>
+        </motion.div>
 
         {/* Atmospheric Vignette & Lighting Depth Overlays */}
         <div className="home-stage-ambient-overlay"></div>

@@ -68,10 +68,25 @@ const WhyNZ = () => {
   // Scroll indicator fade
   const promptOpacity = useTransform(scrollYProgress, (p) => (p <= 0.08 ? 1 - p / 0.08 : 0));
 
+  // 3D Canvas opacity - fades out cleanly as user approaches the footer
+  const canvasOpacity = useTransform(scrollYProgress, (p) => {
+    if (p >= 0.97) return Math.max(0, 1 - (p - 0.97) / 0.025);
+    return 1;
+  });
+
   return (
     <div className="skytower-3d-universe" ref={containerRef}>
       {/* 1. Full-Screen 3D Sky Tower in Fixed Background Layer */}
-      <div className="skytower-3d-canvas-fixed-layer" style={{ position: 'fixed', inset: 0, zIndex: 0, pointerEvents: 'none' }}>
+      <motion.div 
+        className="skytower-3d-canvas-fixed-layer" 
+        style={{ 
+          position: 'fixed', 
+          inset: 0, 
+          zIndex: 0, 
+          pointerEvents: 'none',
+          opacity: canvasOpacity
+        }}
+      >
         <ModelErrorBoundary 
           title="Auckland Sky Tower" 
           description="New Zealand's tallest iconic landmark standing 328 meters high."
@@ -80,7 +95,7 @@ const WhyNZ = () => {
             <SkyTower3D scrollProgress={scrollYProgress} />
           </Suspense>
         </ModelErrorBoundary>
-      </div>
+      </motion.div>
 
       {/* Atmospheric Radial Gradient Overlay */}
       <div className="skytower-stage-ambient-overlay"></div>
