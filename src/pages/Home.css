@@ -329,32 +329,32 @@
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 0 0 45px rgba(16, 185, 129, 0.15);
 }
 
-/* Positioning Variants - Anchored cleanly below header to prevent bottom cutoffs */
+/* Positioning Variants - Anchored cleanly below the 106px fixed navbar */
 .hero-act-card {
   max-width: 480px;
   left: 4%;
-  top: clamp(85px, 12vh, 105px);
+  top: 135px;
   border-color: rgba(169, 199, 216, 0.3);
 }
 
 .side-left-card {
   max-width: 460px;
   left: 4%;
-  top: clamp(85px, 12vh, 105px);
+  top: 135px;
 }
 
 .side-right-card {
   max-width: 490px;
   right: 4%;
   left: auto;
-  top: clamp(85px, 12vh, 105px);
+  top: 135px;
 }
 
 .outro-side-card {
   max-width: 480px;
   left: 4%;
   right: auto;
-  top: clamp(85px, 12vh, 105px);
+  top: 135px;
   text-align: left;
 }
 
@@ -733,6 +733,7 @@
     margin: 0 auto !important;
     padding: 1.5rem 1.5rem !important;
     background: rgba(9, 28, 46, 0.65) !important;
+    top: 115px !important;
   }
   .home-hero-headline {
     font-size: 2.2rem;

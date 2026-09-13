@@ -33,11 +33,7 @@ const Home = () => {
     if (p >= 0.16) return 0;
     return Math.max(0, Math.min(1, 1 - (p - 0.08) / 0.08));
   });
-  const heroY = useTransform(scrollYProgress, (p) => {
-    if (p <= 0.08) return 0;
-    if (p >= 0.16) return -30;
-    return ((p - 0.08) / 0.08) * -30;
-  });
+  const heroY = useTransform(scrollYProgress, () => 0);
   const heroPointer = useTransform(scrollYProgress, (p) => (p <= 0.16 ? 'auto' : 'none'));
 
   // Act 2: About Us (0.19 -> 0.41) - Left Aligned
@@ -48,11 +44,9 @@ const Home = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.36) / 0.05));
   });
   const aboutY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.19) return 25;
-    if (p > 0.41) return -25;
-    if (p >= 0.24 && p <= 0.36) return 0;
-    if (p < 0.24) return (1 - (p - 0.19) / 0.05) * 25;
-    return ((p - 0.36) / 0.05) * -25;
+    if (p < 0.19) return 20;
+    if (p < 0.24) return (1 - (p - 0.19) / 0.05) * 20;
+    return 0;
   });
   const aboutPointer = useTransform(scrollYProgress, (p) => (p >= 0.19 && p <= 0.41 ? 'auto' : 'none'));
 
@@ -64,11 +58,9 @@ const Home = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.59) / 0.06));
   });
   const servicesY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.43) return 25;
-    if (p > 0.65) return -25;
-    if (p >= 0.48 && p <= 0.59) return 0;
-    if (p < 0.48) return (1 - (p - 0.43) / 0.05) * 25;
-    return ((p - 0.59) / 0.06) * -25;
+    if (p < 0.43) return 20;
+    if (p < 0.48) return (1 - (p - 0.43) / 0.05) * 20;
+    return 0;
   });
   const servicesPointer = useTransform(scrollYProgress, (p) => (p >= 0.43 && p <= 0.65 ? 'auto' : 'none'));
 
@@ -80,11 +72,9 @@ const Home = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.82) / 0.06));
   });
   const storiesY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.67) return 25;
-    if (p > 0.88) return -25;
-    if (p >= 0.72 && p <= 0.82) return 0;
-    if (p < 0.72) return (1 - (p - 0.67) / 0.05) * 25;
-    return ((p - 0.82) / 0.06) * -25;
+    if (p < 0.67) return 20;
+    if (p < 0.72) return (1 - (p - 0.67) / 0.05) * 20;
+    return 0;
   });
   const storiesPointer = useTransform(scrollYProgress, (p) => (p >= 0.67 && p <= 0.88 ? 'auto' : 'none'));
 
@@ -96,11 +86,9 @@ const Home = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.97) / 0.02));
   });
   const ctaY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.89) return 25;
-    if (p > 0.99) return -20;
-    if (p >= 0.92 && p <= 0.97) return 0;
-    if (p < 0.92) return (1 - (p - 0.89) / 0.03) * 25;
-    return ((p - 0.97) / 0.02) * -20;
+    if (p < 0.89) return 20;
+    if (p < 0.92) return (1 - (p - 0.89) / 0.03) * 20;
+    return 0;
   });
   const ctaPointer = useTransform(scrollYProgress, (p) => (p >= 0.89 && p <= 0.98 ? 'auto' : 'none'));
 

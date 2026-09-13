@@ -20,11 +20,7 @@ const WhyNZ = () => {
     if (p >= 0.24) return 0;
     return Math.max(0, Math.min(1, 1 - (p - 0.16) / 0.08));
   });
-  const y1 = useTransform(scrollYProgress, (p) => {
-    if (p <= 0.16) return 0;
-    if (p >= 0.24) return -30;
-    return ((p - 0.16) / 0.08) * -30;
-  });
+  const y1 = useTransform(scrollYProgress, () => 0);
   const pointerEvents1 = useTransform(scrollYProgress, (p) => (p <= 0.24 ? 'auto' : 'none'));
 
   // Milestone 2: Observation Deck (220m) - Right Card (Scroll 0.27 -> 0.53)
@@ -35,11 +31,9 @@ const WhyNZ = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.47) / 0.06));
   });
   const y2 = useTransform(scrollYProgress, (p) => {
-    if (p < 0.27) return 30;
-    if (p > 0.53) return -30;
-    if (p >= 0.33 && p <= 0.47) return 0;
-    if (p < 0.33) return (1 - (p - 0.27) / 0.06) * 30;
-    return ((p - 0.47) / 0.06) * -30;
+    if (p < 0.27) return 20;
+    if (p < 0.33) return (1 - (p - 0.27) / 0.06) * 20;
+    return 0;
   });
   const pointerEvents2 = useTransform(scrollYProgress, (p) => (p >= 0.27 && p <= 0.53 ? 'auto' : 'none'));
 
@@ -51,11 +45,9 @@ const WhyNZ = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.74) / 0.06));
   });
   const y3 = useTransform(scrollYProgress, (p) => {
-    if (p < 0.55) return 30;
-    if (p > 0.80) return -30;
-    if (p >= 0.61 && p <= 0.74) return 0;
-    if (p < 0.61) return (1 - (p - 0.55) / 0.06) * 30;
-    return ((p - 0.74) / 0.06) * -30;
+    if (p < 0.55) return 20;
+    if (p < 0.61) return (1 - (p - 0.55) / 0.06) * 20;
+    return 0;
   });
   const pointerEvents3 = useTransform(scrollYProgress, (p) => (p >= 0.55 && p <= 0.80 ? 'auto' : 'none'));
 
@@ -67,11 +59,9 @@ const WhyNZ = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.96) / 0.03));
   });
   const y4 = useTransform(scrollYProgress, (p) => {
-    if (p < 0.81) return 25;
-    if (p > 0.99) return -20;
-    if (p >= 0.86 && p <= 0.96) return 0;
-    if (p < 0.86) return (1 - (p - 0.81) / 0.05) * 25;
-    return ((p - 0.96) / 0.03) * -20;
+    if (p < 0.81) return 20;
+    if (p < 0.86) return (1 - (p - 0.81) / 0.05) * 20;
+    return 0;
   });
   const pointerEvents4 = useTransform(scrollYProgress, (p) => (p >= 0.81 && p <= 0.97 ? 'auto' : 'none'));
 
