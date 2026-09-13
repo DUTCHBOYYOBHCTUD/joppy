@@ -3,7 +3,7 @@ import { BookOpen, MapPin, FileText, GraduationCap, Plane, Home, Users, CheckSqu
 import './ServicesSection.css';
 
 const services = [
-  { icon: CheckSquare, title: "Visa Assistance", desc: "End-to-end support for a hassle-free student visa process." },
+  { icon: CheckSquare, title: "Visa Assistance", desc: "NECL collaborates with Auckland South Immigration Consultants Limited, a Licensed Immigration Adviser service provider, to support students who require professional immigration advice." },
   { icon: BookOpen, title: "Course Selection", desc: "Aligning your career aspirations with the best programs." },
   { icon: GraduationCap, title: "Admission Guidance", desc: "Expert guidance in finding and applying to the right institution." },
   { icon: FileText, title: "Bank Loan Assistance", desc: "Support in securing educational loans and financial proof." },

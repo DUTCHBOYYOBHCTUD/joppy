@@ -364,3 +364,80 @@
   }
 }
 
+/* ==========================================================================
+   Official Licensed Immigration Adviser Partner Card (Services - Visa)
+   ========================================================================== */
+.immigration-partner-card {
+  position: relative;
+  background: linear-gradient(135deg, rgba(9, 28, 46, 0.9) 0%, rgba(5, 14, 23, 0.95) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 20px;
+  padding: 2.25rem 2.5rem;
+  margin: 1.5rem auto 3rem auto;
+  max-width: 980px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 35px rgba(16, 185, 129, 0.12);
+  text-align: left;
+  overflow: hidden;
+}
+
+.partner-card-glow {
+  position: absolute;
+  top: -40%;
+  right: -15%;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.partner-card-header {
+  margin-bottom: 1.15rem;
+}
+
+.partner-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.45rem 1.15rem;
+  border-radius: 30px;
+  background: rgba(16, 185, 129, 0.14);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  color: #6ee7b7;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.partner-badge-icon {
+  color: #10b981;
+}
+
+.partner-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  color: #ffffff;
+  margin-bottom: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.partner-card-text {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .immigration-partner-card {
+    padding: 1.75rem 1.5rem;
+  }
+  .partner-card-title {
+    font-size: 1.35rem;
+  }
+  .partner-card-text {
+    font-size: 0.95rem;
+  }
+}
+
+
