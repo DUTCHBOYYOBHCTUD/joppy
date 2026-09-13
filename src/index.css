@@ -25,8 +25,8 @@
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-secondary-cream);
-  color: var(--color-primary-black);
+  background-color: var(--color-primary-black);
+  color: var(--color-secondary-cream);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

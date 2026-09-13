@@ -20,18 +20,18 @@ const Universities = () => {
       
       <TopUniversities />
 
-      <section className="section-padding">
+      <section className="section-padding bg-dark">
         <div className="container">
           <div className="section-header text-center">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="section-title"
+              className="section-title text-secondary-cream"
             >
               CAMPUS <span className="text-accent">LIFE</span>
             </motion.h2>
-            <p>Experience vibrant student communities and state-of-the-art facilities.</p>
+            <p className="text-secondary-cream opacity-80">Experience vibrant student communities and state-of-the-art facilities.</p>
           </div>
 
           <div className="campus-grid">

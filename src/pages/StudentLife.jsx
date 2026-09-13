@@ -42,18 +42,18 @@ const StudentLife = () => {
         </div>
       </section>
 
-      <section className="section-padding">
+      <section className="section-padding bg-dark">
         <div className="container">
           <div className="section-header text-center">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="section-title"
+              className="section-title text-secondary-cream"
             >
               ESTIMATED <span className="text-accent">LIVING COSTS</span>
             </motion.h2>
-            <p>A quick breakdown of average monthly expenses (NZD).</p>
+            <p className="text-secondary-cream opacity-80">A quick breakdown of average monthly expenses (NZD).</p>
           </div>
 
           <div className="cost-grid">

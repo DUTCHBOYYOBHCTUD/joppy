@@ -57,7 +57,7 @@ const Contact = () => {
         bgImage="https://images.unsplash.com/photo-1516738901171-8eb4fc13bd20?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
       />
       
-      <section className="section-padding">
+      <section className="section-padding bg-dark">
         <div className="container">
           <div className="contact-grid">
             <motion.div 
@@ -66,11 +66,13 @@ const Contact = () => {
               viewport={{ once: true }}
               className="contact-info"
             >
-              <h2 className="section-title mb-4">OUR <span className="text-accent">OFFICES</span></h2>
-              <p className="mb-4 opacity-80">Visit us at our headquarters or reach out via phone, WhatsApp, or email for a quick response.</p>
+              <h2 className="section-title text-secondary-cream mb-4">OUR <span className="text-accent">OFFICES</span></h2>
+              <p className="mb-4 text-secondary-cream opacity-80">Visit us at our headquarters or reach out via phone, WhatsApp, or email for a quick response.</p>
               
               <div className="office-card">
-                <MapPin size={28} className="text-accent" />
+                <div className="office-icon-wrap">
+                  <MapPin size={22} className="text-accent" />
+                </div>
                 <div>
                   <h4>Auckland Headquarters</h4>
                   <p className="opacity-80">109 Oakdale Road, Hillsborough<br/>Auckland 1041<br/>New Zealand</p>
@@ -78,7 +80,9 @@ const Contact = () => {
               </div>
 
               <div className="office-card">
-                <Phone size={28} className="text-accent" />
+                <div className="office-icon-wrap">
+                  <Phone size={22} className="text-accent" />
+                </div>
                 <div>
                   <h4>Phone Support</h4>
                   <p className="opacity-80">
@@ -90,20 +94,24 @@ const Contact = () => {
               </div>
 
               <div className="office-card">
-                <MessageSquare size={28} className="text-accent" />
+                <div className="office-icon-wrap">
+                  <MessageSquare size={22} className="text-accent" />
+                </div>
                 <div>
                   <h4>WhatsApp Support</h4>
                   <p className="opacity-80">
                     <a href="https://wa.me/64220391397" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent-emerald)', textDecoration: 'none', fontWeight: 600 }}>
                       0064 220391397
                     </a><br/>
-                    Direct admissions & consultancy chat
+                    Direct admissions &amp; consultancy chat
                   </p>
                 </div>
               </div>
 
               <div className="office-card">
-                <Mail size={28} className="text-accent" />
+                <div className="office-icon-wrap">
+                  <Mail size={22} className="text-accent" />
+                </div>
                 <div>
                   <h4>Email Us</h4>
                   <p className="opacity-80">
@@ -119,10 +127,10 @@ const Contact = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               className="contact-form-wrapper glass-dark"
-              style={{ padding: '3rem', borderRadius: '20px', background: 'var(--color-primary-black)' }}
+              style={{ padding: '3rem', borderRadius: '20px' }}
             >
               <h3 className="text-secondary-cream mb-2" style={{fontFamily: 'var(--font-heading)', fontSize: '2rem'}}>SEND A MESSAGE</h3>
-              <p className="opacity-80 mb-4" style={{ fontSize: '0.95rem' }}>
+              <p className="text-secondary-cream opacity-80 mb-4" style={{ fontSize: '0.95rem' }}>
                 You can submit your inquiry below or connect directly through our portal at{' '}
                 <a href="https://www.pinnacleeducation.co.nz" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent-emerald)', fontWeight: 600, textDecoration: 'underline' }}>
                   www.pinnacleeducation.co.nz
