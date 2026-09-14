@@ -1,5 +1,5 @@
 import React, { useRef, useMemo, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, Center } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -45,34 +45,43 @@ const SkyTowerModel = ({ scrollProgress }) => {
     }
   });
 
+  const { size } = useThree();
+  const isMobile = size.width < 768;
+  const modelScale = isMobile ? 1.4 : 2.0;
+  const modelY = isMobile ? 0.45 : 0;
+
   return (
-    <Center>
-      {/* Scale 2.0 perfectly balances majestic architectural presence with clean UI spacing */}
-      <primitive ref={meshRef} object={skytower.scene} scale={2.0} />
+    <Center position={[0, modelY, 0]}>
+      {/* Dynamic scale tuned for desktop widescreen vs mobile portrait */}
+      <primitive ref={meshRef} object={skytower.scene} scale={modelScale} />
     </Center>
   );
 };
 
 // Calibrated Cinematic Drone Waypoints with perfect lateral framing:
-// Shot 1 (p: 0.00): High-angle aerial looking down at the needle spire and top pod (Tower framed right, Card left)
-// Shot 2 (p: 0.38): Dramatic 140° orbital swoop level with the Observation Deck (Tower framed left, Card right)
-// Shot 3 (p: 0.68): Low-angle ascending perspective gazing up the slender shaft towards the deck (Tower framed right, Card left)
-// Shot 4 (p: 1.00): Grand full-tower panoramic finale pulling back to reveal spire to base (Tower framed right, Card left)
-const TOWER_WAYPOINTS = [
+const DESKTOP_TOWER_WAYPOINTS = [
   { p: 0.00, pos: new THREE.Vector3(-0.4, 2.0, 5.0), look: new THREE.Vector3(-1.2, 1.2, 0) },
   { p: 0.40, pos: new THREE.Vector3(0.6, 0.8, 4.8), look: new THREE.Vector3(1.4, 0.5, 0) },
   { p: 0.68, pos: new THREE.Vector3(-0.5, -0.6, 4.8), look: new THREE.Vector3(-1.2, 0.3, 0) },
   { p: 0.92, pos: new THREE.Vector3(-0.3, 0.0, 6.0), look: new THREE.Vector3(-1.2, 0.0, 0) }
 ];
 
-const interpolateTowerWaypoints = (p, targetPos, targetLook) => {
+// Mobile: Centered vertical portrait tracking that frames the spire & observation deck in upper screen
+const MOBILE_TOWER_WAYPOINTS = [
+  { p: 0.00, pos: new THREE.Vector3(0.0, 2.2, 7.5), look: new THREE.Vector3(0.0, 1.6, 0) },
+  { p: 0.40, pos: new THREE.Vector3(0.2, 0.9, 7.0), look: new THREE.Vector3(0.0, 0.7, 0) },
+  { p: 0.68, pos: new THREE.Vector3(-0.2, -0.4, 7.2), look: new THREE.Vector3(0.0, 0.4, 0) },
+  { p: 0.92, pos: new THREE.Vector3(0.0, 0.1, 8.2), look: new THREE.Vector3(0.0, 0.3, 0) }
+];
+
+const interpolateTowerWaypoints = (p, targetPos, targetLook, waypoints) => {
   const clamped = Math.max(0, Math.min(1, p));
   let i = 0;
-  while (i < TOWER_WAYPOINTS.length - 1 && TOWER_WAYPOINTS[i + 1].p < clamped) {
+  while (i < waypoints.length - 1 && waypoints[i + 1].p < clamped) {
     i++;
   }
-  const w1 = TOWER_WAYPOINTS[i];
-  const w2 = TOWER_WAYPOINTS[Math.min(i + 1, TOWER_WAYPOINTS.length - 1)];
+  const w1 = waypoints[i];
+  const w2 = waypoints[Math.min(i + 1, waypoints.length - 1)];
   const range = w2.p - w1.p || 1;
   const rawT = (clamped - w1.p) / range;
   const t = rawT * rawT * (3 - 2 * rawT);
@@ -83,16 +92,20 @@ const interpolateTowerWaypoints = (p, targetPos, targetLook) => {
 
 // Liquid-smooth Cinematic Drone Camera Rig
 const SkyTowerDroneRig = ({ scrollProgress }) => {
-  const targetPos = useRef(new THREE.Vector3(-0.4, 2.0, 5.0));
-  const currentLookAt = useRef(new THREE.Vector3(-1.1, 1.2, 0));
-  const targetLookAt = useRef(new THREE.Vector3(-1.1, 1.2, 0));
+  const { size } = useThree();
+  const isMobile = size.width < 768;
+  const waypoints = isMobile ? MOBILE_TOWER_WAYPOINTS : DESKTOP_TOWER_WAYPOINTS;
+
+  const targetPos = useRef(new THREE.Vector3(isMobile ? 0 : -0.4, 2.0, isMobile ? 7.5 : 5.0));
+  const currentLookAt = useRef(new THREE.Vector3(0, 0, 0));
+  const targetLookAt = useRef(new THREE.Vector3(0, 0, 0));
 
   useFrame((state) => {
     const p = scrollProgress && typeof scrollProgress.get === 'function'
       ? Math.max(0, Math.min(1, scrollProgress.get()))
       : 0;
 
-    interpolateTowerWaypoints(p, targetPos.current, targetLookAt.current);
+    interpolateTowerWaypoints(p, targetPos.current, targetLookAt.current, waypoints);
 
     // Smooth exponential damping
     state.camera.position.lerp(targetPos.current, 0.05);

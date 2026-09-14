@@ -94,3 +94,27 @@
 .btn-block {
   width: 100%;
 }
+
+@media (max-width: 768px) {
+  .floating-whatsapp {
+    bottom: 16px;
+    right: 16px;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 8px 16px rgba(37, 211, 102, 0.35);
+  }
+
+  .floating-whatsapp svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .exit-intent-popup {
+    padding: 2rem 1.5rem;
+    width: 92%;
+  }
+
+  .exit-intent-popup h2 {
+    font-size: 1.8rem;
+  }
+}

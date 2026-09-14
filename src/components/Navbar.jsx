@@ -15,42 +15,60 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const closeMenu = () => setMobileMenuOpen(false);
+
   return (
-    <header className={`navbar ${scrolled ? 'scrolled glass-dark' : ''}`}>
-      <div className="container nav-container">
-        <Link to="/" className="brand">
-          <img src={logoImage} alt="NECL Logo" className="brand-logo-img" />
-          <div className="brand-text-block">
-            <span className="brand-title">NECL</span>
-            <span className="brand-subtitle">NEW ZEALAND EDUCATION CONSULTANCY LIMITED</span>
-          </div>
-        </Link>
-
-        <nav className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
-          <div className="nav-item">
-            <span>Study in NZ <ChevronDown size={16} /></span>
-            <div className="dropdown glass-dark">
-              <Link to="/why-nz">Why New Zealand</Link>
-              <Link to="/universities">Our Universities</Link>
+    <>
+      <header className={`navbar ${scrolled ? 'scrolled glass-dark' : ''}`}>
+        <div className="container nav-container">
+          <Link to="/" className="brand" onClick={closeMenu}>
+            <img src={logoImage} alt="NECL Logo" className="brand-logo-img" />
+            <div className="brand-text-block">
+              <span className="brand-title">NECL</span>
+              <span className="brand-subtitle">NEW ZEALAND EDUCATION CONSULTANCY LIMITED</span>
             </div>
-          </div>
-          <div className="nav-item">
-            <span>Services <ChevronDown size={16} /></span>
-            <div className="dropdown glass-dark">
-              <Link to="/admissions">Admissions</Link>
-              <Link to="/visa">Visa Assistance</Link>
-            </div>
-          </div>
-          <Link to="/contact" className="nav-item">Contact</Link>
-          
-          <a href="mailto:support@necl.co.nz?subject=Book%20a%20Consultation%20-%20NECL" className="btn btn-primary nav-cta">BOOK A CONSULTATION</a>
-        </nav>
+          </Link>
 
-        <button className="mobile-toggle" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-          {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
-      </div>
-    </header>
+          <nav className={`nav-links ${mobileMenuOpen ? 'open' : ''}`}>
+            <div className="nav-item">
+              <span className="nav-item-label">Study in NZ <ChevronDown size={16} /></span>
+              <div className="dropdown glass-dark">
+                <Link to="/why-nz" onClick={closeMenu}>Why New Zealand</Link>
+                <Link to="/universities" onClick={closeMenu}>Our Universities</Link>
+              </div>
+            </div>
+            <div className="nav-item">
+              <span className="nav-item-label">Services <ChevronDown size={16} /></span>
+              <div className="dropdown glass-dark">
+                <Link to="/admissions" onClick={closeMenu}>Admissions</Link>
+                <Link to="/visa" onClick={closeMenu}>Visa Assistance</Link>
+              </div>
+            </div>
+            <Link to="/contact" className="nav-item" onClick={closeMenu}>Contact</Link>
+            
+            <a 
+              href="mailto:support@necl.co.nz?subject=Book%20a%20Consultation%20-%20NECL" 
+              className="btn btn-primary nav-cta"
+              onClick={closeMenu}
+            >
+              BOOK A CONSULTATION
+            </a>
+          </nav>
+
+          <button 
+            className="mobile-toggle" 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
+      </header>
+
+      {mobileMenuOpen && (
+        <div className="mobile-menu-backdrop" onClick={closeMenu} />
+      )}
+    </>
   );
 };
 

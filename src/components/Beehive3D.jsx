@@ -1,5 +1,5 @@
 import React, { useRef, useMemo, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { useGLTF, Center, Environment, Lightformer } from '@react-three/drei';
 import * as THREE from 'three';
 
@@ -64,21 +64,21 @@ const BeehiveModel = ({ scrollProgress }) => {
     }
   });
 
+  const { size } = useThree();
+  const isMobile = size.width < 768;
+  const modelScale = isMobile ? 1.25 : 1.85;
+  const modelY = isMobile ? 0.65 : 0;
+
   return (
-    <Center>
-      {/* Scale 1.85 balances majestic landmark presence with clean, unobstructed UI layout */}
-      <primitive ref={meshRef} object={beehive.scene} scale={1.85} />
+    <Center position={[0, modelY, 0]}>
+      <primitive ref={meshRef} object={beehive.scene} scale={modelScale} />
     </Center>
   );
 };
 
 // Calibrated Creative Architectural Drone Waypoints:
-// Act 1 (p: 0.00): Grand full-monument establishing hero shot. Entire Beehive visible from podium steps to dome, framed proudly on right, hero card on left
-// Act 2 (p: 0.28): Intimate mid-level colonnade fly-by. Camera swoops close to the circular balconies and fluted pillars, framed on right, about card on left
-// Act 3 (p: 0.52): Monumental ascending worm's-eye drone shot. Camera dives low to foundation steps and gazes upwards at spiraling tiers, framed on left, services card on right
-// Act 4 (p: 0.74): Elevated high-altitude spiral sweep. Drone climbs high, tilting down over concentric roof rings and copper dome, framed on right, stories card on left
-// Act 5 (p: 1.00): Grand wide-angle panoramic pullback finale. Full building centered in sunset glow behind consultation CTA
-const WAYPOINTS = [
+// Desktop: Lateral framing that offsets the landmark to the right/left to balance desktop split cards
+const DESKTOP_WAYPOINTS = [
   { p: 0.00, pos: new THREE.Vector3(-1.8, -0.2, 5.4), look: new THREE.Vector3(0.95, 0.0, 0) },
   { p: 0.28, pos: new THREE.Vector3(2.8, -0.1, 4.4), look: new THREE.Vector3(-0.85, 0.1, 0) },
   { p: 0.52, pos: new THREE.Vector3(-2.7, -1.05, 4.5), look: new THREE.Vector3(0.95, 0.55, 0) },
@@ -86,14 +86,23 @@ const WAYPOINTS = [
   { p: 1.00, pos: new THREE.Vector3(0.0, -0.15, 6.4), look: new THREE.Vector3(0.0, -0.1, 0) }
 ];
 
-const interpolateWaypoints = (p, targetPos, targetLook) => {
+// Mobile: Centered vertical portrait framing keeping the landmark majestically in the top 55% of the screen
+const MOBILE_WAYPOINTS = [
+  { p: 0.00, pos: new THREE.Vector3(0.0, 0.25, 8.4), look: new THREE.Vector3(0.0, 0.65, 0) },
+  { p: 0.28, pos: new THREE.Vector3(0.35, 0.35, 8.0), look: new THREE.Vector3(0.0, 0.65, 0) },
+  { p: 0.52, pos: new THREE.Vector3(-0.35, -0.3, 7.8), look: new THREE.Vector3(0.0, 0.85, 0) },
+  { p: 0.74, pos: new THREE.Vector3(0.3, 1.8, 8.2), look: new THREE.Vector3(0.0, 0.55, 0) },
+  { p: 1.00, pos: new THREE.Vector3(0.0, 0.25, 8.8), look: new THREE.Vector3(0.0, 0.65, 0) }
+];
+
+const interpolateWaypoints = (p, targetPos, targetLook, waypoints) => {
   const clamped = Math.max(0, Math.min(1, p));
   let i = 0;
-  while (i < WAYPOINTS.length - 1 && WAYPOINTS[i + 1].p < clamped) {
+  while (i < waypoints.length - 1 && waypoints[i + 1].p < clamped) {
     i++;
   }
-  const w1 = WAYPOINTS[i];
-  const w2 = WAYPOINTS[Math.min(i + 1, WAYPOINTS.length - 1)];
+  const w1 = waypoints[i];
+  const w2 = waypoints[Math.min(i + 1, waypoints.length - 1)];
   const range = w2.p - w1.p || 1;
   const rawT = (clamped - w1.p) / range;
   // Smoothstep easing
@@ -104,16 +113,20 @@ const interpolateWaypoints = (p, targetPos, targetLook) => {
 };
 
 const BeehiveDroneRig = ({ scrollProgress }) => {
-  const targetPos = useRef(new THREE.Vector3(-1.8, -0.2, 5.4));
-  const currentLookAt = useRef(new THREE.Vector3(0.95, 0.0, 0));
-  const targetLookAt = useRef(new THREE.Vector3(0.95, 0.0, 0));
+  const { size } = useThree();
+  const isMobile = size.width < 768;
+  const waypoints = isMobile ? MOBILE_WAYPOINTS : DESKTOP_WAYPOINTS;
+
+  const targetPos = useRef(new THREE.Vector3(isMobile ? 0 : -1.8, 0, isMobile ? 8.4 : 5.4));
+  const currentLookAt = useRef(new THREE.Vector3(0, 0, 0));
+  const targetLookAt = useRef(new THREE.Vector3(0, 0, 0));
 
   useFrame((state) => {
     const p = scrollProgress && typeof scrollProgress.get === 'function' 
       ? Math.max(0, Math.min(1, scrollProgress.get())) 
       : 0;
 
-    interpolateWaypoints(p, targetPos.current, targetLookAt.current);
+    interpolateWaypoints(p, targetPos.current, targetLookAt.current, waypoints);
 
     // Liquid-smooth cinematic damping (lerp)
     state.camera.position.lerp(targetPos.current, 0.06);
