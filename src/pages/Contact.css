@@ -1,0 +1,412 @@
+/* ==========================================================================
+   Contact Page - Custom Light Luxury Theme Matching Client Specification
+   ========================================================================== */
+
+.contact-page-root {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: #FFFFFF;
+  color: #0F172A;
+  padding-top: 7.5rem;
+  overflow-x: hidden;
+}
+
+.contact-main-section {
+  padding: 3rem 0 7rem 0;
+}
+
+.contact-layout-grid {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 4.5rem;
+  align-items: start;
+}
+
+/* --------------------------------------------------------------------------
+   Left Column: Information & Direct Contact
+   -------------------------------------------------------------------------- */
+.contact-intro-col {
+  position: sticky;
+  top: 7rem;
+}
+
+.contact-main-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 4vw, 3.2rem);
+  font-weight: 800;
+  color: #0B192C;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.contact-intro-description {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #334155;
+  margin-bottom: 2.5rem;
+}
+
+/* Quick Office Direct Channels */
+.contact-channels-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #E2E8F0;
+}
+
+.contact-channel-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  transition: all 0.25s ease;
+}
+
+.contact-channel-item:hover {
+  background: #F1F5F9;
+  border-color: #CBD5E1;
+  transform: translateX(4px);
+}
+
+.channel-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #E2E8F0;
+  color: #0B192C;
+  flex-shrink: 0;
+}
+
+.channel-details strong {
+  display: block;
+  font-size: 0.88rem;
+  color: #0F172A;
+  margin-bottom: 2px;
+}
+
+.channel-details p,
+.channel-details a {
+  font-size: 0.82rem;
+  color: #475569;
+  text-decoration: none;
+  line-height: 1.45;
+}
+
+.channel-details a:hover {
+  color: #2563EB;
+}
+
+/* --------------------------------------------------------------------------
+   Right Column: The Form (Exact Match to Pasted Pictures)
+   -------------------------------------------------------------------------- */
+.contact-form-container {
+  width: 100%;
+}
+
+.client-custom-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+/* Input Fields (Soft Blue-Gray, Borderless/Subtle Border) */
+.client-custom-form input[type="text"],
+.client-custom-form input[type="email"],
+.client-custom-form input[type="tel"],
+.client-custom-form input[type="date"],
+.client-custom-form input[type="number"],
+.client-custom-form select,
+.client-custom-form textarea {
+  width: 100%;
+  background: #F0F4F8;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  padding: 0.88rem 1.15rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: #0F172A;
+  outline: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.client-custom-form input::placeholder,
+.client-custom-form textarea::placeholder {
+  color: #64748B;
+  opacity: 0.85;
+}
+
+.client-custom-form input:focus,
+.client-custom-form select:focus,
+.client-custom-form textarea:focus {
+  background: #FFFFFF;
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* 2-Column Form Rows */
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+/* Labeled Field Group */
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.field-header-label {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #0F172A;
+}
+
+/* Horizontal Radio Button Groups */
+.radio-options-row {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  min-height: 44px;
+}
+
+.radio-item-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.94rem;
+  color: #1E293B;
+  cursor: pointer;
+  user-select: none;
+}
+
+.radio-item-label input[type="radio"] {
+  width: 17px;
+  height: 17px;
+  accent-color: #2563EB;
+  cursor: pointer;
+}
+
+/* Date of Birth Input */
+.client-custom-form input[type="date"] {
+  cursor: pointer;
+  color: #334155;
+}
+
+/* Section Title (Employment Status) */
+.form-subsection-heading {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin: 0.75rem 0 0.25rem 0;
+}
+
+/* Textarea */
+.client-custom-form textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+/* CV File Upload Box */
+.cv-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cv-file-wrapper {
+  position: relative;
+  background: #F0F4F8;
+  border-radius: 6px;
+  padding: 0.6rem 0.85rem;
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.cv-file-wrapper:focus-within {
+  background: #FFFFFF;
+  border-color: #2563EB;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.cv-file-wrapper input[type="file"] {
+  width: 100%;
+  font-size: 0.9rem;
+  color: #334155;
+  cursor: pointer;
+}
+
+.cv-file-wrapper input[type="file"]::file-selector-button {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 4px;
+  padding: 0.35rem 0.85rem;
+  margin-right: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0F172A;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cv-file-wrapper input[type="file"]::file-selector-button:hover {
+  background: #F1F5F9;
+  border-color: #94A3B8;
+}
+
+.file-limit-hint {
+  font-size: 0.78rem;
+  color: #64748B;
+  margin-top: 2px;
+}
+
+.file-error-message {
+  font-size: 0.82rem;
+  color: #DC2626;
+  font-weight: 600;
+}
+
+/* Blue Submit Button (Exact Match to Screenshot) */
+.form-submit-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.btn-contact-submit {
+  background: #2563EB;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 6px;
+  padding: 0.85rem 2.5rem;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-contact-submit:hover:not(:disabled) {
+  background: #1D4ED8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.btn-contact-submit:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.btn-contact-submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+/* Submission Notification Banners */
+.submit-status-banner {
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.submit-status-banner.success {
+  background: #ECFDF5;
+  color: #065F46;
+  border: 1px solid #A7F3D0;
+}
+
+.submit-status-banner.error {
+  background: #FEF2F2;
+  color: #991B1B;
+  border: 1px solid #FECACA;
+}
+
+/* --------------------------------------------------------------------------
+   Seamless Page to Footer Transition Wave Divider
+   -------------------------------------------------------------------------- */
+.contact-footer-transition-divider {
+  position: relative;
+  width: 100%;
+  height: 140px;
+  line-height: 0;
+  overflow: hidden;
+  margin-top: -1px;
+}
+
+.contact-footer-transition-divider svg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Responsive Adjustments
+   -------------------------------------------------------------------------- */
+@media (max-width: 992px) {
+  .contact-layout-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .contact-intro-col {
+    position: static;
+  }
+
+  .contact-channels-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-page-root {
+    padding-top: 6rem;
+  }
+
+  .contact-main-section {
+    padding: 1.5rem 0 4rem 0;
+  }
+
+  .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .contact-channels-block {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-contact-submit {
+    width: 100%;
+    padding: 0.95rem 1.5rem;
+  }
+}
