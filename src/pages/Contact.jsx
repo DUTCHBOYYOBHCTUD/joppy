@@ -445,27 +445,6 @@ const Contact = () => {
 
         </div>
       </div>
-
-      {/* Seamless Transition Divider to Footer */}
-      <div className="contact-footer-transition-divider" aria-hidden="true">
-        <svg viewBox="0 0 1440 140" fill="none" preserveAspectRatio="none">
-          <defs>
-            <linearGradient id="contactFooterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0" />
-              <stop offset="60%" stopColor="#0B1E30" stopOpacity="0.8" />
-              <stop offset="100%" stopColor="#050E17" stopOpacity="1" />
-            </linearGradient>
-          </defs>
-          <path 
-            d="M0,40 C320,100 680,20 1020,70 C1220,100 1360,50 1440,60 L1440,140 L0,140 Z" 
-            fill="url(#contactFooterGrad)" 
-          />
-          <path 
-            d="M0,90 C400,60 800,120 1140,85 C1280,70 1380,95 1440,100 L1440,140 L0,140 Z" 
-            fill="#050E17" 
-          />
-        </svg>
-      </div>
     </div>
   );
 };

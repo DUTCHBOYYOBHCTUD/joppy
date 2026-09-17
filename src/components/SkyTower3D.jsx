@@ -47,9 +47,9 @@ const SkyTowerModel = ({ scrollProgress }) => {
 
   const { size } = useThree();
   const isMobile = size.width < 768;
-  // Significantly enlarged model scale for prominent, monumental presence
-  const modelScale = isMobile ? 1.75 : 2.65;
-  const modelY = isMobile ? 0.6 : 0.0;
+  // Monumental desktop scale, calibrated mobile scale
+  const modelScale = isMobile ? 1.65 : 2.65;
+  const modelY = isMobile ? 0.9 : 0.0;
 
   return (
     <Center position={[0, modelY, 0]}>
@@ -76,11 +76,11 @@ const DESKTOP_TOWER_WAYPOINTS = [
 
 // Mobile: Centered vertical portrait tracking that frames the tower majestically in upper 55% of screen
 const MOBILE_TOWER_WAYPOINTS = [
-  { p: 0.00, pos: new THREE.Vector3(0.0, 3.4, 9.2), look: new THREE.Vector3(0.0, 2.0, 0) },
-  { p: 0.28, pos: new THREE.Vector3(0.25, 1.3, 8.2), look: new THREE.Vector3(0.0, 0.9, 0) },
-  { p: 0.52, pos: new THREE.Vector3(-0.25, -0.8, 8.0), look: new THREE.Vector3(0.0, 0.6, 0) },
-  { p: 0.74, pos: new THREE.Vector3(0.3, 1.8, 8.6), look: new THREE.Vector3(0.0, 1.0, 0) },
-  { p: 1.00, pos: new THREE.Vector3(0.0, 0.1, 10.0), look: new THREE.Vector3(0.0, 0.0, 0) }
+  { p: 0.00, pos: new THREE.Vector3(0.0, 3.2, 8.8), look: new THREE.Vector3(0.0, 2.2, 0) },
+  { p: 0.28, pos: new THREE.Vector3(0.2, 1.8, 8.0), look: new THREE.Vector3(0.0, 1.5, 0) },
+  { p: 0.52, pos: new THREE.Vector3(-0.2, 0.2, 7.8), look: new THREE.Vector3(0.0, 1.1, 0) },
+  { p: 0.74, pos: new THREE.Vector3(0.25, 2.2, 8.4), look: new THREE.Vector3(0.0, 1.6, 0) },
+  { p: 1.00, pos: new THREE.Vector3(0.0, 0.8, 9.4), look: new THREE.Vector3(0.0, 0.6, 0) }
 ];
 
 const interpolateTowerWaypoints = (p, targetPos, targetLook, waypoints) => {
