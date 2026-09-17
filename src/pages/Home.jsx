@@ -206,6 +206,38 @@ const Home = () => {
           </div>
 
         </div>
+
+        {/* Artistic Atmospheric Transition Divider into 3D Night Universe */}
+        <div className="brand-header-transition-divider" aria-hidden="true">
+          <svg viewBox="0 0 1440 180" fill="none" preserveAspectRatio="none" className="transition-svg-wave">
+            <defs>
+              <linearGradient id="waveAtmosphereGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#0E2B45" stopOpacity="0.8" />
+              </linearGradient>
+              <linearGradient id="waveDeepBlueGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#103657" stopOpacity="0.95" />
+                <stop offset="100%" stopColor="#050E17" stopOpacity="1" />
+              </linearGradient>
+            </defs>
+            {/* Ambient Aurora Wave Layer 1 */}
+            <path 
+              d="M0,70 C320,130 540,20 820,95 C1100,165 1280,60 1440,85 L1440,180 L0,180 Z" 
+              fill="url(#waveAtmosphereGrad)" 
+            />
+            {/* Deep Twilight Oceanic Wave Layer 2 */}
+            <path 
+              d="M0,110 C240,50 480,140 760,80 C1040,25 1260,120 1440,95 L1440,180 L0,180 Z" 
+              fill="url(#waveDeepBlueGrad)" 
+            />
+            {/* Seamless Solid Midnight Horizon Base Layer 3 */}
+            <path 
+              d="M0,145 C380,115 720,160 1080,130 C1240,115 1380,140 1440,145 L1440,180 L0,180 Z" 
+              fill="#050E17" 
+            />
+          </svg>
+          <div className="transition-ambient-glow" />
+        </div>
       </section>
 
       {/* =========================================================================

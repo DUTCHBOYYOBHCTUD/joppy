@@ -12,10 +12,11 @@
   z-index: 20;
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 84%, #F8FAFC 92%, #050E17 100%);
-  padding: 8.5rem 0 4.5rem 0;
+  background: linear-gradient(180deg, #FFFFFF 0%, #FFFFFF 68%, #F6FAFD 82%, #E9F2F9 92%, #DCE9F5 100%);
+  padding: 8.5rem 0 10.5rem 0;
   border-bottom: none;
   box-shadow: none;
   overflow: hidden;
@@ -73,16 +74,16 @@
 }
 
 .brand-showcase-logo {
-  height: 115px;
+  height: clamp(155px, 16vw, 215px);
   width: auto;
-  max-width: 150px;
+  max-width: 300px;
   object-fit: contain;
-  filter: none;
-  transition: transform 0.3s ease;
+  filter: drop-shadow(0 10px 30px rgba(9, 28, 46, 0.06));
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .brand-logo-frame:hover .brand-showcase-logo {
-  transform: scale(1.05);
+  transform: scale(1.04);
 }
 
 .brand-logo-glow {
@@ -219,16 +220,20 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 700;
-  letter-spacing: 2px;
-  color: #64748b;
+  letter-spacing: 2.5px;
+  color: #1E3A5F;
   cursor: pointer;
-  transition: color 0.25s ease;
+  margin-top: 1.25rem;
+  position: relative;
+  z-index: 5;
+  transition: all 0.25s ease;
 }
 
 .brand-scroll-down-hint:hover {
-  color: #0f172a;
+  color: #047857;
+  transform: translateY(2px);
 }
 
 .hint-chevron-pulse {
@@ -239,6 +244,41 @@
 @keyframes hintPulse {
   0%, 100% { transform: translateY(0); opacity: 0.6; }
   50% { transform: translateY(6px); opacity: 1; }
+}
+
+/* ==========================================================================
+   Artistic Atmospheric Transition Divider (White Header to Midnight Universe)
+   ========================================================================== */
+.brand-header-transition-divider {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  line-height: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.transition-svg-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 -12px 35px rgba(56, 189, 248, 0.12));
+}
+
+.transition-ambient-glow {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75vw;
+  height: 110px;
+  background: radial-gradient(ellipse at 50% 100%, rgba(16, 185, 129, 0.18) 0%, rgba(56, 189, 248, 0.14) 40%, transparent 75%);
+  pointer-events: none;
 }
 
 /* ==========================================================================
@@ -750,7 +790,7 @@
   /* 0. Brand Showcase Header Mobile Refinements */
   .brand-showcase-header {
     min-height: auto;
-    padding: 6.5rem 1rem 3.5rem 1rem;
+    padding: 6.5rem 1rem 6.5rem 1rem;
   }
 
   .brand-official-pill {
@@ -771,8 +811,12 @@
   }
 
   .brand-showcase-logo {
-    height: 85px;
-    max-width: 110px;
+    height: 125px;
+    max-width: 180px;
+  }
+
+  .brand-header-transition-divider {
+    height: 110px;
   }
 
   .brand-display-title {
