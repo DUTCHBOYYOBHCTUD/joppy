@@ -12,7 +12,7 @@ import {
   Send,
   Award
 } from 'lucide-react';
-import Beehive3D from '../components/Beehive3D';
+import SkyTower3D from '../components/SkyTower3D';
 import { ModelErrorBoundary, ModelLoadingFallback } from '../components/Model3DLoader';
 import logoImage from '../assets/image1.png';
 import './Home.css';
@@ -213,7 +213,7 @@ const Home = () => {
           ========================================================================= */}
       <div className="home-3d-universe" ref={containerRef} id="drone-tour-section">
         
-        {/* Full-Screen 3D Beehive Landmark in Fixed Background Layer */}
+        {/* Full-Screen 3D Sky Tower Landmark in Fixed Background Layer */}
         <motion.div 
           className="home-3d-canvas-fixed-layer" 
           style={{ 
@@ -225,11 +225,11 @@ const Home = () => {
           }}
         >
           <ModelErrorBoundary 
-            title="The Beehive (Wellington)" 
-            description="Executive wing of the New Zealand Parliament Buildings in full 3D."
+            title="Auckland Sky Tower" 
+            description="New Zealand's tallest iconic landmark standing 328 meters high in full 3D."
           >
-            <Suspense fallback={<ModelLoadingFallback title="The Beehive (Parliament Buildings)" />}>
-              <Beehive3D scrollProgress={scrollYProgress} />
+            <Suspense fallback={<ModelLoadingFallback title="Auckland Sky Tower" />}>
+              <SkyTower3D scrollProgress={scrollYProgress} />
             </Suspense>
           </ModelErrorBoundary>
         </motion.div>

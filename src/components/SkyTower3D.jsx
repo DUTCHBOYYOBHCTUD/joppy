@@ -47,8 +47,8 @@ const SkyTowerModel = ({ scrollProgress }) => {
 
   const { size } = useThree();
   const isMobile = size.width < 768;
-  const modelScale = isMobile ? 1.4 : 2.0;
-  const modelY = isMobile ? 0.45 : 0;
+  const modelScale = isMobile ? 1.3 : 1.85;
+  const modelY = isMobile ? 0.5 : 0;
 
   return (
     <Center position={[0, modelY, 0]}>
@@ -58,20 +58,28 @@ const SkyTowerModel = ({ scrollProgress }) => {
   );
 };
 
-// Calibrated Cinematic Drone Waypoints with perfect lateral framing:
+// Calibrated 5-Act Architectural Drone Waypoints:
+// Synchronized with lateral scrollytelling cards:
+// Act 1 (p: 0.00): Establishing aerial of needle spire & upper mast (Tower framed Right, Card Left)
+// Act 2 (p: 0.28): Intimate fly-by of 220m Observation Deck (Tower framed Right, Card Left)
+// Act 3 (p: 0.52): Ascending worm's-eye angle up concrete shaft (Tower swoops Left, Card Right)
+// Act 4 (p: 0.74): Elevated spiral orbit over pod (Tower framed Right, Card Left)
+// Act 5 (p: 1.00): Grand wide-angle panoramic pullback revealing entire 328m tower from base to spire
 const DESKTOP_TOWER_WAYPOINTS = [
-  { p: 0.00, pos: new THREE.Vector3(-0.4, 2.0, 5.0), look: new THREE.Vector3(-1.2, 1.2, 0) },
-  { p: 0.40, pos: new THREE.Vector3(0.6, 0.8, 4.8), look: new THREE.Vector3(1.4, 0.5, 0) },
-  { p: 0.68, pos: new THREE.Vector3(-0.5, -0.6, 4.8), look: new THREE.Vector3(-1.2, 0.3, 0) },
-  { p: 0.92, pos: new THREE.Vector3(-0.3, 0.0, 6.0), look: new THREE.Vector3(-1.2, 0.0, 0) }
+  { p: 0.00, pos: new THREE.Vector3(-1.4, 1.8, 5.0), look: new THREE.Vector3(0.85, 1.4, 0) },
+  { p: 0.28, pos: new THREE.Vector3(-1.6, 0.4, 4.4), look: new THREE.Vector3(0.9, 0.5, 0) },
+  { p: 0.52, pos: new THREE.Vector3(1.6, -0.6, 4.5), look: new THREE.Vector3(-0.95, 0.35, 0) },
+  { p: 0.74, pos: new THREE.Vector3(-1.5, 0.8, 4.8), look: new THREE.Vector3(0.85, 0.4, 0) },
+  { p: 1.00, pos: new THREE.Vector3(0.0, -0.1, 6.2), look: new THREE.Vector3(0.0, -0.1, 0) }
 ];
 
-// Mobile: Centered vertical portrait tracking that frames the spire & observation deck in upper screen
+// Mobile: Centered vertical portrait tracking that frames the tower in upper 55% of screen
 const MOBILE_TOWER_WAYPOINTS = [
-  { p: 0.00, pos: new THREE.Vector3(0.0, 2.2, 7.5), look: new THREE.Vector3(0.0, 1.6, 0) },
-  { p: 0.40, pos: new THREE.Vector3(0.2, 0.9, 7.0), look: new THREE.Vector3(0.0, 0.7, 0) },
-  { p: 0.68, pos: new THREE.Vector3(-0.2, -0.4, 7.2), look: new THREE.Vector3(0.0, 0.4, 0) },
-  { p: 0.92, pos: new THREE.Vector3(0.0, 0.1, 8.2), look: new THREE.Vector3(0.0, 0.3, 0) }
+  { p: 0.00, pos: new THREE.Vector3(0.0, 2.0, 7.8), look: new THREE.Vector3(0.0, 1.4, 0) },
+  { p: 0.28, pos: new THREE.Vector3(0.2, 0.8, 7.2), look: new THREE.Vector3(0.0, 0.7, 0) },
+  { p: 0.52, pos: new THREE.Vector3(-0.2, -0.3, 7.2), look: new THREE.Vector3(0.0, 0.45, 0) },
+  { p: 0.74, pos: new THREE.Vector3(0.25, 1.2, 7.5), look: new THREE.Vector3(0.0, 0.6, 0) },
+  { p: 1.00, pos: new THREE.Vector3(0.0, 0.1, 8.4), look: new THREE.Vector3(0.0, 0.2, 0) }
 ];
 
 const interpolateTowerWaypoints = (p, targetPos, targetLook, waypoints) => {
@@ -96,7 +104,7 @@ const SkyTowerDroneRig = ({ scrollProgress }) => {
   const isMobile = size.width < 768;
   const waypoints = isMobile ? MOBILE_TOWER_WAYPOINTS : DESKTOP_TOWER_WAYPOINTS;
 
-  const targetPos = useRef(new THREE.Vector3(isMobile ? 0 : -0.4, 2.0, isMobile ? 7.5 : 5.0));
+  const targetPos = useRef(new THREE.Vector3(isMobile ? 0 : -1.4, isMobile ? 2.0 : 1.8, isMobile ? 7.8 : 5.0));
   const currentLookAt = useRef(new THREE.Vector3(0, 0, 0));
   const targetLookAt = useRef(new THREE.Vector3(0, 0, 0));
 
@@ -108,8 +116,8 @@ const SkyTowerDroneRig = ({ scrollProgress }) => {
     interpolateTowerWaypoints(p, targetPos.current, targetLookAt.current, waypoints);
 
     // Smooth exponential damping
-    state.camera.position.lerp(targetPos.current, 0.05);
-    currentLookAt.current.lerp(targetLookAt.current, 0.05);
+    state.camera.position.lerp(targetPos.current, 0.06);
+    currentLookAt.current.lerp(targetLookAt.current, 0.06);
     state.camera.lookAt(currentLookAt.current);
   });
 
