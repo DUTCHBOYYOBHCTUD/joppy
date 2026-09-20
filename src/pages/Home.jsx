@@ -273,26 +273,14 @@ const Home = () => {
         <div className="home-sticky-viewport">
           <div className="container home-content-canvas">
 
-            {/* Act 1: Cinematic Hero - Spire Apex Shot */}
+            {/* Act 1: Hero */}
             <motion.div 
               className="home-act-card hero-act-card"
               style={{ opacity: heroOpacity, y: heroY, pointerEvents: heroPointer }}
             >
-              <div className="cockpit-drag-pill" aria-hidden="true"></div>
-              <div className="cockpit-telemetry-bar">
-                <div className="telemetry-status-tag">
-                  <span className="telemetry-pulse-beacon"></span>
-                  <span className="telemetry-act-num">ACT 01</span>
-                  <span className="telemetry-divider">/</span>
-                  <span className="telemetry-act-name">328M SPIRE SUMMIT</span>
-                </div>
-                <div className="telemetry-steps-gauge" aria-hidden="true">
-                  <span className="step-bar active"></span>
-                  <span className="step-bar"></span>
-                  <span className="step-bar"></span>
-                  <span className="step-bar"></span>
-                  <span className="step-bar"></span>
-                </div>
+              <div className="act-badge">
+                <Compass size={14} style={{ marginRight: '6px' }} />
+                <span>OFFICIAL NZ EDUCATION CONSULTANCY</span>
               </div>
 
               <h2 className="home-hero-headline">
@@ -319,26 +307,14 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Act 2: About Us - 220m Observation Deck Telephoto Zoom */}
+            {/* Act 2: About Us */}
             <motion.div 
               className="home-act-card side-left-card"
               style={{ opacity: aboutOpacity, y: aboutY, pointerEvents: aboutPointer }}
             >
-              <div className="cockpit-drag-pill" aria-hidden="true"></div>
-              <div className="cockpit-telemetry-bar">
-                <div className="telemetry-status-tag">
-                  <span className="telemetry-pulse-beacon"></span>
-                  <span className="telemetry-act-num">ACT 02</span>
-                  <span className="telemetry-divider">/</span>
-                  <span className="telemetry-act-name">220M OBSERVATION DECK</span>
-                </div>
-                <div className="telemetry-steps-gauge" aria-hidden="true">
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                  <span className="step-bar"></span>
-                  <span className="step-bar"></span>
-                  <span className="step-bar"></span>
-                </div>
+              <div className="act-badge">
+                <GraduationCap size={14} style={{ marginRight: '6px' }} />
+                <span>ABOUT NECL</span>
               </div>
 
               <h2 className="act-title">ABOUT <span className="text-accent">US</span></h2>
@@ -371,29 +347,16 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Act 3: Highlighted Services - Low-Angle 65° Monolith Shaft Ascent */}
+            {/* Act 3: Highlighted Services */}
             <motion.div 
               className="home-act-card side-right-card highlighted-services-act"
               style={{ opacity: servicesOpacity, y: servicesY, pointerEvents: servicesPointer }}
             >
-              <div className="cockpit-drag-pill" aria-hidden="true"></div>
-              <div className="cockpit-telemetry-bar">
-                <div className="telemetry-status-tag">
-                  <span className="telemetry-pulse-beacon"></span>
-                  <span className="telemetry-act-num">ACT 03</span>
-                  <span className="telemetry-divider">/</span>
-                  <span className="telemetry-act-name">328M MONOLITH SHAFT</span>
-                </div>
-                <div className="telemetry-steps-gauge" aria-hidden="true">
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                  <span className="step-bar"></span>
-                  <span className="step-bar"></span>
-                </div>
-              </div>
-
               <div className="services-card-inner">
+                <div className="act-badge emerald-badge">
+                  <CheckCircle size={14} style={{ marginRight: '6px' }} />
+                  <span>OUR SERVICES</span>
+                </div>
                 <h2 className="act-title text-accent">Our Services</h2>
                 <p className="services-lead-text">
                   Comprehensive support at every milestone of your international journey:
@@ -412,26 +375,14 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Act 4: Success Stories - SkyDeck & SkyJump Orbit */}
+            {/* Act 4: Success Stories */}
             <motion.div 
               className="home-act-card side-left-card stories-act"
               style={{ opacity: storiesOpacity, y: storiesY, pointerEvents: storiesPointer }}
             >
-              <div className="cockpit-drag-pill" aria-hidden="true"></div>
-              <div className="cockpit-telemetry-bar">
-                <div className="telemetry-status-tag">
-                  <span className="telemetry-pulse-beacon"></span>
-                  <span className="telemetry-act-num">ACT 04</span>
-                  <span className="telemetry-divider">/</span>
-                  <span className="telemetry-act-name">SKYDECK &amp; SKYWALK</span>
-                </div>
-                <div className="telemetry-steps-gauge" aria-hidden="true">
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                  <span className="step-bar"></span>
-                </div>
+              <div className="act-badge">
+                <Award size={14} style={{ marginRight: '6px' }} />
+                <span>STUDENT SUCCESS</span>
               </div>
 
               <h2 className="act-title">SUCCESS <span className="text-accent">STORIES</span></h2>
@@ -476,26 +427,14 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Act 5: Consultation Outro - Grand Panoramic Pullback */}
+            {/* Act 5: Consultation Outro */}
             <motion.div 
               className="home-act-card side-left-card outro-side-card"
               style={{ opacity: ctaOpacity, y: ctaY, pointerEvents: ctaPointer }}
             >
-              <div className="cockpit-drag-pill" aria-hidden="true"></div>
-              <div className="cockpit-telemetry-bar">
-                <div className="telemetry-status-tag">
-                  <span className="telemetry-pulse-beacon"></span>
-                  <span className="telemetry-act-num">ACT 05</span>
-                  <span className="telemetry-divider">/</span>
-                  <span className="telemetry-act-name">PANORAMIC HORIZON</span>
-                </div>
-                <div className="telemetry-steps-gauge" aria-hidden="true">
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                  <span className="step-bar active"></span>
-                </div>
+              <div className="act-badge">
+                <Sparkles size={14} style={{ marginRight: '6px' }} />
+                <span>GET STARTED</span>
               </div>
 
               <h2 className="outro-headline">
