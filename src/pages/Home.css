@@ -418,6 +418,115 @@
 
 
 
+/* Cockpit Drag Pill - hidden on desktop */
+.cockpit-drag-pill {
+  display: none;
+}
+
+/* Futuristic Flight Telemetry Header */
+.cockpit-telemetry-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background: rgba(14, 43, 69, 0.45);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 12px;
+  padding: 0.38rem 0.85rem;
+  margin-bottom: 0.95rem;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08);
+}
+
+.telemetry-status-tag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #38BDF8;
+  text-transform: uppercase;
+}
+
+.telemetry-pulse-beacon {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10B981;
+  box-shadow: 0 0 10px #10B981;
+  animation: beaconPulse 1.4s infinite ease-in-out;
+}
+
+@keyframes beaconPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.4; }
+}
+
+.telemetry-act-num {
+  color: #10B981;
+  font-weight: 800;
+}
+
+.telemetry-divider {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.telemetry-act-name {
+  color: #F1F5F9;
+}
+
+.telemetry-steps-gauge {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.telemetry-steps-gauge .step-bar {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.15);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.telemetry-steps-gauge .step-bar.active {
+  background: #10B981;
+  box-shadow: 0 0 8px #10B981;
+}
+
+/* About Us Highlights Grid */
+.about-act-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.about-highlight-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.28);
+  padding: 0.5rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  color: #ffffff;
+  font-weight: 500;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.about-highlight-pill:hover {
+  transform: translateY(-2px);
+  border-color: #10B981;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+}
+
+.about-highlight-pill .highlight-icon {
+  color: #10B981;
+  flex-shrink: 0;
+}
+
 /* Typography & Badges inside Cards */
 .act-badge {
   display: inline-flex;
@@ -898,28 +1007,101 @@
   }
 
   /* 1. Scrollytelling Cards Mobile Architecture:
-        Anchors cards to bottom 45% of viewport as a sleek, highly legible glass card.
-        Keeps 3D landmark majestically framed in the top 55% unobstructed! */
+        Sleek Edge-to-Edge Architectural Cockpit Sheet Docked at Bottom.
+        Unobstructed 60vh sky viewport above for the 3D landmark! */
   .home-act-card,
   .hero-act-card,
   .side-left-card,
   .side-right-card,
   .outro-side-card {
     top: auto !important;
-    bottom: 18px !important;
-    left: 12px !important;
-    right: 12px !important;
-    width: calc(100% - 24px) !important;
-    max-width: calc(100% - 24px) !important;
-    margin: 0 auto !important;
-    max-height: 46vh !important;
-    padding: 1.1rem 1.25rem !important;
-    border-radius: 18px !important;
-    background: rgba(6, 18, 30, 0.90) !important;
-    backdrop-filter: blur(24px) !important;
-    -webkit-backdrop-filter: blur(24px) !important;
-    border: 1px solid rgba(169, 199, 216, 0.3) !important;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.85), 0 0 30px rgba(16, 185, 129, 0.15) !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin: 0 !important;
+    max-height: 42vh !important;
+    padding: 0.85rem 1.35rem calc(1.2rem + env(safe-area-inset-bottom, 0px)) 1.35rem !important;
+    border-radius: 28px 28px 0 0 !important;
+    background: linear-gradient(180deg, rgba(8, 22, 38, 0.97) 0%, rgba(4, 12, 20, 0.99) 100%) !important;
+    backdrop-filter: blur(32px) !important;
+    -webkit-backdrop-filter: blur(32px) !important;
+    border: none !important;
+    border-top: 1.5px solid rgba(56, 189, 248, 0.45) !important;
+    box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.95), 
+                0 -2px 14px rgba(56, 189, 248, 0.22), 
+                inset 0 1px 1px rgba(255, 255, 255, 0.18) !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .home-act-card::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  /* Sleek Interactive Notch Pill */
+  .cockpit-drag-pill {
+    display: block !important;
+    width: 36px;
+    height: 4px;
+    background: rgba(56, 189, 248, 0.4);
+    border-radius: 99px;
+    margin: 0 auto 0.65rem auto;
+    box-shadow: 0 0 8px rgba(56, 189, 248, 0.3);
+  }
+
+  /* Live Drone Telemetry Strip on Mobile */
+  .cockpit-telemetry-bar {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    background: rgba(14, 43, 69, 0.65) !important;
+    border: 1px solid rgba(56, 189, 248, 0.3) !important;
+    border-radius: 10px !important;
+    padding: 0.28rem 0.6rem !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  .telemetry-status-tag {
+    font-size: 0.64rem !important;
+    letter-spacing: 0.8px !important;
+    gap: 5px !important;
+  }
+
+  .telemetry-steps-gauge .step-bar {
+    width: 10px !important;
+    height: 3px !important;
+  }
+
+  .about-act-highlights-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.45rem !important;
+    margin: 0.55rem 0 !important;
+  }
+
+  .about-highlight-pill {
+    padding: 0.35rem 0.55rem !important;
+    font-size: 0.72rem !important;
+    border-radius: 8px !important;
+    gap: 5px !important;
+  }
+
+  .about-highlight-pill .highlight-icon {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  /* Elevate floating WhatsApp on mobile so it floats cleanly in open 3D sky above cockpit */
+  body:has(.home-3d-universe) .floating-whatsapp,
+  .floating-whatsapp {
+    bottom: calc(43vh + 12px) !important;
+    right: 14px !important;
+    width: 44px !important;
+    height: 44px !important;
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45), 0 0 15px rgba(37, 211, 102, 0.3) !important;
+    z-index: 99 !important;
   }
 
   .home-hero-headline,

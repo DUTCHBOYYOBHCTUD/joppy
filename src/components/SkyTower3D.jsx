@@ -49,7 +49,7 @@ const SkyTowerModel = ({ scrollProgress }) => {
   const isMobile = size.width < 768;
   // Monumental desktop scale, calibrated high-presence mobile scale
   const modelScale = isMobile ? 1.95 : 2.65;
-  const modelY = isMobile ? 0.85 : 0.0;
+  const modelY = isMobile ? 0.95 : 0.0;
 
   return (
     <Center position={[0, modelY, 0]}>
@@ -76,7 +76,7 @@ const DESKTOP_TOWER_WAYPOINTS = [
 // Mobile: Close, dramatic portrait tracking with height-specific angles, optical zoom, and visible rotation in upper 55%
 const MOBILE_TOWER_WAYPOINTS = [
   { p: 0.00, pos: new THREE.Vector3(0.0, 4.4, 4.6), look: new THREE.Vector3(0.0, 2.2, 0), fov: 42 },
-  { p: 0.28, pos: new THREE.Vector3(0.0, 1.4, 3.2), look: new THREE.Vector3(0.0, 0.9, 0), fov: 28 },
+  { p: 0.28, pos: new THREE.Vector3(0.0, 1.5, 3.2), look: new THREE.Vector3(0.0, 1.0, 0), fov: 28 },
   { p: 0.52, pos: new THREE.Vector3(0.0, -1.8, 3.6), look: new THREE.Vector3(0.0, 1.4, 0), fov: 52 },
   { p: 0.76, pos: new THREE.Vector3(0.35, 2.4, 4.2), look: new THREE.Vector3(0.0, 1.1, 0), fov: 36 },
   { p: 1.00, pos: new THREE.Vector3(0.0, 1.2, 7.2), look: new THREE.Vector3(0.0, 0.8, 0), fov: 46 }

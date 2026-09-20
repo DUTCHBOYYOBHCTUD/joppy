@@ -278,10 +278,23 @@ const Home = () => {
               className="home-act-card hero-act-card"
               style={{ opacity: heroOpacity, y: heroY, pointerEvents: heroPointer }}
             >
-              <div className="act-badge">
-                <Compass size={14} style={{ marginRight: '6px' }} />
-                <span>AUCKLAND SKY TOWER • 328M SPIRE SUMMIT</span>
+              <div className="cockpit-drag-pill" aria-hidden="true"></div>
+              <div className="cockpit-telemetry-bar">
+                <div className="telemetry-status-tag">
+                  <span className="telemetry-pulse-beacon"></span>
+                  <span className="telemetry-act-num">ACT 01</span>
+                  <span className="telemetry-divider">/</span>
+                  <span className="telemetry-act-name">328M SPIRE SUMMIT</span>
+                </div>
+                <div className="telemetry-steps-gauge" aria-hidden="true">
+                  <span className="step-bar active"></span>
+                  <span className="step-bar"></span>
+                  <span className="step-bar"></span>
+                  <span className="step-bar"></span>
+                  <span className="step-bar"></span>
+                </div>
               </div>
+
               <h2 className="home-hero-headline">
                 Study in New Zealand<br />
                 <span className="text-gradient-emerald">Build Your Tomorrow</span>
@@ -311,20 +324,50 @@ const Home = () => {
               className="home-act-card side-left-card"
               style={{ opacity: aboutOpacity, y: aboutY, pointerEvents: aboutPointer }}
             >
-              <div className="act-badge">
-                <Compass size={14} style={{ marginRight: '6px' }} />
-                <span>220M OBSERVATION DECK • REVOLVING HORIZON</span>
+              <div className="cockpit-drag-pill" aria-hidden="true"></div>
+              <div className="cockpit-telemetry-bar">
+                <div className="telemetry-status-tag">
+                  <span className="telemetry-pulse-beacon"></span>
+                  <span className="telemetry-act-num">ACT 02</span>
+                  <span className="telemetry-divider">/</span>
+                  <span className="telemetry-act-name">220M OBSERVATION DECK</span>
+                </div>
+                <div className="telemetry-steps-gauge" aria-hidden="true">
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                  <span className="step-bar"></span>
+                  <span className="step-bar"></span>
+                  <span className="step-bar"></span>
+                </div>
               </div>
+
               <h2 className="act-title">ABOUT <span className="text-accent">US</span></h2>
-              <h3 className="act-subtitle">Your New Zealand Study Journey Starts Here</h3>
+              <h3 className="act-subtitle">Your Premier Gateway to New Zealand Higher Education</h3>
               <p className="act-desc">
-                NZ Educational Services Limited (NECL) is a New Zealand-based education consultancy helping international students explore the right study options across New Zealand's top universities and institutes.
+                NZ Educational Services Limited (NECL) is an Auckland-headquartered consultancy providing licensed, transparent and strategic admissions guidance for international scholars.
               </p>
-              <p className="act-desc">
-                We provide personalised, clear and practical guidance based on each student's academic background, career ambitions and long-term settlement goals.
-              </p>
+
+              <div className="about-act-highlights-grid">
+                <div className="about-highlight-pill">
+                  <GraduationCap size={15} className="highlight-icon" />
+                  <span>Top 8 NZ Universities</span>
+                </div>
+                <div className="about-highlight-pill">
+                  <Award size={15} className="highlight-icon" />
+                  <span>Post-Study Work Pathways</span>
+                </div>
+                <div className="about-highlight-pill">
+                  <CheckCircle size={15} className="highlight-icon" />
+                  <span>100% Ethical &amp; Licensed</span>
+                </div>
+                <div className="about-highlight-pill">
+                  <Sparkles size={15} className="highlight-icon" />
+                  <span>Green List PR Support</span>
+                </div>
+              </div>
+
               <div className="act-footer-highlight">
-                <strong>100% Ethical &amp; Licensed Advisory</strong>
+                <strong>Direct Auckland Support • Ethical Advisory</strong>
               </div>
             </motion.div>
 
@@ -333,11 +376,24 @@ const Home = () => {
               className="home-act-card side-right-card highlighted-services-act"
               style={{ opacity: servicesOpacity, y: servicesY, pointerEvents: servicesPointer }}
             >
-              <div className="services-card-inner">
-                <div className="act-badge emerald-badge">
-                  <Sparkles size={14} style={{ marginRight: '6px' }} />
-                  <span>FOUNDATION ASCENT • 328M MONOLITH SHAFT</span>
+              <div className="cockpit-drag-pill" aria-hidden="true"></div>
+              <div className="cockpit-telemetry-bar">
+                <div className="telemetry-status-tag">
+                  <span className="telemetry-pulse-beacon"></span>
+                  <span className="telemetry-act-num">ACT 03</span>
+                  <span className="telemetry-divider">/</span>
+                  <span className="telemetry-act-name">328M MONOLITH SHAFT</span>
                 </div>
+                <div className="telemetry-steps-gauge" aria-hidden="true">
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                  <span className="step-bar"></span>
+                  <span className="step-bar"></span>
+                </div>
+              </div>
+
+              <div className="services-card-inner">
                 <h2 className="act-title text-accent">Our Services</h2>
                 <p className="services-lead-text">
                   Comprehensive support at every milestone of your international journey:
@@ -361,10 +417,23 @@ const Home = () => {
               className="home-act-card side-left-card stories-act"
               style={{ opacity: storiesOpacity, y: storiesY, pointerEvents: storiesPointer }}
             >
-              <div className="act-badge">
-                <Award size={14} style={{ marginRight: '6px' }} />
-                <span>SKYDECK &amp; SKYWALK • 360° HARBOUR VIEW</span>
+              <div className="cockpit-drag-pill" aria-hidden="true"></div>
+              <div className="cockpit-telemetry-bar">
+                <div className="telemetry-status-tag">
+                  <span className="telemetry-pulse-beacon"></span>
+                  <span className="telemetry-act-num">ACT 04</span>
+                  <span className="telemetry-divider">/</span>
+                  <span className="telemetry-act-name">SKYDECK &amp; SKYWALK</span>
+                </div>
+                <div className="telemetry-steps-gauge" aria-hidden="true">
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                  <span className="step-bar"></span>
+                </div>
               </div>
+
               <h2 className="act-title">SUCCESS <span className="text-accent">STORIES</span></h2>
               <p className="stories-intro">Hear from real students who achieved their dreams with NECL:</p>
               
@@ -412,10 +481,23 @@ const Home = () => {
               className="home-act-card side-left-card outro-side-card"
               style={{ opacity: ctaOpacity, y: ctaY, pointerEvents: ctaPointer }}
             >
-              <div className="act-badge">
-                <Sparkles size={14} style={{ marginRight: '6px' }} />
-                <span>PANORAMIC HORIZON • YOUR FUTURE IN NZ</span>
+              <div className="cockpit-drag-pill" aria-hidden="true"></div>
+              <div className="cockpit-telemetry-bar">
+                <div className="telemetry-status-tag">
+                  <span className="telemetry-pulse-beacon"></span>
+                  <span className="telemetry-act-num">ACT 05</span>
+                  <span className="telemetry-divider">/</span>
+                  <span className="telemetry-act-name">PANORAMIC HORIZON</span>
+                </div>
+                <div className="telemetry-steps-gauge" aria-hidden="true">
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                  <span className="step-bar active"></span>
+                </div>
               </div>
+
               <h2 className="outro-headline">
                 READY FOR <span className="text-gradient-emerald">NEW ZEALAND?</span>
               </h2>
