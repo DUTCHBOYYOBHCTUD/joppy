@@ -38,8 +38,8 @@ const SkyTowerModel = ({ scrollProgress }) => {
       const p = scrollProgress && typeof scrollProgress.get === 'function'
         ? Math.max(0, Math.min(1, scrollProgress.get()))
         : 0;
-      // Elegant 360-degree progressive rotation that reveals every architectural facet as user descends
-      const scrollRotation = p * Math.PI * 0.95;
+      // Dynamic 360-degree progressive rotation that reveals every architectural facet as user descends
+      const scrollRotation = p * Math.PI * 1.5;
       const subtleFloat = Math.sin(state.clock.elapsedTime * 0.25) * 0.02;
       meshRef.current.rotation.y = scrollRotation + subtleFloat;
     }
@@ -47,9 +47,9 @@ const SkyTowerModel = ({ scrollProgress }) => {
 
   const { size } = useThree();
   const isMobile = size.width < 768;
-  // Monumental desktop scale, calibrated mobile scale
-  const modelScale = isMobile ? 1.65 : 2.65;
-  const modelY = isMobile ? 0.9 : 0.0;
+  // Monumental desktop scale, calibrated high-presence mobile scale
+  const modelScale = isMobile ? 1.95 : 2.65;
+  const modelY = isMobile ? 0.85 : 0.0;
 
   return (
     <Center position={[0, modelY, 0]}>
@@ -59,31 +59,30 @@ const SkyTowerModel = ({ scrollProgress }) => {
   );
 };
 
-// Calibrated 5-Act Architectural Drone Waypoints with dramatic altitude, position, and pitch transitions:
-// Synchronized with lateral scrollytelling cards:
-// Act 1 (p: 0.00): High soaring aerial establishing shot overlooking radio spire & mast (Tower framed Right, Card Left)
-// Act 2 (p: 0.28): Intimate close-orbit descent to 220m Observation Deck & revolving restaurant (Tower framed Right, Card Left)
-// Act 3 (p: 0.52): Dramatic low-angle worm's-eye swoop ascending concrete column (Tower swoops Left, Card Right)
-// Act 4 (p: 0.74): Elevated spiral climb overlooking SkyDeck & SkyJump platform (Tower framed Right, Card Left)
-// Act 5 (p: 1.00): Grand monumental panoramic pullback revealing full 328m tower from plaza to spire tip
+// Calibrated 5-Act Architectural Drone Waypoints with dramatic altitude, lateral clearance, pitch, and optical zoom:
+// Act 1 (p: 0.00): High soaring spire apex shot looking 30° down at antenna mast; Tower framed Right, Card Left
+// Act 2 (p: 0.28): Intense telephoto optical zoom directly into 220m Observation Deck & revolving restaurant; Tower framed Right, Card Left
+// Act 3 (p: 0.52): Ultra-wide 65° low-angle worm's-eye ascent looking up monolithic shaft; Tower swoops Left, Card Right
+// Act 4 (p: 0.76): High-angle dynamic spiral orbit overlooking SkyDeck & SkyJump platforms; Tower framed Right, Card Left
+// Act 5 (p: 1.00): Grand monumental panoramic pullback revealing full 328m tower beside consultation card
 const DESKTOP_TOWER_WAYPOINTS = [
-  { p: 0.00, pos: new THREE.Vector3(-2.2, 3.2, 5.8), look: new THREE.Vector3(1.3, 2.2, 0) },
-  { p: 0.28, pos: new THREE.Vector3(-2.0, 1.0, 4.4), look: new THREE.Vector3(1.1, 0.9, 0) },
-  { p: 0.52, pos: new THREE.Vector3(2.4, -1.6, 4.6), look: new THREE.Vector3(-1.1, 0.7, 0) },
-  { p: 0.74, pos: new THREE.Vector3(-2.2, 1.8, 5.0), look: new THREE.Vector3(1.2, 0.8, 0) },
-  { p: 1.00, pos: new THREE.Vector3(0.0, -0.2, 7.8), look: new THREE.Vector3(0.0, -0.1, 0) }
+  { p: 0.00, pos: new THREE.Vector3(-0.6, 3.8, 4.8), look: new THREE.Vector3(-1.4, 1.8, 0), fov: 46 },
+  { p: 0.28, pos: new THREE.Vector3(-0.4, 0.6, 3.0), look: new THREE.Vector3(-0.7, 0.4, 0), fov: 24 },
+  { p: 0.52, pos: new THREE.Vector3(0.4, -2.6, 3.4), look: new THREE.Vector3(1.2, 1.0, 0), fov: 56 },
+  { p: 0.76, pos: new THREE.Vector3(-0.5, 2.0, 4.0), look: new THREE.Vector3(-0.8, 0.7, 0), fov: 34 },
+  { p: 1.00, pos: new THREE.Vector3(-0.3, 0.2, 7.2), look: new THREE.Vector3(-0.5, 0.2, 0), fov: 45 }
 ];
 
-// Mobile: Centered vertical portrait tracking that frames the tower majestically in upper 55% of screen
+// Mobile: Close, dramatic portrait tracking with height-specific angles, optical zoom, and visible rotation in upper 55%
 const MOBILE_TOWER_WAYPOINTS = [
-  { p: 0.00, pos: new THREE.Vector3(0.0, 3.2, 8.8), look: new THREE.Vector3(0.0, 2.2, 0) },
-  { p: 0.28, pos: new THREE.Vector3(0.2, 1.8, 8.0), look: new THREE.Vector3(0.0, 1.5, 0) },
-  { p: 0.52, pos: new THREE.Vector3(-0.2, 0.2, 7.8), look: new THREE.Vector3(0.0, 1.1, 0) },
-  { p: 0.74, pos: new THREE.Vector3(0.25, 2.2, 8.4), look: new THREE.Vector3(0.0, 1.6, 0) },
-  { p: 1.00, pos: new THREE.Vector3(0.0, 0.8, 9.4), look: new THREE.Vector3(0.0, 0.6, 0) }
+  { p: 0.00, pos: new THREE.Vector3(0.0, 4.4, 4.6), look: new THREE.Vector3(0.0, 2.2, 0), fov: 42 },
+  { p: 0.28, pos: new THREE.Vector3(0.0, 1.4, 3.2), look: new THREE.Vector3(0.0, 0.9, 0), fov: 28 },
+  { p: 0.52, pos: new THREE.Vector3(0.0, -1.8, 3.6), look: new THREE.Vector3(0.0, 1.4, 0), fov: 52 },
+  { p: 0.76, pos: new THREE.Vector3(0.35, 2.4, 4.2), look: new THREE.Vector3(0.0, 1.1, 0), fov: 36 },
+  { p: 1.00, pos: new THREE.Vector3(0.0, 1.2, 7.2), look: new THREE.Vector3(0.0, 0.8, 0), fov: 46 }
 ];
 
-const interpolateTowerWaypoints = (p, targetPos, targetLook, waypoints) => {
+const interpolateTowerWaypoints = (p, targetPos, targetLook, targetFovRef, waypoints) => {
   const clamped = Math.max(0, Math.min(1, p));
   let i = 0;
   while (i < waypoints.length - 1 && waypoints[i + 1].p < clamped) {
@@ -93,33 +92,42 @@ const interpolateTowerWaypoints = (p, targetPos, targetLook, waypoints) => {
   const w2 = waypoints[Math.min(i + 1, waypoints.length - 1)];
   const range = w2.p - w1.p || 1;
   const rawT = (clamped - w1.p) / range;
+  // Smooth cubic ease in-out
   const t = rawT * rawT * (3 - 2 * rawT);
 
   targetPos.lerpVectors(w1.pos, w2.pos, t);
   targetLook.lerpVectors(w1.look, w2.look, t);
+  targetFovRef.current = THREE.MathUtils.lerp(w1.fov, w2.fov, t);
 };
 
-// Liquid-smooth Cinematic Drone Camera Rig
+// Liquid-smooth Cinematic Drone Camera Rig with Dynamic Optical Zoom
 const SkyTowerDroneRig = ({ scrollProgress }) => {
   const { size } = useThree();
   const isMobile = size.width < 768;
   const waypoints = isMobile ? MOBILE_TOWER_WAYPOINTS : DESKTOP_TOWER_WAYPOINTS;
 
-  const targetPos = useRef(new THREE.Vector3(isMobile ? 0 : -2.2, isMobile ? 3.4 : 3.2, isMobile ? 9.2 : 5.8));
-  const currentLookAt = useRef(new THREE.Vector3(0, isMobile ? 2.0 : 2.2, 0));
-  const targetLookAt = useRef(new THREE.Vector3(0, isMobile ? 2.0 : 2.2, 0));
+  const targetPos = useRef(new THREE.Vector3(isMobile ? 0 : -0.6, isMobile ? 4.4 : 3.8, isMobile ? 4.6 : 4.8));
+  const currentLookAt = useRef(new THREE.Vector3(isMobile ? 0 : -1.4, isMobile ? 2.2 : 1.8, 0));
+  const targetLookAt = useRef(new THREE.Vector3(isMobile ? 0 : -1.4, isMobile ? 2.2 : 1.8, 0));
+  const targetFov = useRef(isMobile ? 42 : 46);
 
   useFrame((state) => {
     const p = scrollProgress && typeof scrollProgress.get === 'function'
       ? Math.max(0, Math.min(1, scrollProgress.get()))
       : 0;
 
-    interpolateTowerWaypoints(p, targetPos.current, targetLookAt.current, waypoints);
+    interpolateTowerWaypoints(p, targetPos.current, targetLookAt.current, targetFov, waypoints);
 
     // Smooth exponential damping for fluid, cinematic crane/drone physics
-    state.camera.position.lerp(targetPos.current, 0.055);
-    currentLookAt.current.lerp(targetLookAt.current, 0.055);
+    state.camera.position.lerp(targetPos.current, 0.06);
+    currentLookAt.current.lerp(targetLookAt.current, 0.06);
     state.camera.lookAt(currentLookAt.current);
+
+    // Dynamic optical zoom (FOV lerp with projection matrix update)
+    if (Math.abs(state.camera.fov - targetFov.current) > 0.05) {
+      state.camera.fov = THREE.MathUtils.lerp(state.camera.fov, targetFov.current, 0.06);
+      state.camera.updateProjectionMatrix();
+    }
   });
 
   return null;
@@ -145,7 +153,7 @@ const SkyTower3D = ({ scrollProgress }) => {
     >
       <Canvas 
         key={canvasKey}
-        camera={{ position: [-2.2, 3.2, 5.8], fov: 42 }} 
+        camera={{ position: [-0.6, 3.8, 4.8], fov: 46 }} 
         gl={{ 
           antialias: true, 
           alpha: true, 

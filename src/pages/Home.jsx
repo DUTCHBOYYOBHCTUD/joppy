@@ -27,70 +27,70 @@ const Home = () => {
     offset: ['start start', 'end end']
   });
 
-  // Act 1: Hero (0.00 -> 0.16)
+  // Act 1: Hero (0.00 -> 0.19) - Heli-Cam looking down on the 328m spire apex
   const heroOpacity = useTransform(scrollYProgress, (p) => {
-    if (p <= 0.08) return 1;
-    if (p >= 0.16) return 0;
-    return Math.max(0, Math.min(1, 1 - (p - 0.08) / 0.08));
+    if (p <= 0.12) return 1;
+    if (p >= 0.19) return 0;
+    return Math.max(0, Math.min(1, 1 - (p - 0.12) / 0.07));
   });
   const heroY = useTransform(scrollYProgress, () => 0);
-  const heroPointer = useTransform(scrollYProgress, (p) => (p <= 0.16 ? 'auto' : 'none'));
+  const heroPointer = useTransform(scrollYProgress, (p) => (p <= 0.18 ? 'auto' : 'none'));
 
-  // Act 2: About Us (0.19 -> 0.41) - Left Aligned
+  // Act 2: About Us (0.14 -> 0.45) - Telephoto zoom into 220m Observation Deck (Waypoint at 0.28)
   const aboutOpacity = useTransform(scrollYProgress, (p) => {
-    if (p < 0.19 || p > 0.41) return 0;
-    if (p >= 0.24 && p <= 0.36) return 1;
-    if (p < 0.24) return Math.max(0, Math.min(1, (p - 0.19) / 0.05));
-    return Math.max(0, Math.min(1, 1 - (p - 0.36) / 0.05));
+    if (p < 0.14 || p > 0.45) return 0;
+    if (p >= 0.22 && p <= 0.38) return 1;
+    if (p < 0.22) return Math.max(0, Math.min(1, (p - 0.14) / 0.08));
+    return Math.max(0, Math.min(1, 1 - (p - 0.38) / 0.07));
   });
   const aboutY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.19) return 20;
-    if (p < 0.24) return (1 - (p - 0.19) / 0.05) * 20;
+    if (p < 0.14) return 18;
+    if (p < 0.22) return (1 - (p - 0.14) / 0.08) * 18;
     return 0;
   });
-  const aboutPointer = useTransform(scrollYProgress, (p) => (p >= 0.19 && p <= 0.41 ? 'auto' : 'none'));
+  const aboutPointer = useTransform(scrollYProgress, (p) => (p >= 0.15 && p <= 0.44 ? 'auto' : 'none'));
 
-  // Act 3: Highlighted Services (0.43 -> 0.65) - Right Aligned
+  // Act 3: Highlighted Services (0.39 -> 0.70) - 65° Low-angle worm's-eye monolith shaft ascent (Waypoint at 0.52)
   const servicesOpacity = useTransform(scrollYProgress, (p) => {
-    if (p < 0.43 || p > 0.65) return 0;
-    if (p >= 0.48 && p <= 0.59) return 1;
-    if (p < 0.48) return Math.max(0, Math.min(1, (p - 0.43) / 0.05));
-    return Math.max(0, Math.min(1, 1 - (p - 0.59) / 0.06));
+    if (p < 0.39 || p > 0.70) return 0;
+    if (p >= 0.46 && p <= 0.63) return 1;
+    if (p < 0.46) return Math.max(0, Math.min(1, (p - 0.39) / 0.07));
+    return Math.max(0, Math.min(1, 1 - (p - 0.63) / 0.07));
   });
   const servicesY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.43) return 20;
-    if (p < 0.48) return (1 - (p - 0.43) / 0.05) * 20;
+    if (p < 0.39) return 18;
+    if (p < 0.46) return (1 - (p - 0.39) / 0.07) * 18;
     return 0;
   });
-  const servicesPointer = useTransform(scrollYProgress, (p) => (p >= 0.43 && p <= 0.65 ? 'auto' : 'none'));
+  const servicesPointer = useTransform(scrollYProgress, (p) => (p >= 0.40 && p <= 0.69 ? 'auto' : 'none'));
 
-  // Act 4: Success Stories (0.67 -> 0.88) - Left Aligned
+  // Act 4: Success Stories (0.64 -> 0.92) - Dynamic spiral orbit overlooking SkyDeck (Waypoint at 0.76)
   const storiesOpacity = useTransform(scrollYProgress, (p) => {
-    if (p < 0.67 || p > 0.88) return 0;
-    if (p >= 0.72 && p <= 0.82) return 1;
-    if (p < 0.72) return Math.max(0, Math.min(1, (p - 0.67) / 0.05));
-    return Math.max(0, Math.min(1, 1 - (p - 0.82) / 0.06));
+    if (p < 0.64 || p > 0.92) return 0;
+    if (p >= 0.71 && p <= 0.85) return 1;
+    if (p < 0.71) return Math.max(0, Math.min(1, (p - 0.64) / 0.07));
+    return Math.max(0, Math.min(1, 1 - (p - 0.85) / 0.07));
   });
   const storiesY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.67) return 20;
-    if (p < 0.72) return (1 - (p - 0.67) / 0.05) * 20;
+    if (p < 0.64) return 18;
+    if (p < 0.71) return (1 - (p - 0.64) / 0.07) * 18;
     return 0;
   });
-  const storiesPointer = useTransform(scrollYProgress, (p) => (p >= 0.67 && p <= 0.88 ? 'auto' : 'none'));
+  const storiesPointer = useTransform(scrollYProgress, (p) => (p >= 0.65 && p <= 0.91 ? 'auto' : 'none'));
 
-  // Act 5: Consultation CTA (0.89 -> 0.98) - Centered Hero with clean exit before footer
+  // Act 5: Consultation CTA (0.86 -> 1.00) - Grand panoramic pullback reveal
   const ctaOpacity = useTransform(scrollYProgress, (p) => {
-    if (p < 0.89 || p > 0.99) return 0;
-    if (p >= 0.92 && p <= 0.97) return 1;
-    if (p < 0.92) return Math.max(0, Math.min(1, (p - 0.89) / 0.03));
-    return Math.max(0, Math.min(1, 1 - (p - 0.97) / 0.02));
+    if (p < 0.86) return 0;
+    if (p >= 0.92 && p <= 0.985) return 1;
+    if (p < 0.92) return Math.max(0, Math.min(1, (p - 0.86) / 0.06));
+    return Math.max(0, Math.min(1, 1 - (p - 0.985) / 0.015));
   });
   const ctaY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.89) return 20;
-    if (p < 0.92) return (1 - (p - 0.89) / 0.03) * 20;
+    if (p < 0.86) return 18;
+    if (p < 0.92) return (1 - (p - 0.86) / 0.06) * 18;
     return 0;
   });
-  const ctaPointer = useTransform(scrollYProgress, (p) => (p >= 0.89 && p <= 0.98 ? 'auto' : 'none'));
+  const ctaPointer = useTransform(scrollYProgress, (p) => (p >= 0.87 && p <= 0.995 ? 'auto' : 'none'));
 
   // Floating prompt opacity inside 3D section
   const promptOpacity = useTransform(scrollYProgress, (p) => (p <= 0.08 ? 1 - p / 0.08 : 0));
@@ -273,14 +273,14 @@ const Home = () => {
         <div className="home-sticky-viewport">
           <div className="container home-content-canvas">
 
-            {/* Act 1: Cinematic Hero */}
+            {/* Act 1: Cinematic Hero - Spire Apex Shot */}
             <motion.div 
               className="home-act-card hero-act-card"
               style={{ opacity: heroOpacity, y: heroY, pointerEvents: heroPointer }}
             >
               <div className="act-badge">
                 <Compass size={14} style={{ marginRight: '6px' }} />
-                <span>YOUR FUTURE • OUR GUIDANCE</span>
+                <span>AUCKLAND SKY TOWER • 328M SPIRE SUMMIT</span>
               </div>
               <h2 className="home-hero-headline">
                 Study in New Zealand<br />
@@ -306,14 +306,14 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Act 2: About Us (Left Side while camera swoops around Beehive) */}
+            {/* Act 2: About Us - 220m Observation Deck Telephoto Zoom */}
             <motion.div 
               className="home-act-card side-left-card"
               style={{ opacity: aboutOpacity, y: aboutY, pointerEvents: aboutPointer }}
             >
               <div className="act-badge">
                 <Compass size={14} style={{ marginRight: '6px' }} />
-                <span>DISCOVER AOTEAROA</span>
+                <span>220M OBSERVATION DECK • REVOLVING HORIZON</span>
               </div>
               <h2 className="act-title">ABOUT <span className="text-accent">US</span></h2>
               <h3 className="act-subtitle">Your New Zealand Study Journey Starts Here</h3>
@@ -328,7 +328,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Act 3: Highlighted Services (Right Side, 2-Column Sleek Layout) */}
+            {/* Act 3: Highlighted Services - Low-Angle 65° Monolith Shaft Ascent */}
             <motion.div 
               className="home-act-card side-right-card highlighted-services-act"
               style={{ opacity: servicesOpacity, y: servicesY, pointerEvents: servicesPointer }}
@@ -336,7 +336,7 @@ const Home = () => {
               <div className="services-card-inner">
                 <div className="act-badge emerald-badge">
                   <Sparkles size={14} style={{ marginRight: '6px' }} />
-                  <span>EXPERT GUIDANCE</span>
+                  <span>FOUNDATION ASCENT • 328M MONOLITH SHAFT</span>
                 </div>
                 <h2 className="act-title text-accent">Our Services</h2>
                 <p className="services-lead-text">
@@ -356,14 +356,14 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Act 4: Success Stories (Left Side, Compact Emoji Layout) */}
+            {/* Act 4: Success Stories - SkyDeck & SkyJump Orbit */}
             <motion.div 
               className="home-act-card side-left-card stories-act"
               style={{ opacity: storiesOpacity, y: storiesY, pointerEvents: storiesPointer }}
             >
               <div className="act-badge">
                 <Award size={14} style={{ marginRight: '6px' }} />
-                <span>PROVEN RESULTS</span>
+                <span>SKYDECK &amp; SKYWALK • 360° HARBOUR VIEW</span>
               </div>
               <h2 className="act-title">SUCCESS <span className="text-accent">STORIES</span></h2>
               <p className="stories-intro">Hear from real students who achieved their dreams with NECL:</p>
@@ -407,14 +407,14 @@ const Home = () => {
               </div>
             </motion.div>
 
-            {/* Act 5: Consultation Outro (Side-Docked so Beehive remains prominent) */}
+            {/* Act 5: Consultation Outro - Grand Panoramic Pullback */}
             <motion.div 
               className="home-act-card side-left-card outro-side-card"
               style={{ opacity: ctaOpacity, y: ctaY, pointerEvents: ctaPointer }}
             >
               <div className="act-badge">
                 <Sparkles size={14} style={{ marginRight: '6px' }} />
-                <span>TAKE THE FIRST STEP</span>
+                <span>PANORAMIC HORIZON • YOUR FUTURE IN NZ</span>
               </div>
               <h2 className="outro-headline">
                 READY FOR <span className="text-gradient-emerald">NEW ZEALAND?</span>

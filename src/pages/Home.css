@@ -320,6 +320,7 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100dvh;
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -344,6 +345,7 @@
 .home-act-card {
   position: absolute;
   pointer-events: auto;
+  touch-action: pan-y;
   border-radius: 22px;
   background: rgba(9, 28, 46, 0.45);
   backdrop-filter: blur(16px);
