@@ -141,7 +141,7 @@ const Home = () => {
 
           {/* Lead Tagline */}
           <p className="brand-showcase-lead">
-            Your premier gateway to world-class education, post-study work rights, and permanent residency pathways across New Zealand's top universities.
+            Your premier gateway to world-class education, post-study work opportunities, and academic excellence across New Zealand's top universities.
           </p>
 
           {/* Call to Actions */}
@@ -303,7 +303,7 @@ const Home = () => {
               <div className="home-hero-chips">
                 <div className="chip-pill"><GraduationCap size={15} /> Top 3% Global Unis</div>
                 <div className="chip-pill"><Award size={15} /> Post-Study Work Visas</div>
-                <div className="chip-pill"><Sparkles size={15} /> Green List Pathways</div>
+                <div className="chip-pill"><Sparkles size={15} /> Student Visa Support</div>
               </div>
             </motion.div>
 
@@ -338,7 +338,7 @@ const Home = () => {
                 </div>
                 <div className="about-highlight-pill">
                   <Sparkles size={15} className="highlight-icon" />
-                  <span>Green List PR Support</span>
+                  <span>Career &amp; Study Guidance</span>
                 </div>
               </div>
 

@@ -51,7 +51,7 @@ const WhyNZ = () => {
   });
   const pointerEvents3 = useTransform(scrollYProgress, (p) => (p >= 0.55 && p <= 0.80 ? 'auto' : 'none'));
 
-  // Milestone 4: Permanent Future (Scroll 0.81 -> 0.98) with clean exit before footer
+  // Milestone 4: Post-Study Success (Scroll 0.81 -> 0.98) with clean exit before footer
   const opacity4 = useTransform(scrollYProgress, (p) => {
     if (p < 0.81 || p > 0.99) return 0;
     if (p >= 0.86 && p <= 0.96) return 1;
@@ -155,12 +155,12 @@ const WhyNZ = () => {
               <span>STAGE 02 • IN HIGH DEMAND</span>
             </div>
             <h2 className="act-title">SKILL SHORTAGE <span className="text-accent">CAREERS</span></h2>
-            <h3 className="act-subtitle">Fast-Track Green List Opportunities</h3>
+            <h3 className="act-subtitle">High-Demand Industry Opportunities</h3>
             <p className="act-desc">
               Graduates in Information Technology, Software Engineering, Construction, Healthcare, and Biotechnology are in immense demand across Auckland and nationwide.
             </p>
             <p className="act-desc">
-              New Zealand's Green List provides direct, streamlined residence pathways for qualified professionals in key sectors.
+              New Zealand offers rewarding career environments and extensive industry opportunities for qualified graduates in high-growth sectors.
             </p>
           </motion.div>
 
@@ -171,17 +171,17 @@ const WhyNZ = () => {
           >
             <div className="act-badge">
               <Award size={14} style={{ marginRight: '6px' }} />
-              <span>STAGE 03 • PERMANENT FUTURE</span>
+              <span>STAGE 03 • POST-STUDY SUCCESS</span>
             </div>
             <h2 className="outro-headline">
-              PR PATHWAYS &amp; <span className="text-gradient-emerald">SETTLEMENT</span>
+              POST-STUDY WORK &amp; <span className="text-gradient-emerald">CAREERS</span>
             </h2>
             <p className="outro-subtext">
-              Clear, points-based pathways empower international graduates to transition smoothly from student visas to Permanent Residency in one of the safest, most peaceful countries on Earth.
+              Generous post-study work visas empower international graduates to build valuable industry experience and launch global careers in one of the safest, most peaceful countries on Earth.
             </p>
             <div className="outro-contact-actions">
               <a 
-                href="mailto:support@necl.co.nz?subject=Plan%20PR%20and%20Study%20Pathway%20-%20NECL" 
+                href="mailto:support@necl.co.nz?subject=Plan%20Study%20and%20Career%20Pathway%20-%20NECL" 
                 className="btn btn-primary outro-btn-primary"
               >
                 Plan Your Pathway with NECL <Send size={16} style={{ marginLeft: '8px' }} />

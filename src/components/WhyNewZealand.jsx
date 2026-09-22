@@ -5,7 +5,7 @@ import './WhyNewZealand.css';
 const reasons = [
   { icon: Award, title: "World-Class Education", desc: "Universities ranked in the top 3% globally." },
   { icon: Briefcase, title: "Post-Study Work", desc: "Up to 3 years of post-study work rights." },
-  { icon: TrendingUp, title: "PR Pathways", desc: "Clear pathways to Permanent Residency for skilled graduates." },
+  { icon: TrendingUp, title: "Career Growth", desc: "High graduate employability and thriving global industry networks." },
   { icon: ShieldCheck, title: "Safe Environment", desc: "Ranked as one of the safest countries in the world." },
   { icon: DollarSign, title: "Affordable Living", desc: "Competitive tuition fees and reasonable living costs." },
   { icon: Globe2, title: "Global Recognition", desc: "Degrees recognized and respected worldwide." }
