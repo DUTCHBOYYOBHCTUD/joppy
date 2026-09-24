@@ -46,13 +46,21 @@ const Navbar = () => {
             </div>
             <Link to="/contact" className="nav-item" onClick={closeMenu}>Contact</Link>
             
-            <a 
-              href="mailto:support@necl.co.nz?subject=Book%20a%20Consultation%20-%20NECL" 
+            <Link 
+              to="/contact#consultation-form" 
               className="btn btn-primary nav-cta"
-              onClick={closeMenu}
+              onClick={() => {
+                closeMenu();
+                if (window.location.pathname === '/contact') {
+                  const formEl = document.getElementById('consultation-form');
+                  if (formEl) {
+                    formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }
+              }}
             >
               BOOK A CONSULTATION
-            </a>
+            </Link>
           </nav>
 
           <button 

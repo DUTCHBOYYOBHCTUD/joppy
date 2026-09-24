@@ -1,4 +1,5 @@
 import React, { Suspense, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { CheckCircle, Compass, Sparkles, ChevronDown } from 'lucide-react';
 import Beehive3D from './Beehive3D';
@@ -95,13 +96,13 @@ const AboutUs = () => {
               <p className="mb-4 fw-bold text-accent" style={{ fontSize: '1.25rem', lineHeight: 1.6 }}>
                 Start your New Zealand study journey with NECL today.
               </p>
-              <a 
-                href="mailto:support@necl.co.nz?subject=Book%20Free%20Consultancy%20Session%20-%20NECL" 
+              <Link 
+                to="/contact#consultation-form" 
                 className="btn btn-primary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '0.85rem 1.8rem', fontSize: '0.95rem' }}
               >
                 Book Free Consultation &rarr;
-              </a>
+              </Link>
             </motion.div>
           </div>
 

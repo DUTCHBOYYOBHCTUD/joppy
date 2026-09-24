@@ -1,4 +1,5 @@
 import React, { Suspense, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Briefcase, Building, Route, Compass, ChevronDown, Award, Phone, Send } from 'lucide-react';
 import SkyTower3D from '../components/SkyTower3D';
@@ -180,12 +181,12 @@ const WhyNZ = () => {
               Generous post-study work visas empower international graduates to build valuable industry experience and launch global careers in one of the safest, most peaceful countries on Earth.
             </p>
             <div className="outro-contact-actions">
-              <a 
-                href="mailto:support@necl.co.nz?subject=Plan%20Study%20and%20Career%20Pathway%20-%20NECL" 
+              <Link 
+                to="/contact#consultation-form" 
                 className="btn btn-primary outro-btn-primary"
               >
                 Plan Your Pathway with NECL <Send size={16} style={{ marginLeft: '8px' }} />
-              </a>
+              </Link>
               <a 
                 href="https://wa.me/64220391397" 
                 target="_blank" 

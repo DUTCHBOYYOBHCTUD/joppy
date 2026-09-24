@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, MessageSquare, CheckCircle, AlertCircle } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageSquare, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import './Contact.css';
 
@@ -187,10 +187,23 @@ const Contact = () => {
               ========================================================================= */}
           <motion.div 
             className="contact-form-container"
+            id="consultation-form"
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
+            {/* Header for Consultation Form */}
+            <div className="form-card-header">
+              <div className="form-badge">
+                <Sparkles size={14} style={{ marginRight: '6px' }} />
+                <span>ONLINE CONSULTATION FORM</span>
+              </div>
+              <h2 className="form-title">Book a Free Consultation</h2>
+              <p className="form-subtitle">
+                Complete your details below. Our senior Auckland educational advisers will evaluate your academic profile and contact you within 24 hours.
+              </p>
+            </div>
+
             <form ref={formRef} className="client-custom-form" onSubmit={handleSubmit}>
               
               {/* Row 1: Title */}

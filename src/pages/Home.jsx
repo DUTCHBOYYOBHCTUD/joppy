@@ -156,12 +156,12 @@ const Home = () => {
               <ChevronDown size={18} style={{ marginLeft: '6px' }} />
             </button>
 
-            <a 
-              href="mailto:support@necl.co.nz?subject=Free%20Consultancy%20Inquiry%20-%20NECL"
+            <Link 
+              to="/contact#consultation-form" 
               className="btn btn-glass"
             >
               Book Free Consultation &rarr;
-            </a>
+            </Link>
           </div>
 
           {/* Trust & Metric Cards */}
@@ -444,12 +444,12 @@ const Home = () => {
                 At NECL, we believe every student deserves honest advice, personalised support and the confidence to make informed decisions about their education and future.
               </p>
               <div className="outro-contact-actions">
-                <a 
-                  href="mailto:support@necl.co.nz?subject=Book%20Free%20Consultancy%20Session%20-%20NECL" 
+                <Link 
+                  to="/contact#consultation-form" 
                   className="btn btn-primary outro-btn-primary"
                 >
                   Book Free Consultation <Send size={16} style={{ marginLeft: '8px' }} />
-                </a>
+                </Link>
                 <a 
                   href="https://wa.me/64220391397" 
                   target="_blank" 
