@@ -17,7 +17,7 @@ const ConsultationCTA = () => {
           <h2>READY FOR<br/><span className="text-accent">NEW ZEALAND?</span></h2>
           <p>Take the first step towards a global future. Book a free session with our expert counselors today.</p>
           <Link 
-            to="/contact#consultation-form" 
+            to="/consultation" 
             className="btn btn-primary cta-btn" 
             style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}
           >

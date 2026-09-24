@@ -1,0 +1,417 @@
+/* ==========================================================================
+   Consultation Form Page - Dark Blue Luxury Theme (NECL Website Aesthetic)
+   ========================================================================== */
+
+.consultation-page-root {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #050E17;
+  background-image: 
+    radial-gradient(circle at 50% 12%, #0E2B45 0%, #050E17 75%),
+    linear-gradient(180deg, rgba(9, 28, 46, 0.6) 0%, #050E17 100%);
+  color: #FFFFFF;
+  padding-top: 7.5rem;
+  padding-bottom: 6rem;
+  overflow-x: hidden;
+}
+
+.consultation-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Header Section */
+.consultation-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem auto;
+}
+
+.consultation-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #10B981;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.consultation-main-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 900;
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.5px;
+}
+
+.consultation-subtitle {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 2rem;
+}
+
+/* Process Steps Indicator */
+.consultation-steps-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3.5rem;
+}
+
+.consultation-step-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: rgba(9, 28, 46, 0.65);
+  border: 1px solid rgba(169, 199, 216, 0.18);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  color: #10B981;
+  font-weight: 800;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.step-details strong {
+  display: block;
+  font-size: 0.92rem;
+  color: #FFFFFF;
+  margin-bottom: 0.15rem;
+}
+
+.step-details span {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Form Container */
+.consultation-form-card {
+  width: 100%;
+  background: rgba(9, 28, 46, 0.78);
+  border: 1px solid rgba(169, 199, 216, 0.22);
+  border-radius: 22px;
+  padding: 3rem 3rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 25px 65px rgba(0, 0, 0, 0.6), 0 0 40px rgba(16, 185, 129, 0.08);
+  margin-bottom: 3.5rem;
+}
+
+.consultation-form-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+  width: 100%;
+}
+
+/* Dark Glass Input Fields */
+.consultation-form-inner input[type="text"],
+.consultation-form-inner input[type="email"],
+.consultation-form-inner input[type="tel"],
+.consultation-form-inner input[type="date"],
+.consultation-form-inner input[type="number"],
+.consultation-form-inner select,
+.consultation-form-inner textarea {
+  width: 100%;
+  background: rgba(5, 14, 23, 0.85);
+  border: 1px solid rgba(169, 199, 216, 0.22);
+  border-radius: 10px;
+  padding: 0.95rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  color: #FFFFFF;
+  outline: none;
+  transition: all 0.25s ease;
+  color-scheme: dark;
+}
+
+.consultation-form-inner input::placeholder,
+.consultation-form-inner textarea::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.consultation-form-inner input:focus,
+.consultation-form-inner select:focus,
+.consultation-form-inner textarea:focus {
+  background: rgba(9, 28, 46, 0.95);
+  border-color: #10B981;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.28);
+}
+
+/* 2-Column Form Rows */
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.35rem;
+  align-items: start;
+}
+
+/* Field Group with Label */
+.form-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.field-header-label {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 0.2px;
+}
+
+/* Horizontal Radio Button Groups */
+.radio-options-row {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  min-height: 52px;
+  background: rgba(5, 14, 23, 0.6);
+  border: 1px solid rgba(169, 199, 216, 0.18);
+  border-radius: 10px;
+  padding: 0 1.25rem;
+}
+
+.radio-item-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  user-select: none;
+}
+
+.radio-item-label input[type="radio"] {
+  width: 17px;
+  height: 17px;
+  accent-color: #10B981;
+  cursor: pointer;
+}
+
+/* Subsection: Employment Status */
+.form-subsection-heading {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin: 1rem 0 0.35rem 0;
+  letter-spacing: 0.5px;
+  border-top: 1px solid rgba(169, 199, 216, 0.16);
+  padding-top: 1.25rem;
+}
+
+/* Textarea */
+.consultation-form-inner textarea {
+  resize: vertical;
+  min-height: 125px;
+  line-height: 1.6;
+}
+
+/* CV File Upload Box */
+.cv-upload-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.cv-file-wrapper {
+  position: relative;
+  background: rgba(5, 14, 23, 0.85);
+  border: 1px dashed rgba(169, 199, 216, 0.35);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  transition: all 0.25s ease;
+}
+
+.cv-file-wrapper:hover {
+  border-color: #10B981;
+  background: rgba(9, 28, 46, 0.95);
+}
+
+.cv-input-native {
+  width: 100%;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.cv-file-wrapper input[type="file"]::file-selector-button {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  color: #6EE7B7;
+  padding: 0.45rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 1rem;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.cv-file-wrapper input[type="file"]::file-selector-button:hover {
+  background: #10B981;
+  color: #050E17;
+}
+
+.cv-file-selected-text {
+  font-size: 0.84rem;
+  color: #6EE7B7;
+  font-weight: 600;
+  margin-top: 0.35rem;
+}
+
+.cv-upload-hint {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.cv-error-msg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #F87171;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+/* Submit Action Button */
+.form-submit-row {
+  margin-top: 1rem;
+}
+
+.btn-consultation-submit {
+  width: 100%;
+  padding: 1.1rem 2rem;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #050E17;
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-consultation-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(16, 185, 129, 0.45);
+  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+}
+
+.btn-consultation-submit:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+/* Submission Notification Banner */
+.submit-alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 1.15rem 1.4rem;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+.submit-alert-banner.success {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(16, 185, 129, 0.55);
+  color: #6EE7B7;
+}
+
+/* Direct Support Footer Bridge */
+.consultation-support-bridge {
+  text-align: center;
+  padding: 2rem 2rem;
+  background: rgba(9, 28, 46, 0.55);
+  border: 1px solid rgba(169, 199, 216, 0.18);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.consultation-support-bridge h3 {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+}
+
+.consultation-support-bridge p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.95rem;
+  margin-bottom: 1.25rem;
+}
+
+.support-bridge-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .consultation-page-root {
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+  }
+
+  .consultation-steps-row {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .consultation-form-card {
+    padding: 2rem 1.4rem;
+    border-radius: 16px;
+  }
+
+  .form-row-2col {
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+
+  .radio-options-row {
+    gap: 1.25rem;
+  }
+}

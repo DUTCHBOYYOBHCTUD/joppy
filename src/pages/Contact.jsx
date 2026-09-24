@@ -1,462 +1,232 @@
-import React, { useState, useRef } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, MessageSquare, CheckCircle, AlertCircle, Sparkles } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+import { Link } from 'react-router-dom';
+import { MapPin, Phone, Mail, MessageSquare, Clock, ArrowRight, ExternalLink, Sparkles } from 'lucide-react';
 import './Contact.css';
 
 const Contact = () => {
-  const formRef = useRef();
-  const fileInputRef = useRef();
-
-  const [formData, setFormData] = useState({
-    title: '',
-    name: '',
-    email: '',
-    phone: '',
-    gender: '',
-    dob: '',
-    marital_status: '',
-    dependents: '',
-    street_address: '',
-    city: '',
-    state: '',
-    zip: '',
-    qualification: '',
-    current_position: '',
-    experience_years: '',
-    comments: ''
-  });
-
-  const [cvFile, setCvFile] = useState(null);
-  const [fileError, setFileError] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleFileChange = (e) => {
-    setFileError('');
-    const file = e.target.files?.[0];
-    if (!file) {
-      setCvFile(null);
-      return;
-    }
-
-    // 2MB validation (2 * 1024 * 1024 bytes)
-    const maxSizeBytes = 2 * 1024 * 1024;
-    if (file.size > maxSizeBytes) {
-      setFileError('File size exceeds the 2MB limit. Please upload a smaller document.');
-      setCvFile(null);
-      if (fileInputRef.current) fileInputRef.current.value = '';
-      return;
-    }
-
-    setCvFile(file);
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setFileError('');
-
-    if (cvFile && cvFile.size > 2 * 1024 * 1024) {
-      setFileError('Please ensure your uploaded CV is under 2MB.');
-      return;
-    }
-
-    setIsSubmitting(true);
-    setSubmitStatus(null);
-
-    // If EmailJS credentials are configured, dispatch email notification
-    if (import.meta.env.VITE_EMAILJS_SERVICE_ID && formRef.current) {
-      try {
-        await emailjs.sendForm(
-          import.meta.env.VITE_EMAILJS_SERVICE_ID,
-          import.meta.env.VITE_EMAILJS_TEMPLATE_ID_COMPANY || 'template_default',
-          formRef.current,
-          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-        );
-      } catch (err) {
-        console.warn('EmailJS delivery error:', err);
-      }
-    }
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus('success');
-      // Reset form fields
-      setFormData({
-        title: '',
-        name: '',
-        email: '',
-        phone: '',
-        gender: '',
-        dob: '',
-        marital_status: '',
-        dependents: '',
-        street_address: '',
-        city: '',
-        state: '',
-        zip: '',
-        qualification: '',
-        current_position: '',
-        experience_years: '',
-        comments: ''
-      });
-      setCvFile(null);
-      if (fileInputRef.current) fileInputRef.current.value = '';
-    }, 600);
-  };
-
   return (
     <div className="contact-page-root">
-      <div className="container contact-main-section">
-        <div className="contact-layout-grid">
+      <div className="contact-container">
+        
+        {/* Header Section */}
+        <motion.div 
+          className="contact-header"
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="contact-badge">
+            <MapPin size={15} />
+            <span>OFFICIAL CONTACT INFORMATION</span>
+          </div>
+          <h1 className="contact-main-heading">Get in Touch with NECL</h1>
+          <p className="contact-intro-description">
+            NZ Educational Services Limited (NECL) is centrally headquartered in Auckland, New Zealand. Connect directly with our educational advisory team through our official channels or schedule a consultation.
+          </p>
+        </motion.div>
+
+        {/* 4 Official Contact Cards */}
+        <div className="contact-cards-grid">
           
-          {/* =========================================================================
-              Left Column: Information & Direct Official Channels
-              ========================================================================= */}
+          {/* Card 1: Auckland Headquarters */}
           <motion.div 
-            className="contact-intro-col"
+            className="contact-info-card"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.05 }}
           >
-            <h1 className="contact-main-heading">Contact Us</h1>
-            <p className="contact-intro-description">
-              Please complete the provided form with your details and submit it. We will then promptly reach out to you. Your provided details will offer us valuable insight into your needs and preferences.
-            </p>
-
-            {/* Direct Official Contact Channels */}
-            <div className="contact-channels-block">
-              <div className="contact-channel-item">
-                <div className="channel-icon-wrap">
-                  <MapPin size={18} />
+            <div>
+              <div className="card-top">
+                <div className="card-icon-wrap">
+                  <MapPin size={24} />
                 </div>
-                <div className="channel-details">
-                  <strong>Auckland Headquarters</strong>
-                  <p>109 Oakdale Road, Hillsborough, Auckland 1041, New Zealand</p>
+                <div className="card-heading-group">
+                  <h3>Auckland Headquarters</h3>
+                  <span>Central Operations Office</span>
                 </div>
               </div>
-
-              <div className="contact-channel-item">
-                <div className="channel-icon-wrap">
-                  <Phone size={18} />
-                </div>
-                <div className="channel-details">
-                  <strong>Direct Phone Line</strong>
-                  <p>
-                    <a href="tel:00642102302460">0064 21023 02460</a> / <br/>
-                    <a href="tel:0064220391397">0064 220391397</a>
-                  </p>
-                </div>
-              </div>
-
-              <div className="contact-channel-item">
-                <div className="channel-icon-wrap">
-                  <MessageSquare size={18} />
-                </div>
-                <div className="channel-details">
-                  <strong>WhatsApp Consultation</strong>
-                  <p>
-                    <a href="https://wa.me/64220391397" target="_blank" rel="noopener noreferrer">
-                      0064 220391397 (Chat Online)
-                    </a>
-                  </p>
-                </div>
-              </div>
-
-              <div className="contact-channel-item">
-                <div className="channel-icon-wrap">
-                  <Mail size={18} />
-                </div>
-                <div className="channel-details">
-                  <strong>Email Inquiries</strong>
-                  <p>
-                    <a href="mailto:support@necl.co.nz">support@necl.co.nz</a>
-                  </p>
-                </div>
-              </div>
+              <p className="card-body-text">
+                109 Oakdale Road, Hillsborough,<br />
+                Auckland 1041, New Zealand
+              </p>
             </div>
+            <a 
+              href="https://maps.google.com/?q=109+Oakdale+Road,+Hillsborough,+Auckland+1041,+New+Zealand" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="card-action-link"
+            >
+              Open in Google Maps <ExternalLink size={15} />
+            </a>
           </motion.div>
 
-          {/* =========================================================================
-              Right Column: The Application & Inquiry Form (Matching Pasted Pictures)
-              ========================================================================= */}
+          {/* Card 2: Direct Phone Support */}
           <motion.div 
-            className="contact-form-container"
-            id="consultation-form"
-            initial={{ opacity: 0, y: 25 }}
+            className="contact-info-card"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            {/* Header for Consultation Form */}
-            <div className="form-card-header">
-              <div className="form-badge">
-                <Sparkles size={14} style={{ marginRight: '6px' }} />
-                <span>ONLINE CONSULTATION FORM</span>
+            <div>
+              <div className="card-top">
+                <div className="card-icon-wrap">
+                  <Phone size={24} />
+                </div>
+                <div className="card-heading-group">
+                  <h3>Direct Phone Support</h3>
+                  <span>Telephone Assistance</span>
+                </div>
               </div>
-              <h2 className="form-title">Book a Free Consultation</h2>
-              <p className="form-subtitle">
-                Complete your details below. Our senior Auckland educational advisers will evaluate your academic profile and contact you within 24 hours.
+              <p className="card-body-text">
+                Primary Line: <a href="tel:00642102302460">0064 21023 02460</a><br />
+                Direct Desk: <a href="tel:0064220391397">0064 220391397</a>
               </p>
             </div>
+            <a href="tel:00642102302460" className="card-action-link">
+              Call Auckland Office <ArrowRight size={15} />
+            </a>
+          </motion.div>
 
-            <form ref={formRef} className="client-custom-form" onSubmit={handleSubmit}>
-              
-              {/* Row 1: Title */}
-              <input 
-                type="text" 
-                name="title" 
-                placeholder="Title" 
-                value={formData.title} 
-                onChange={handleInputChange} 
-              />
-
-              {/* Row 2: Your Name* */}
-              <input 
-                type="text" 
-                name="name" 
-                placeholder="Your Name*" 
-                value={formData.name} 
-                onChange={handleInputChange} 
-                required 
-              />
-
-              {/* Row 3: Email Address* and Contact Number */}
-              <div className="form-row-2col">
-                <input 
-                  type="email" 
-                  name="email" 
-                  placeholder="Email Address*" 
-                  value={formData.email} 
-                  onChange={handleInputChange} 
-                  required 
-                />
-                <input 
-                  type="tel" 
-                  name="phone" 
-                  placeholder="Contact Number" 
-                  value={formData.phone} 
-                  onChange={handleInputChange} 
-                />
-              </div>
-
-              {/* Row 4: Gender* and Date Of Birth */}
-              <div className="form-row-2col">
-                <div className="form-field-group">
-                  <span className="field-header-label">Gender*</span>
-                  <div className="radio-options-row">
-                    <label className="radio-item-label">
-                      <input 
-                        type="radio" 
-                        name="gender" 
-                        value="Male" 
-                        checked={formData.gender === 'Male'} 
-                        onChange={handleInputChange} 
-                        required 
-                      />
-                      Male
-                    </label>
-                    <label className="radio-item-label">
-                      <input 
-                        type="radio" 
-                        name="gender" 
-                        value="Female" 
-                        checked={formData.gender === 'Female'} 
-                        onChange={handleInputChange} 
-                        required 
-                      />
-                      Female
-                    </label>
-                  </div>
+          {/* Card 3: WhatsApp Consultation */}
+          <motion.div 
+            className="contact-info-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.15 }}
+          >
+            <div>
+              <div className="card-top">
+                <div className="card-icon-wrap">
+                  <MessageSquare size={24} />
                 </div>
-
-                <div className="form-field-group">
-                  <span className="field-header-label">Date Of Birth</span>
-                  <input 
-                    type="date" 
-                    name="dob" 
-                    placeholder="dd-mm-yyyy" 
-                    value={formData.dob} 
-                    onChange={handleInputChange} 
-                  />
+                <div className="card-heading-group">
+                  <h3>WhatsApp Online</h3>
+                  <span>Fast Student Inquiries</span>
                 </div>
               </div>
+              <p className="card-body-text">
+                Chat directly with our admissions coordinator:<br />
+                <strong>0064 220391397</strong>
+              </p>
+            </div>
+            <a 
+              href="https://wa.me/64220391397" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="card-action-link"
+            >
+              Start WhatsApp Chat <ArrowRight size={15} />
+            </a>
+          </motion.div>
 
-              {/* Row 5: Martial Status* and Number of Dependent */}
-              <div className="form-row-2col">
-                <div className="form-field-group">
-                  <span className="field-header-label">Martial Status*</span>
-                  <div className="radio-options-row">
-                    <label className="radio-item-label">
-                      <input 
-                        type="radio" 
-                        name="marital_status" 
-                        value="Single" 
-                        checked={formData.marital_status === 'Single'} 
-                        onChange={handleInputChange} 
-                        required 
-                      />
-                      Single
-                    </label>
-                    <label className="radio-item-label">
-                      <input 
-                        type="radio" 
-                        name="marital_status" 
-                        value="Married" 
-                        checked={formData.marital_status === 'Married'} 
-                        onChange={handleInputChange} 
-                        required 
-                      />
-                      Married
-                    </label>
-                  </div>
+          {/* Card 4: Official Email */}
+          <motion.div 
+            className="contact-info-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            <div>
+              <div className="card-top">
+                <div className="card-icon-wrap">
+                  <Mail size={24} />
                 </div>
-
-                <div className="form-field-group" style={{ justifyContent: 'flex-end' }}>
-                  <input 
-                    type="text" 
-                    name="dependents" 
-                    placeholder="Number of Dependent" 
-                    value={formData.dependents} 
-                    onChange={handleInputChange} 
-                  />
+                <div className="card-heading-group">
+                  <h3>Official Email</h3>
+                  <span>Inquiries &amp; Admissions</span>
                 </div>
               </div>
-
-              {/* Row 6: Street Address */}
-              <input 
-                type="text" 
-                name="street_address" 
-                placeholder="Street Address" 
-                value={formData.street_address} 
-                onChange={handleInputChange} 
-              />
-
-              {/* Row 7: City and State/Province */}
-              <div className="form-row-2col">
-                <input 
-                  type="text" 
-                  name="city" 
-                  placeholder="City" 
-                  value={formData.city} 
-                  onChange={handleInputChange} 
-                />
-                <input 
-                  type="text" 
-                  name="state" 
-                  placeholder="State/Province" 
-                  value={formData.state} 
-                  onChange={handleInputChange} 
-                />
-              </div>
-
-              {/* Row 8: ZIP/Postel code */}
-              <input 
-                type="text" 
-                name="zip" 
-                placeholder="ZIP/Postel code" 
-                value={formData.zip} 
-                onChange={handleInputChange} 
-              />
-
-              {/* Row 9: Highest Education Qualification* */}
-              <input 
-                type="text" 
-                name="qualification" 
-                placeholder="Highest Education Qualification*" 
-                value={formData.qualification} 
-                onChange={handleInputChange} 
-                required 
-              />
-
-              {/* Subsection: Employment Status */}
-              <h3 className="form-subsection-heading">Employment Status</h3>
-
-              {/* Row 10: Current Position */}
-              <input 
-                type="text" 
-                name="current_position" 
-                placeholder="Current Position" 
-                value={formData.current_position} 
-                onChange={handleInputChange} 
-              />
-
-              {/* Row 11: Number of Years Experience */}
-              <input 
-                type="text" 
-                name="experience_years" 
-                placeholder="Number of Years Experience" 
-                value={formData.experience_years} 
-                onChange={handleInputChange} 
-              />
-
-              {/* Row 12: Comments or Queries */}
-              <textarea 
-                name="comments" 
-                placeholder="Comments or Queries" 
-                rows="4" 
-                value={formData.comments} 
-                onChange={handleInputChange} 
-              />
-
-              {/* Row 13: Upload Your CV (Max: 2MB) */}
-              <div className="cv-upload-container">
-                <span className="field-header-label">Upload Your CV (Max: 2MB)</span>
-                <div className="cv-file-wrapper">
-                  <input 
-                    ref={fileInputRef}
-                    type="file" 
-                    name="cv_file" 
-                    accept=".pdf,.doc,.docx" 
-                    onChange={handleFileChange} 
-                  />
-                </div>
-                {fileError && <p className="file-error-message">{fileError}</p>}
-                {cvFile && (
-                  <p className="file-limit-hint" style={{ color: '#047857', fontWeight: 600 }}>
-                    Selected: {cvFile.name} ({(cvFile.size / 1024).toFixed(1)} KB)
-                  </p>
-                )}
-              </div>
-
-              {/* Row 14: Submit Button */}
-              <div className="form-submit-row">
-                <button 
-                  type="submit" 
-                  className="btn-contact-submit" 
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting ? 'Submitting...' : 'Submit'}
-                </button>
-              </div>
-
-              {/* Feedback status messages */}
-              {submitStatus === 'success' && (
-                <div className="submit-status-banner success">
-                  <CheckCircle size={20} />
-                  <span>
-                    Thank you! Your information has been received successfully. Our Auckland advisory team will reach out to you promptly.
-                  </span>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="submit-status-banner error">
-                  <AlertCircle size={20} />
-                  <span>
-                    Submission error. Please verify your details or reach us directly at support@necl.co.nz.
-                  </span>
-                </div>
-              )}
-
-            </form>
+              <p className="card-body-text">
+                Email inquiries are reviewed promptly within 24 hours:<br />
+                <a href="mailto:support@necl.co.nz">support@necl.co.nz</a>
+              </p>
+            </div>
+            <a href="mailto:support@necl.co.nz" className="card-action-link">
+              Send Email Inquiry <ArrowRight size={15} />
+            </a>
           </motion.div>
 
         </div>
+
+        {/* Operating Hours & Interactive Map */}
+        <div className="contact-details-row">
+          
+          {/* Office Hours */}
+          <motion.div 
+            className="office-hours-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.25 }}
+          >
+            <div className="hours-header">
+              <Clock size={22} color="#10B981" />
+              <h3>Office Operating Hours</h3>
+            </div>
+            <ul className="hours-list">
+              <li className="hours-item">
+                <span className="day">Monday – Friday</span>
+                <span className="time">9:00 AM – 5:30 PM</span>
+              </li>
+              <li className="hours-item">
+                <span className="day">Saturday</span>
+                <span className="time">By Prior Appointment</span>
+              </li>
+              <li className="hours-item">
+                <span className="day">Sunday &amp; Holidays</span>
+                <span className="time">Closed</span>
+              </li>
+            </ul>
+            <p className="hours-note">
+              *All timings are in New Zealand Standard Time (NZST / UTC+12). Virtual consultations are available worldwide via Zoom/Google Meet.
+            </p>
+          </motion.div>
+
+          {/* Map Preview Embed */}
+          <motion.div 
+            className="map-embed-card"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="map-header-bar">
+              <strong>Auckland Office Location</strong>
+              <span>Hillsborough, Auckland</span>
+            </div>
+            <div className="map-iframe-wrapper">
+              <iframe
+                title="NECL Office Location Map"
+                src="https://maps.google.com/maps?q=109+Oakdale+Road,+Hillsborough,+Auckland+1041,+New+Zealand&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </motion.div>
+
+        </div>
+
+        {/* Callout Bridge to Consultation Form */}
+        <motion.div 
+          className="consultation-cta-banner"
+          initial={{ opacity: 0, scale: 0.98 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.35 }}
+        >
+          <div className="cta-banner-content">
+            <div className="cta-banner-badge">
+              <Sparkles size={14} />
+              <span>STUDENT ADMISSIONS EVALUATION</span>
+            </div>
+            <h2>Ready to Assess Your Study Options?</h2>
+            <p>
+              Looking to study in New Zealand? Fill out our dedicated online consultation form to receive a customized evaluation of top universities and scholarship eligibility.
+            </p>
+          </div>
+          <Link to="/consultation" className="btn-open-form">
+            Open Consultation Form <ArrowRight size={18} />
+          </Link>
+        </motion.div>
+
       </div>
     </div>
   );

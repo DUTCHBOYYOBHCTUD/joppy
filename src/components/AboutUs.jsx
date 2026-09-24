@@ -97,7 +97,7 @@ const AboutUs = () => {
                 Start your New Zealand study journey with NECL today.
               </p>
               <Link 
-                to="/contact#consultation-form" 
+                to="/consultation" 
                 className="btn btn-primary"
                 style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '0.85rem 1.8rem', fontSize: '0.95rem' }}
               >

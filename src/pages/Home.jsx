@@ -157,7 +157,7 @@ const Home = () => {
             </button>
 
             <Link 
-              to="/contact#consultation-form" 
+              to="/consultation" 
               className="btn btn-glass"
             >
               Book Free Consultation &rarr;
@@ -445,7 +445,7 @@ const Home = () => {
               </p>
               <div className="outro-contact-actions">
                 <Link 
-                  to="/contact#consultation-form" 
+                  to="/consultation" 
                   className="btn btn-primary outro-btn-primary"
                 >
                   Book Free Consultation <Send size={16} style={{ marginLeft: '8px' }} />

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Contact Page - Dark Blue Luxury Theme (NECL Website Aesthetic)
+   Contact Page - Dedicated Contact Information Aesthetic
    ========================================================================== */
 
 .contact-page-root {
@@ -8,465 +8,372 @@
   min-height: 100vh;
   background-color: #050E17;
   background-image: 
-    radial-gradient(circle at 50% 18%, #0E2B45 0%, #050E17 80%),
-    linear-gradient(180deg, rgba(9, 28, 46, 0.5) 0%, #050E17 100%);
+    radial-gradient(circle at 50% 12%, #0E2B45 0%, #050E17 75%),
+    linear-gradient(180deg, rgba(9, 28, 46, 0.6) 0%, #050E17 100%);
   color: #FFFFFF;
-  padding-top: 8rem;
-  padding-bottom: 5rem;
+  padding-top: 7.5rem;
+  padding-bottom: 6rem;
   overflow-x: hidden;
 }
 
-.contact-main-section {
-  padding: 2.5rem 0 4.5rem 0;
+.contact-container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
-.contact-layout-grid {
-  display: grid;
-  grid-template-columns: 380px 1fr;
-  gap: 4rem;
-  align-items: start;
+/* Header Section */
+.contact-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3.5rem auto;
 }
 
-/* --------------------------------------------------------------------------
-   Left Column: Information & Direct Official Channels
-   -------------------------------------------------------------------------- */
-.contact-intro-col {
-  position: sticky;
-  top: 7.5rem;
+.contact-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #10B981;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
 }
 
 .contact-main-heading {
   font-family: var(--font-heading);
-  font-size: clamp(2.4rem, 4.5vw, 3.4rem);
+  font-size: clamp(2.4rem, 4.5vw, 3.6rem);
   font-weight: 900;
   color: #FFFFFF;
-  line-height: 1.1;
+  line-height: 1.15;
   margin-bottom: 1.25rem;
   letter-spacing: -0.5px;
 }
 
 .contact-intro-description {
   font-family: var(--font-body);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.82);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
-/* Quick Office Direct Channels */
-.contact-channels-block {
+/* 4 Official Channel Cards Grid */
+.contact-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 3.5rem;
+}
+
+.contact-info-card {
+  position: relative;
+  background: rgba(9, 28, 46, 0.72);
+  border: 1px solid rgba(169, 199, 216, 0.22);
+  border-radius: 20px;
+  padding: 2.2rem 2rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(169, 199, 216, 0.18);
+  justify-content: space-between;
 }
 
-.contact-channel-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1rem 1.15rem;
-  border-radius: 14px;
-  background: rgba(9, 28, 46, 0.65);
-  border: 1px solid rgba(169, 199, 216, 0.18);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  transition: all 0.25s ease;
-}
-
-.contact-channel-item:hover {
+.contact-info-card:hover {
+  transform: translateY(-4px);
   background: rgba(14, 43, 69, 0.85);
   border-color: rgba(16, 185, 129, 0.45);
-  transform: translateX(4px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 25px rgba(16, 185, 129, 0.12);
 }
 
-.channel-icon-wrap {
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-icon-wrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   background: rgba(16, 185, 129, 0.15);
   border: 1px solid rgba(16, 185, 129, 0.35);
   color: #10B981;
   flex-shrink: 0;
 }
 
-.channel-details strong {
-  display: block;
-  font-size: 0.92rem;
+.card-heading-group h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 2px;
+  margin-bottom: 0.35rem;
 }
 
-.channel-details p,
-.channel-details a {
+.card-heading-group span {
   font-size: 0.84rem;
-  color: rgba(255, 255, 255, 0.72);
-  text-decoration: none;
-  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.65);
 }
 
-.channel-details a:hover {
+.card-body-text {
+  font-size: 1rem;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 1.5rem;
+}
+
+.card-body-text a {
   color: #6EE7B7;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-/* --------------------------------------------------------------------------
-   Right Column: Form Container (Exact Fields Styled in Luxury Dark Blue)
-   -------------------------------------------------------------------------- */
-.contact-form-container {
-  width: 100%;
-  background: rgba(9, 28, 46, 0.75);
-  border: 1px solid rgba(169, 199, 216, 0.22);
-  border-radius: 22px;
-  padding: 2.75rem 2.5rem;
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.55), 0 0 35px rgba(16, 185, 129, 0.08);
+.card-body-text a:hover {
+  color: #A7F3D0;
+  text-decoration: underline;
 }
 
-#consultation-form {
-  scroll-margin-top: 6.5rem;
+.card-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #10B981;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  margin-top: auto;
 }
 
-/* Consultation Form Card Header */
-.form-card-header {
-  margin-bottom: 2rem;
-  padding-bottom: 1.5rem;
+.card-action-link:hover {
+  color: #6EE7B7;
+  transform: translateX(4px);
+}
+
+/* Secondary 2-Column Section: Hours & Location */
+.contact-details-row {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+}
+
+.office-hours-card {
+  background: rgba(9, 28, 46, 0.65);
+  border: 1px solid rgba(169, 199, 216, 0.18);
+  border-radius: 20px;
+  padding: 2.2rem 2rem;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.hours-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid rgba(169, 199, 216, 0.16);
 }
 
-.form-badge {
+.hours-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.hours-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.hours-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.94rem;
+  color: rgba(255, 255, 255, 0.85);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px dashed rgba(169, 199, 216, 0.12);
+}
+
+.hours-item .day {
+  font-weight: 600;
+  color: #FFFFFF;
+}
+
+.hours-item .time {
+  color: #6EE7B7;
+  font-weight: 500;
+}
+
+.hours-note {
+  font-size: 0.84rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Map Card */
+.map-embed-card {
+  background: rgba(9, 28, 46, 0.65);
+  border: 1px solid rgba(169, 199, 216, 0.18);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-header-bar {
+  padding: 1rem 1.5rem;
+  background: rgba(5, 14, 23, 0.8);
+  border-bottom: 1px solid rgba(169, 199, 216, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-header-bar strong {
+  font-size: 0.92rem;
+  color: #FFFFFF;
+}
+
+.map-header-bar span {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.map-iframe-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+}
+
+.map-iframe-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  border: none;
+  filter: invert(90%) hue-rotate(180deg) contrast(95%);
+}
+
+/* Prominent Consultation Banner Bridge */
+.consultation-cta-banner {
+  background: linear-gradient(135deg, rgba(9, 28, 46, 0.9) 0%, rgba(14, 43, 69, 0.9) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: 22px;
+  padding: 3rem 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2.5rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.15);
+}
+
+.cta-banner-content {
+  max-width: 650px;
+}
+
+.cta-banner-badge {
   display: inline-flex;
   align-items: center;
-  padding: 0.35rem 0.85rem;
-  background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  border-radius: 20px;
+  gap: 6px;
   color: #10B981;
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.65rem;
 }
 
-.form-title {
+.cta-banner-content h2 {
   font-family: var(--font-heading);
-  font-size: clamp(1.6rem, 2.5vw, 2.1rem);
+  font-size: clamp(1.8rem, 3vw, 2.3rem);
   font-weight: 800;
   color: #FFFFFF;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   line-height: 1.2;
 }
 
-.form-subtitle {
+.cta-banner-content p {
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.02rem;
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.6;
   margin: 0;
 }
 
-.client-custom-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-  width: 100%;
-}
-
-/* Dark Glass Input Fields */
-.client-custom-form input[type="text"],
-.client-custom-form input[type="email"],
-.client-custom-form input[type="tel"],
-.client-custom-form input[type="date"],
-.client-custom-form input[type="number"],
-.client-custom-form select,
-.client-custom-form textarea {
-  width: 100%;
-  background: rgba(5, 14, 23, 0.85);
-  border: 1px solid rgba(169, 199, 216, 0.22);
-  border-radius: 8px;
-  padding: 0.9rem 1.15rem;
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: #FFFFFF;
-  outline: none;
-  transition: all 0.25s ease;
-  color-scheme: dark;
-}
-
-.client-custom-form input::placeholder,
-.client-custom-form textarea::placeholder {
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.client-custom-form input:focus,
-.client-custom-form select:focus,
-.client-custom-form textarea:focus {
-  background: rgba(9, 28, 46, 0.95);
-  border-color: #10B981;
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
-}
-
-/* 2-Column Form Rows */
-.form-row-2col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
-  align-items: start;
-}
-
-/* Field Group with Label */
-.form-field-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.45rem;
-}
-
-.field-header-label {
-  font-family: var(--font-body);
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #FFFFFF;
-  letter-spacing: 0.2px;
-}
-
-/* Horizontal Radio Button Groups */
-.radio-options-row {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
-  min-height: 48px;
-  background: rgba(5, 14, 23, 0.5);
-  border: 1px solid rgba(169, 199, 216, 0.15);
-  border-radius: 8px;
-  padding: 0 1.2rem;
-}
-
-.radio-item-label {
+.btn-open-form {
+  padding: 1.05rem 2.2rem;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #050E17;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+  transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  user-select: none;
+  flex-shrink: 0;
 }
 
-.radio-item-label input[type="radio"] {
-  width: 17px;
-  height: 17px;
-  accent-color: #10B981;
-  cursor: pointer;
-}
-
-/* Subsection: Employment Status */
-.form-subsection-heading {
-  font-family: var(--font-heading);
-  font-size: 1.45rem;
-  font-weight: 800;
-  color: #FFFFFF;
-  margin: 0.75rem 0 0.25rem 0;
-  letter-spacing: 0.5px;
-}
-
-/* Textarea */
-.client-custom-form textarea {
-  resize: vertical;
-  min-height: 120px;
-  line-height: 1.6;
-}
-
-/* CV File Upload Box */
-.cv-upload-container {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.cv-file-wrapper {
-  position: relative;
-  background: rgba(5, 14, 23, 0.85);
-  border-radius: 8px;
-  padding: 0.65rem 0.95rem;
-  display: flex;
-  align-items: center;
-  border: 1px solid rgba(169, 199, 216, 0.22);
-  transition: all 0.25s ease;
-}
-
-.cv-file-wrapper:focus-within {
-  border-color: #10B981;
-  box-shadow: 0 0 16px rgba(16, 185, 129, 0.25);
-}
-
-.cv-file-wrapper input[type="file"] {
-  width: 100%;
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.85);
-  cursor: pointer;
-}
-
-.cv-file-wrapper input[type="file"]::file-selector-button {
-  background: rgba(16, 185, 129, 0.18);
-  border: 1px solid rgba(16, 185, 129, 0.4);
-  border-radius: 6px;
-  padding: 0.45rem 1rem;
-  margin-right: 14px;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: #6EE7B7;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.cv-file-wrapper input[type="file"]::file-selector-button:hover {
-  background: #10B981;
-  color: #050E17;
-}
-
-.file-limit-hint {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.55);
-  margin-top: 2px;
-}
-
-.file-error-message {
-  font-size: 0.84rem;
-  color: #F87171;
-  font-weight: 600;
-}
-
-/* Submit Button (Vibrant Blue with Royal Glow matching Client picture) */
-.form-submit-row {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 0.75rem;
-}
-
-.btn-contact-submit {
-  background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-  color: #FFFFFF;
-  border: 1px solid rgba(96, 165, 250, 0.4);
-  border-radius: 8px;
-  padding: 0.95rem 2.75rem;
-  font-family: var(--font-body);
-  font-size: 1.05rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  cursor: pointer;
-  box-shadow: 0 8px 25px rgba(37, 99, 235, 0.45);
-  transition: all 0.25s ease;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-contact-submit:hover:not(:disabled) {
-  background: linear-gradient(135deg, #3B82F6 0%, #2563EB 100%);
+.btn-open-form:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.6);
+  box-shadow: 0 15px 35px rgba(16, 185, 129, 0.45);
+  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
 }
 
-.btn-contact-submit:active:not(:disabled) {
-  transform: translateY(0);
-}
-
-.btn-contact-submit:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
-}
-
-/* Feedback Status Banners */
-.submit-status-banner {
-  padding: 1rem 1.25rem;
-  border-radius: 10px;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 0.75rem;
-}
-
-.submit-status-banner.success {
-  background: rgba(16, 185, 129, 0.15);
-  color: #6EE7B7;
-  border: 1px solid rgba(16, 185, 129, 0.35);
-}
-
-.submit-status-banner.error {
-  background: rgba(239, 68, 68, 0.15);
-  color: #FCA5A5;
-  border: 1px solid rgba(239, 68, 68, 0.35);
-}
-
-/* --------------------------------------------------------------------------
-   Mobile Responsive Adjustments
-   -------------------------------------------------------------------------- */
+/* Responsive adjustments */
 @media (max-width: 992px) {
-  .contact-layout-grid {
+  .contact-cards-grid {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
   }
 
-  .contact-intro-col {
-    position: static;
+  .contact-details-row {
+    grid-template-columns: 1fr;
   }
 
-  .contact-form-container {
-    padding: 2rem 1.5rem;
-    border-radius: 18px;
+  .consultation-cta-banner {
+    flex-direction: column;
+    text-align: center;
+    padding: 2.5rem 1.75rem;
   }
 
-  .contact-channels-block {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.75rem;
+  .btn-open-form {
+    width: 100%;
+    justify-content: center;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 600px) {
   .contact-page-root {
-    padding-top: 6.5rem;
-    padding-bottom: 3.5rem;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
   }
 
-  .contact-main-section {
-    padding: 1rem 0 2rem 0;
-  }
-
-  .contact-main-heading {
-    font-size: 2.2rem;
-  }
-
-  .contact-form-container {
-    padding: 1.5rem 1rem;
-    border-radius: 16px;
-  }
-
-  .form-row-2col {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-
-  .radio-options-row {
-    min-height: 44px;
-    gap: 1.5rem;
-    padding: 0 0.85rem;
-  }
-
-  .contact-channels-block {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-contact-submit {
-    width: 100%;
-    padding: 1rem 1.5rem;
+  .contact-info-card {
+    padding: 1.75rem 1.4rem;
   }
 }

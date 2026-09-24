@@ -30,6 +30,7 @@ const Footer = () => {
             <li><Link to="/why-nz">Study in New Zealand</Link></li>
             <li><Link to="/universities">Our Universities</Link></li>
             <li><Link to="/visa">Visa Services</Link></li>
+            <li><Link to="/consultation">Book a Consultation</Link></li>
             <li><Link to="/contact">Contact Us</Link></li>
           </ul>
         </div>

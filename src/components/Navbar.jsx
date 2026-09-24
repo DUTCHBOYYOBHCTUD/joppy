@@ -47,17 +47,9 @@ const Navbar = () => {
             <Link to="/contact" className="nav-item" onClick={closeMenu}>Contact</Link>
             
             <Link 
-              to="/contact#consultation-form" 
+              to="/consultation" 
               className="btn btn-primary nav-cta"
-              onClick={() => {
-                closeMenu();
-                if (window.location.pathname === '/contact') {
-                  const formEl = document.getElementById('consultation-form');
-                  if (formEl) {
-                    formEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                  }
-                }
-              }}
+              onClick={closeMenu}
             >
               BOOK A CONSULTATION
             </Link>

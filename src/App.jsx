@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import ScrollToTop from './components/ScrollToTop'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -9,6 +9,7 @@ import Universities from './pages/Universities'
 import Admissions from './pages/Admissions'
 import Visa from './pages/Visa'
 import Contact from './pages/Contact'
+import Consultation from './pages/Consultation'
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/admissions" element={<Admissions />} />
           <Route path="/visa" element={<Visa />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/consultation" element={<Consultation />} />
+          <Route path="/book-consultation" element={<Navigate to="/consultation" replace />} />
         </Routes>
       </main>
       <Footer />

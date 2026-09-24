@@ -182,7 +182,7 @@ const WhyNZ = () => {
             </p>
             <div className="outro-contact-actions">
               <Link 
-                to="/contact#consultation-form" 
+                to="/consultation" 
                 className="btn btn-primary outro-btn-primary"
               >
                 Plan Your Pathway with NECL <Send size={16} style={{ marginLeft: '8px' }} />
