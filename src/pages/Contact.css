@@ -273,6 +273,140 @@
   filter: invert(90%) hue-rotate(180deg) contrast(95%);
 }
 
+/* Direct Inquiry Form Card */
+.contact-inquiry-card {
+  background: rgba(9, 28, 46, 0.75);
+  border: 1px solid rgba(169, 199, 216, 0.22);
+  border-radius: 22px;
+  padding: 2.75rem 2.5rem;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 30px rgba(16, 185, 129, 0.08);
+  margin-bottom: 3.5rem;
+}
+
+.inquiry-card-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid rgba(169, 199, 216, 0.16);
+}
+
+.inquiry-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.85rem;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 20px;
+  color: #10B981;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.inquiry-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.inquiry-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.inquiry-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.inquiry-form-grid input,
+.inquiry-form-grid textarea {
+  width: 100%;
+  background: rgba(5, 14, 23, 0.85);
+  border: 1px solid rgba(169, 199, 216, 0.22);
+  border-radius: 10px;
+  padding: 0.95rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  color: #FFFFFF;
+  outline: none;
+  transition: all 0.25s ease;
+  color-scheme: dark;
+}
+
+.inquiry-form-grid input:focus,
+.inquiry-form-grid textarea:focus {
+  background: rgba(9, 28, 46, 0.95);
+  border-color: #10B981;
+  box-shadow: 0 0 18px rgba(16, 185, 129, 0.28);
+}
+
+.inquiry-form-grid textarea {
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.form-row-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.btn-inquiry-submit {
+  padding: 1rem 2.2rem;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #050E17;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-inquiry-submit:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(16, 185, 129, 0.45);
+  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+}
+
+.inquiry-alert-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 1rem 1.25rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-top: 0.75rem;
+}
+
+.inquiry-alert-banner.success {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(16, 185, 129, 0.55);
+  color: #6EE7B7;
+}
+
 /* Prominent Consultation Banner Bridge */
 .consultation-cta-banner {
   background: linear-gradient(135deg, rgba(9, 28, 46, 0.9) 0%, rgba(14, 43, 69, 0.9) 100%);

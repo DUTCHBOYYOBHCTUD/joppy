@@ -70,17 +70,39 @@ const Consultation = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
 
-    // If EmailJS credentials are configured, dispatch email notification
-    if (import.meta.env.VITE_EMAILJS_SERVICE_ID && formRef.current) {
-      try {
-        await emailjs.sendForm(
-          import.meta.env.VITE_EMAILJS_SERVICE_ID,
-          import.meta.env.VITE_EMAILJS_TEMPLATE_ID_COMPANY || 'template_default',
-          formRef.current,
-          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+    // Read configured Vercel EmailJS environment variables for Outlook
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+    const welcomeTemplateId = import.meta.env.VITE_EMAILJS_WELCOME_TEMPLATE_ID || import.meta.env.VITE_EMAILJS_TEMPLATE_ID_COMPANY;
+    const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID || import.meta.env.VITE_EMAILJS_TEMPLATE_ID_STUDENT;
+
+    if (serviceId && publicKey && formRef.current) {
+      const dispatchTasks = [];
+
+      // 1. Dispatch Notification / Welcome Template (to company / Outlook inbox)
+      if (welcomeTemplateId) {
+        dispatchTasks.push(
+          emailjs.sendForm(serviceId, welcomeTemplateId, formRef.current, publicKey)
+            .then(res => console.log('EmailJS Welcome/Notification dispatched:', res.status, res.text))
+            .catch(err => console.error('EmailJS Welcome/Notification error:', err))
         );
-      } catch (err) {
-        console.warn('EmailJS delivery error:', err);
+      }
+
+      // 2. Dispatch Auto-Reply Template (to applicant)
+      if (autoReplyTemplateId) {
+        dispatchTasks.push(
+          emailjs.sendForm(serviceId, autoReplyTemplateId, formRef.current, publicKey)
+            .then(res => console.log('EmailJS Auto-Reply dispatched:', res.status, res.text))
+            .catch(err => console.error('EmailJS Auto-Reply error:', err))
+        );
+      }
+
+      if (dispatchTasks.length > 0) {
+        try {
+          await Promise.allSettled(dispatchTasks);
+        } catch (err) {
+          console.warn('EmailJS batch warning:', err);
+        }
       }
     }
 
@@ -170,6 +192,16 @@ const Consultation = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
         >
           <form ref={formRef} className="consultation-form-inner" onSubmit={handleSubmit}>
+            {/* Hidden aliases for flexible EmailJS / Outlook templates */}
+            <input type="hidden" name="from_name" value={formData.name} />
+            <input type="hidden" name="user_name" value={formData.name} />
+            <input type="hidden" name="from_email" value={formData.email} />
+            <input type="hidden" name="user_email" value={formData.email} />
+            <input type="hidden" name="reply_to" value={formData.email} />
+            <input type="hidden" name="contact_number" value={formData.phone} />
+            <input type="hidden" name="message" value={formData.comments || `Consultation request from ${formData.name}`} />
+            <input type="hidden" name="cv_filename" value={cvFile ? cvFile.name : 'No CV uploaded'} />
+            <input type="hidden" name="submission_date" value={new Date().toLocaleString('en-NZ', { timeZone: 'Pacific/Auckland' })} />
             
             {/* Row 1: Title */}
             <input 
