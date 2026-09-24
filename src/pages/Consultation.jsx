@@ -23,6 +23,8 @@ const Consultation = () => {
     state: '',
     zip: '',
     qualification: '',
+    course: '',
+    intake: '',
     current_position: '',
     experience_years: '',
     comments: ''
@@ -32,6 +34,7 @@ const Consultation = () => {
   const [fileError, setFileError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [submitErrorMessage, setSubmitErrorMessage] = useState('');
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -61,6 +64,7 @@ const Consultation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFileError('');
+    setSubmitErrorMessage('');
 
     if (cvFile && cvFile.size > 2 * 1024 * 1024) {
       setFileError('Please ensure your uploaded CV is under 2MB.');
@@ -76,40 +80,95 @@ const Consultation = () => {
     const welcomeTemplateId = import.meta.env.VITE_EMAILJS_WELCOME_TEMPLATE_ID || import.meta.env.VITE_EMAILJS_TEMPLATE_ID_COMPANY;
     const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID || import.meta.env.VITE_EMAILJS_TEMPLATE_ID_STUDENT;
 
-    if (serviceId && publicKey && formRef.current) {
-      const dispatchTasks = [];
+    // Guard: Check environment variables
+    if (!serviceId || !publicKey || !welcomeTemplateId) {
+      const missingVars = [];
+      if (!serviceId) missingVars.push('VITE_EMAILJS_SERVICE_ID');
+      if (!publicKey) missingVars.push('VITE_EMAILJS_PUBLIC_KEY');
+      if (!welcomeTemplateId) missingVars.push('VITE_EMAILJS_WELCOME_TEMPLATE_ID');
 
-      // 1. Dispatch Notification / Welcome Template (to company / Outlook inbox)
-      if (welcomeTemplateId) {
-        dispatchTasks.push(
-          emailjs.sendForm(serviceId, welcomeTemplateId, formRef.current, publicKey)
-            .then(res => console.log('EmailJS Welcome/Notification dispatched:', res.status, res.text))
-            .catch(err => console.error('EmailJS Welcome/Notification error:', err))
-        );
-      }
-
-      // 2. Dispatch Auto-Reply Template (to applicant)
-      if (autoReplyTemplateId) {
-        dispatchTasks.push(
-          emailjs.sendForm(serviceId, autoReplyTemplateId, formRef.current, publicKey)
-            .then(res => console.log('EmailJS Auto-Reply dispatched:', res.status, res.text))
-            .catch(err => console.error('EmailJS Auto-Reply error:', err))
-        );
-      }
-
-      if (dispatchTasks.length > 0) {
-        try {
-          await Promise.allSettled(dispatchTasks);
-        } catch (err) {
-          console.warn('EmailJS batch warning:', err);
-        }
-      }
+      const msg = `Email service credentials are missing (${missingVars.join(', ')}). In Vercel, ensure these environment variables are added for Production and Preview environments, and trigger a redeploy so the build picks them up.`;
+      console.error(msg);
+      setIsSubmitting(false);
+      setSubmitStatus('error');
+      setSubmitErrorMessage(msg);
+      return;
     }
 
-    setTimeout(() => {
+    // Direct reply link for admissions team to request or review applicant CV
+    const cvDownloadUrl = cvFile
+      ? `mailto:${formData.email}?subject=CV%20Submission%20-%20${encodeURIComponent(formData.name)}&body=Applicant%20${encodeURIComponent(formData.name)}%20has%20submitted%20a%20consultation%20with%20CV%20document:%20${encodeURIComponent(cvFile.name)}.%20Please%20reply%20to%20request%20the%20file.`
+      : `mailto:${formData.email}?subject=Consultation%20Inquiry%20-%20${encodeURIComponent(formData.name)}`;
+
+    // Prepare template parameters matching both Welcome and Auto-Reply templates
+    const templateParams = {
+      // 1. Personal Information (Welcome Template: {{title}}, {{name}}, {{email}}, etc.)
+      title: formData.title || 'N/A',
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone || 'N/A',
+      gender: formData.gender || 'Not specified',
+      date_of_birth: formData.dob || 'Not specified',
+      marital_status: formData.marital_status || 'Not specified',
+      number_of_dependents: formData.dependents || '0',
+
+      // 2. Contact & Address Information (Welcome Template)
+      street_address: formData.street_address || 'N/A',
+      city: formData.city || 'N/A',
+      state_province: formData.state || 'N/A',
+      zip_postal_code: formData.zip || 'N/A',
+
+      // 3. Education & Employment (Welcome Template)
+      highest_education: formData.qualification,
+      current_position: formData.current_position || 'N/A',
+      years_of_experience: formData.experience_years || '0',
+
+      // 4. Comments or Queries (Welcome Template)
+      comments_queries: formData.comments || 'No specific comments provided',
+
+      // 5. CV / Resume Details (Welcome Template: {{cv_filename}}, {{cv_url}})
+      cv_filename: cvFile ? `${cvFile.name} (${(cvFile.size / 1024).toFixed(1)} KB)` : 'No CV uploaded (will provide during consultation)',
+      cv_url: cvDownloadUrl,
+
+      // 6. Student Course & Intake (Auto-Reply Template: {{course}}, {{intake}})
+      course: formData.course || formData.qualification || 'University Admissions & Academic Counselling',
+      intake: formData.intake || 'Upcoming Intake (2026/2027)',
+
+      // 7. Universal EmailJS Template Routing Aliases
+      to_name: formData.name,
+      user_name: formData.name,
+      from_name: formData.name,
+      to_email: formData.email,
+      user_email: formData.email,
+      reply_to: formData.email,
+      from_email: formData.email,
+      contact_number: formData.phone || 'N/A',
+      qualification: formData.qualification,
+      experience_years: formData.experience_years || '0',
+      comments: formData.comments || 'N/A',
+      message: formData.comments || `Consultation profile submitted by ${formData.name}`,
+      submission_date: new Date().toLocaleString('en-NZ', { timeZone: 'Pacific/Auckland' })
+    };
+
+    try {
+      // Dispatch Welcome / Company Notification (to Outlook inbox)
+      const resWelcome = await emailjs.send(serviceId, welcomeTemplateId, templateParams, publicKey);
+      console.log('EmailJS Welcome / Company notification sent successfully:', resWelcome.status, resWelcome.text);
+
+      // Dispatch Auto-Reply (to applicant email) if template ID is provided
+      if (autoReplyTemplateId) {
+        try {
+          const resAuto = await emailjs.send(serviceId, autoReplyTemplateId, templateParams, publicKey);
+          console.log('EmailJS Auto-Reply sent successfully to applicant:', resAuto.status, resAuto.text);
+        } catch (autoErr) {
+          console.warn('Auto-reply dispatch warning (applicant email or template settings):', autoErr);
+        }
+      }
+
       setIsSubmitting(false);
       setSubmitStatus('success');
-      // Reset form fields
+
+      // Reset form on success
       setFormData({
         title: '',
         name: '',
@@ -124,13 +183,20 @@ const Consultation = () => {
         state: '',
         zip: '',
         qualification: '',
+        course: '',
+        intake: '',
         current_position: '',
         experience_years: '',
         comments: ''
       });
       setCvFile(null);
       if (fileInputRef.current) fileInputRef.current.value = '';
-    }, 600);
+    } catch (err) {
+      console.error('EmailJS dispatch failed:', err);
+      setIsSubmitting(false);
+      setSubmitStatus('error');
+      setSubmitErrorMessage(err?.text || err?.message || 'Failed to dispatch email. Please check your EmailJS service connection or try again.');
+    }
   };
 
   return (
@@ -192,17 +258,6 @@ const Consultation = () => {
           transition={{ duration: 0.6, delay: 0.15 }}
         >
           <form ref={formRef} className="consultation-form-inner" onSubmit={handleSubmit}>
-            {/* Hidden aliases for flexible EmailJS / Outlook templates */}
-            <input type="hidden" name="from_name" value={formData.name} />
-            <input type="hidden" name="user_name" value={formData.name} />
-            <input type="hidden" name="from_email" value={formData.email} />
-            <input type="hidden" name="user_email" value={formData.email} />
-            <input type="hidden" name="reply_to" value={formData.email} />
-            <input type="hidden" name="contact_number" value={formData.phone} />
-            <input type="hidden" name="message" value={formData.comments || `Consultation request from ${formData.name}`} />
-            <input type="hidden" name="cv_filename" value={cvFile ? cvFile.name : 'No CV uploaded'} />
-            <input type="hidden" name="submission_date" value={new Date().toLocaleString('en-NZ', { timeZone: 'Pacific/Auckland' })} />
-            
             {/* Row 1: Title */}
             <input 
               type="text" 
@@ -372,6 +427,24 @@ const Consultation = () => {
               required 
             />
 
+            {/* Row 9b: Preferred Course and Preferred Intake */}
+            <div className="form-row-2col">
+              <input 
+                type="text" 
+                name="course" 
+                placeholder="Preferred Course in NZ (e.g. Master of IT / Business)" 
+                value={formData.course} 
+                onChange={handleInputChange} 
+              />
+              <input 
+                type="text" 
+                name="intake" 
+                placeholder="Preferred Intake (e.g. Feb 2027 / July 2027)" 
+                value={formData.intake} 
+                onChange={handleInputChange} 
+              />
+            </div>
+
             {/* Section Heading: Employment Status */}
             <h3 className="form-subsection-heading">Employment Status</h3>
 
@@ -449,7 +522,23 @@ const Consultation = () => {
                 <div>
                   <strong>Thank you! Your consultation request has been received.</strong>
                   <p style={{ margin: '4px 0 0 0', fontSize: '0.88rem', opacity: 0.9 }}>
-                    Our Auckland education counsellors will review your profile and contact you within 24 hours.
+                    Our Auckland education counsellors will review your profile and contact you within 24 hours. A confirmation email has been dispatched to your email address.
+                  </p>
+                </div>
+              </motion.div>
+            )}
+
+            {submitStatus === 'error' && (
+              <motion.div 
+                className="submit-alert-banner error"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+              >
+                <AlertCircle size={22} color="#EF4444" />
+                <div>
+                  <strong>Submission Failed</strong>
+                  <p style={{ margin: '4px 0 0 0', fontSize: '0.88rem', opacity: 0.9 }}>
+                    {submitErrorMessage}
                   </p>
                 </div>
               </motion.div>

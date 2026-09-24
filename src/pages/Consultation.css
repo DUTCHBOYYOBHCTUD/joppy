@@ -357,6 +357,12 @@
   color: #6EE7B7;
 }
 
+.submit-alert-banner.error {
+  background: rgba(239, 68, 68, 0.18);
+  border: 1px solid rgba(239, 68, 68, 0.55);
+  color: #FCA5A5;
+}
+
 /* Direct Support Footer Bridge */
 .consultation-support-bridge {
   text-align: center;
