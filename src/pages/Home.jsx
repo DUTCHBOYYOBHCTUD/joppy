@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from 'react';
+import React, { Suspense, useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -21,6 +21,17 @@ const Home = () => {
   const containerRef = useRef(null);
 
 
+  const [isMobile, setIsMobile] = useState(() => (typeof window !== 'undefined' ? window.innerWidth < 768 : false));
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Track overall scroll progress through the 520vh 3D container [0, 1]
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -33,7 +44,16 @@ const Home = () => {
     if (p >= 0.19) return 0;
     return Math.max(0, Math.min(1, 1 - (p - 0.12) / 0.07));
   });
+  // Mobile Carousel: starts centered (0%), slides out to left (-100vw)
+  const heroX = useTransform(scrollYProgress, (p) => {
+    if (!isMobile) return '0%';
+    if (p <= 0.11) return '0%';
+    if (p >= 0.19) return '-100vw';
+    const t = (p - 0.11) / 0.08;
+    return `-${t * 100}vw`;
+  });
   const heroY = useTransform(scrollYProgress, (p) => {
+    if (isMobile) return 0; // Fixed position on mobile (no text wiggling)
     if (p <= 0.08) return 0;
     return -Math.min(24, ((p - 0.08) / 0.11) * 24);
   });
@@ -46,7 +66,23 @@ const Home = () => {
     if (p < 0.22) return Math.max(0, Math.min(1, (p - 0.14) / 0.08));
     return Math.max(0, Math.min(1, 1 - (p - 0.38) / 0.07));
   });
+  // Mobile Carousel: enters from right (+100vw), locks in center (0%), exits to left (-100vw)
+  const aboutX = useTransform(scrollYProgress, (p) => {
+    if (!isMobile) return '0%';
+    if (p < 0.14) return '100vw';
+    if (p < 0.22) {
+      const t = (p - 0.14) / 0.08;
+      return `${(1 - t) * 100}vw`;
+    }
+    if (p <= 0.38) return '0%';
+    if (p < 0.45) {
+      const t = (p - 0.38) / 0.07;
+      return `-${t * 100}vw`;
+    }
+    return '-100vw';
+  });
   const aboutY = useTransform(scrollYProgress, (p) => {
+    if (isMobile) return 0; // Fixed position on mobile
     if (p < 0.14) return 24;
     if (p < 0.22) return (1 - (p - 0.14) / 0.08) * 24;
     if (p <= 0.38) return -((p - 0.22) / 0.16) * 14;
@@ -61,7 +97,23 @@ const Home = () => {
     if (p < 0.46) return Math.max(0, Math.min(1, (p - 0.39) / 0.07));
     return Math.max(0, Math.min(1, 1 - (p - 0.63) / 0.07));
   });
+  // Mobile Carousel: enters from right (+100vw), locks in center (0%), exits to left (-100vw)
+  const servicesX = useTransform(scrollYProgress, (p) => {
+    if (!isMobile) return '0%';
+    if (p < 0.39) return '100vw';
+    if (p < 0.46) {
+      const t = (p - 0.39) / 0.07;
+      return `${(1 - t) * 100}vw`;
+    }
+    if (p <= 0.63) return '0%';
+    if (p < 0.70) {
+      const t = (p - 0.63) / 0.07;
+      return `-${t * 100}vw`;
+    }
+    return '-100vw';
+  });
   const servicesY = useTransform(scrollYProgress, (p) => {
+    if (isMobile) return 0; // Fixed position on mobile
     if (p < 0.39) return 24;
     if (p < 0.46) return (1 - (p - 0.39) / 0.07) * 24;
     if (p <= 0.63) return -((p - 0.46) / 0.17) * 14;
@@ -76,7 +128,23 @@ const Home = () => {
     if (p < 0.71) return Math.max(0, Math.min(1, (p - 0.64) / 0.07));
     return Math.max(0, Math.min(1, 1 - (p - 0.85) / 0.07));
   });
+  // Mobile Carousel: enters from right (+100vw), locks in center (0%), exits to left (-100vw)
+  const storiesX = useTransform(scrollYProgress, (p) => {
+    if (!isMobile) return '0%';
+    if (p < 0.64) return '100vw';
+    if (p < 0.71) {
+      const t = (p - 0.64) / 0.07;
+      return `${(1 - t) * 100}vw`;
+    }
+    if (p <= 0.85) return '0%';
+    if (p < 0.92) {
+      const t = (p - 0.85) / 0.07;
+      return `-${t * 100}vw`;
+    }
+    return '-100vw';
+  });
   const storiesY = useTransform(scrollYProgress, (p) => {
+    if (isMobile) return 0; // Fixed position on mobile
     if (p < 0.64) return 24;
     if (p < 0.71) return (1 - (p - 0.64) / 0.07) * 24;
     if (p <= 0.85) return -((p - 0.71) / 0.14) * 14;
@@ -91,7 +159,18 @@ const Home = () => {
     if (p < 0.92) return Math.max(0, Math.min(1, (p - 0.86) / 0.06));
     return Math.max(0, Math.min(1, 1 - (p - 0.985) / 0.015));
   });
+  // Mobile Carousel: enters from right (+100vw), locks in center (0%)
+  const ctaX = useTransform(scrollYProgress, (p) => {
+    if (!isMobile) return '0%';
+    if (p < 0.86) return '100vw';
+    if (p < 0.92) {
+      const t = (p - 0.86) / 0.06;
+      return `${(1 - t) * 100}vw`;
+    }
+    return '0%';
+  });
   const ctaY = useTransform(scrollYProgress, (p) => {
+    if (isMobile) return 0; // Fixed position on mobile
     if (p < 0.86) return 24;
     if (p < 0.92) return (1 - (p - 0.86) / 0.06) * 24;
     return -((p - 0.92) / 0.08) * 10;
@@ -282,7 +361,7 @@ const Home = () => {
             {/* Act 1: Hero */}
             <motion.div 
               className="home-act-card hero-act-card"
-              style={{ opacity: heroOpacity, y: heroY, pointerEvents: heroPointer }}
+              style={{ opacity: heroOpacity, x: heroX, y: heroY, pointerEvents: heroPointer }}
             >
               <div className="act-badge">
                 <Compass size={14} style={{ marginRight: '6px' }} />
@@ -316,7 +395,7 @@ const Home = () => {
             {/* Act 2: About Us */}
             <motion.div 
               className="home-act-card side-left-card"
-              style={{ opacity: aboutOpacity, y: aboutY, pointerEvents: aboutPointer }}
+              style={{ opacity: aboutOpacity, x: aboutX, y: aboutY, pointerEvents: aboutPointer }}
             >
               <div className="act-badge">
                 <GraduationCap size={14} style={{ marginRight: '6px' }} />
@@ -356,7 +435,7 @@ const Home = () => {
             {/* Act 3: Highlighted Services */}
             <motion.div 
               className="home-act-card side-right-card highlighted-services-act"
-              style={{ opacity: servicesOpacity, y: servicesY, pointerEvents: servicesPointer }}
+              style={{ opacity: servicesOpacity, x: servicesX, y: servicesY, pointerEvents: servicesPointer }}
             >
               <div className="services-card-inner">
                 <div className="act-badge emerald-badge">
@@ -384,7 +463,7 @@ const Home = () => {
             {/* Act 4: Success Stories */}
             <motion.div 
               className="home-act-card side-left-card stories-act"
-              style={{ opacity: storiesOpacity, y: storiesY, pointerEvents: storiesPointer }}
+              style={{ opacity: storiesOpacity, x: storiesX, y: storiesY, pointerEvents: storiesPointer }}
             >
               <div className="act-badge">
                 <Award size={14} style={{ marginRight: '6px' }} />
@@ -436,7 +515,7 @@ const Home = () => {
             {/* Act 5: Consultation Outro */}
             <motion.div 
               className="home-act-card side-left-card outro-side-card"
-              style={{ opacity: ctaOpacity, y: ctaY, pointerEvents: ctaPointer }}
+              style={{ opacity: ctaOpacity, x: ctaX, y: ctaY, pointerEvents: ctaPointer }}
             >
               <div className="act-badge">
                 <Sparkles size={14} style={{ marginRight: '6px' }} />

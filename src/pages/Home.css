@@ -930,251 +930,278 @@
     line-height: 1.2;
   }
 
-  /* 1. Scrollytelling Cards Mobile Architecture:
-        Dynamic Floating Glassmorphism Cards with per-act horizontal and vertical positioning!
-        Maintains an expansive 58vh+ open sky above for full 3D landmark viewability. */
+  /* 1. Scrollytelling Carousel Architecture (Mobile Viewers Only):
+        - All 5 act cards dock uniformly at the bottom shelf like a horizontal carousel.
+        - Framer motion slides each card along the X-axis (100vw -> 0% -> -100vw).
+        - Internal scrolling is completely disabled (overflow: hidden; touch-action: pan-y)
+          so user touch gestures directly scroll the main page without text wiggling or scroll interception.
+        - Top 61vh+ of screen is completely clear for the 3D Sky Tower centered in the middle. */
+
+  .home-sticky-viewport {
+    overflow: hidden !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+  }
+
+  .home-content-canvas {
+    overflow: hidden !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    padding: 0 !important;
+    position: relative !important;
+  }
+
   .home-act-card {
     position: absolute !important;
     top: auto !important;
-    width: auto !important;
-    margin: 0 !important;
-    max-height: min(41vh, 340px) !important;
-    padding: 1.05rem 1.25rem !important;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+    left: 14px !important;
+    right: 14px !important;
+    width: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    margin: 0 auto !important;
+    max-height: min(39vh, 320px) !important;
+    padding: 0.95rem 1.15rem !important;
     border-radius: 20px !important;
-    background: linear-gradient(135deg, rgba(8, 22, 38, 0.94) 0%, rgba(4, 12, 20, 0.98) 100%) !important;
+    background: linear-gradient(135deg, rgba(8, 22, 38, 0.95) 0%, rgba(4, 12, 20, 0.98) 100%) !important;
     backdrop-filter: blur(24px) !important;
     -webkit-backdrop-filter: blur(24px) !important;
     border: 1px solid rgba(169, 199, 216, 0.25) !important;
     box-shadow: 0 16px 45px rgba(0, 0, 0, 0.75), 0 0 25px rgba(16, 185, 129, 0.08) !important;
+    overflow: hidden !important;
+    overflow-y: hidden !important;
+    touch-action: pan-y !important;
+    -webkit-overflow-scrolling: auto !important;
+    overscroll-behavior: none !important;
     scrollbar-width: none !important;
     -ms-overflow-style: none !important;
-  }
-
-  /* Act 1: Hero - Low-profile centered floating card, maximizes upper sky view for 328m spire */
-  .hero-act-card {
-    bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
-    left: 14px !important;
-    right: 14px !important;
-    max-width: calc(100vw - 28px) !important;
-  }
-
-  /* Act 2: About Us - Left-leaning floating card elevated higher, complements the right-framed Observation Deck */
-  .side-left-card {
-    bottom: calc(30px + env(safe-area-inset-bottom, 0px)) !important;
-    left: 12px !important;
-    right: 36px !important;
-    max-width: calc(100vw - 48px) !important;
-    border-color: rgba(16, 185, 129, 0.35) !important;
-  }
-
-  /* Act 3: Our Services - Right-leaning floating card, balances the left-ascending low-angle tower shaft */
-  .side-right-card,
-  .highlighted-services-act {
-    bottom: calc(22px + env(safe-area-inset-bottom, 0px)) !important;
-    left: 36px !important;
-    right: 12px !important;
-    max-width: calc(100vw - 48px) !important;
-    border-color: rgba(56, 189, 248, 0.35) !important;
-  }
-
-  /* Act 4: Success Stories - Elevated centered card with warm accent glow */
-  .stories-act {
-    bottom: calc(26px + env(safe-area-inset-bottom, 0px)) !important;
-    left: 14px !important;
-    right: 14px !important;
-    max-width: calc(100vw - 28px) !important;
-    border-color: rgba(245, 158, 11, 0.3) !important;
-  }
-
-  /* Act 5: Consultation Outro - Centered card with immediate call to actions */
-  .outro-side-card {
-    bottom: calc(20px + env(safe-area-inset-bottom, 0px)) !important;
-    left: 14px !important;
-    right: 14px !important;
-    max-width: calc(100vw - 28px) !important;
-    border-color: rgba(16, 185, 129, 0.4) !important;
   }
 
   .home-act-card::-webkit-scrollbar {
     display: none !important;
   }
 
+  /* Carousel Unified Bottom Dock for all 5 Acts */
+  .hero-act-card,
+  .side-left-card,
+  .side-right-card,
+  .highlighted-services-act,
+  .stories-act,
+  .outro-side-card {
+    top: auto !important;
+    bottom: calc(18px + env(safe-area-inset-bottom, 0px)) !important;
+    left: 14px !important;
+    right: 14px !important;
+    width: calc(100vw - 28px) !important;
+    max-width: calc(100vw - 28px) !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-act-card {
+    border-color: rgba(169, 199, 216, 0.3) !important;
+  }
+
+  .side-left-card {
+    border-color: rgba(16, 185, 129, 0.35) !important;
+  }
+
+  .side-right-card,
+  .highlighted-services-act {
+    border-color: rgba(56, 189, 248, 0.35) !important;
+  }
+
+  .stories-act {
+    border-color: rgba(245, 158, 11, 0.3) !important;
+  }
+
+  .outro-side-card {
+    border-color: rgba(16, 185, 129, 0.4) !important;
+  }
+
+  /* Compact typography & badges to fit perfectly inside the fixed-height carousel cards */
+  .act-badge {
+    font-size: 0.62rem !important;
+    padding: 0.2rem 0.6rem !important;
+    margin-bottom: 0.35rem !important;
+    letter-spacing: 1.2px !important;
+  }
+
+  .home-hero-headline,
+  .act-title,
+  .outro-headline {
+    font-size: 1.25rem !important;
+    line-height: 1.2 !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .act-subtitle {
+    font-size: 0.78rem !important;
+    margin-bottom: 0.35rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .home-hero-subtext,
+  .act-desc,
+  .services-lead-text,
+  .stories-intro,
+  .outro-subtext {
+    font-size: 0.78rem !important;
+    line-height: 1.38 !important;
+    margin-bottom: 0.45rem !important;
+  }
+
+  /* Act 1: Hero buttons and chips */
+  .home-hero-actions {
+    gap: 0.45rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+
+  .home-hero-actions .btn {
+    padding: 0.5rem 0.85rem !important;
+    font-size: 0.76rem !important;
+  }
+
+  .home-hero-chips {
+    gap: 0.3rem !important;
+    padding-top: 0.4rem !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+  }
+
+  .chip-pill {
+    font-size: 0.64rem !important;
+    padding: 0.18rem 0.45rem !important;
+    white-space: nowrap !important;
+  }
+
+  /* Act 2: About Us Highlights Grid */
   .about-act-highlights-grid {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.5rem !important;
-    margin: 0.75rem 0 !important;
+    gap: 0.35rem !important;
+    margin: 0.4rem 0 !important;
   }
 
   .about-highlight-pill {
-    padding: 0.4rem 0.6rem !important;
-    font-size: 0.74rem !important;
-    border-radius: 10px !important;
-    gap: 6px !important;
-    background: rgba(16, 185, 129, 0.08) !important;
-    border: 1px solid rgba(16, 185, 129, 0.25) !important;
+    padding: 0.3rem 0.5rem !important;
+    font-size: 0.7rem !important;
+    border-radius: 8px !important;
+    gap: 5px !important;
   }
 
   .about-highlight-pill .highlight-icon {
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  .act-footer-highlight {
+    margin-top: 0.4rem !important;
+    padding-top: 0.4rem !important;
+    font-size: 0.72rem !important;
+  }
+
+  /* Act 3: Highlighted Services (2 columns for compact fit) */
+  .highlighted-services-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.3rem 0.6rem !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  .highlighted-services-list li {
+    font-size: 0.74rem !important;
+    gap: 0.4rem !important;
+  }
+
+  .service-icon-emerald {
     width: 14px !important;
     height: 14px !important;
   }
 
-  /* Elevate floating WhatsApp on mobile so it floats cleanly in open 3D sky above the bottom sheet */
+  /* Act 4: Success Stories (Show top 2 stories on mobile so height stays compact) */
+  .stories-mini-grid {
+    gap: 0.35rem !important;
+  }
+
+  .stories-mini-grid .story-mini-box:nth-child(n+3) {
+    display: none !important;
+  }
+
+  .story-mini-box {
+    padding: 0.35rem 0.55rem !important;
+    gap: 0.45rem !important;
+    border-radius: 8px !important;
+  }
+
+  .story-emoji-avatar {
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 1.1rem !important;
+  }
+
+  .story-name-row {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    gap: 4px !important;
+    margin-bottom: 1px !important;
+  }
+
+  .story-name-row strong {
+    font-size: 0.78rem !important;
+  }
+
+  .story-badge-highlight {
+    font-size: 0.62rem !important;
+    padding: 1px 5px !important;
+  }
+
+  .story-mini-info small {
+    font-size: 0.66rem !important;
+    margin-bottom: 1px !important;
+  }
+
+  .story-mini-info p {
+    font-size: 0.7rem !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Act 5: Consultation Outro Actions */
+  .outro-contact-actions {
+    flex-direction: row !important;
+    width: 100% !important;
+    gap: 0.45rem !important;
+    margin-bottom: 0.45rem !important;
+  }
+
+  .outro-btn-primary,
+  .outro-btn-whatsapp {
+    flex: 1 !important;
+    width: auto !important;
+    justify-content: center !important;
+    padding: 0.5rem 0.5rem !important;
+    font-size: 0.74rem !important;
+    white-space: nowrap !important;
+  }
+
+  .outro-phone-numbers {
+    flex-direction: column !important;
+    gap: 2px !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* Hide floating bottom scroll cue on mobile to avoid card overlap */
+  .home-scroll-cue {
+    display: none !important;
+  }
+
+  /* Elevate floating WhatsApp on mobile so it floats cleanly in open 3D sky above the bottom carousel */
   body:has(.home-3d-universe) .floating-whatsapp,
   .floating-whatsapp {
-    bottom: calc(45vh + 12px) !important;
+    bottom: calc(42vh + 12px) !important;
     right: 14px !important;
     width: 44px !important;
     height: 44px !important;
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45), 0 0 15px rgba(37, 211, 102, 0.3) !important;
     z-index: 99 !important;
-  }
-
-  .home-hero-headline,
-  .act-title {
-    font-size: 1.35rem !important;
-    line-height: 1.22 !important;
-    margin-bottom: 0.35rem !important;
-  }
-
-  .act-subtitle {
-    font-size: 0.85rem !important;
-    margin-bottom: 0.5rem !important;
-    line-height: 1.35 !important;
-  }
-
-  .home-hero-subtext,
-  .act-desc {
-    font-size: 0.82rem !important;
-    line-height: 1.48 !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  .act-badge {
-    font-size: 0.64rem !important;
-    padding: 0.2rem 0.65rem !important;
-    margin-bottom: 0.45rem !important;
-  }
-
-  .home-hero-actions {
-    gap: 0.5rem !important;
-    margin-bottom: 0.65rem !important;
-  }
-
-  .home-hero-actions .btn {
-    padding: 0.55rem 0.95rem !important;
-    font-size: 0.8rem !important;
-  }
-
-  .home-hero-chips {
-    gap: 0.35rem !important;
-    padding-top: 0.55rem !important;
-  }
-
-  .chip-pill {
-    font-size: 0.68rem !important;
-    padding: 0.2rem 0.5rem !important;
-  }
-
-  .act-footer-highlight {
-    margin-top: 0.75rem !important;
-    padding-top: 0.65rem !important;
-    font-size: 0.78rem !important;
-  }
-
-  /* Act 3: Highlighted Services */
-  .highlighted-services-list {
-    grid-template-columns: 1fr !important;
-    gap: 0.45rem !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  .highlighted-services-list li {
-    font-size: 0.8rem !important;
-  }
-
-  .services-lead-text {
-    font-size: 0.82rem !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  /* Act 4: Success Stories */
-  .stories-intro {
-    font-size: 0.8rem !important;
-    margin-bottom: 0.65rem !important;
-  }
-
-  .stories-mini-grid {
-    gap: 0.45rem !important;
-  }
-
-  .story-mini-box {
-    padding: 0.45rem 0.65rem !important;
-    gap: 0.55rem !important;
-    border-radius: 10px !important;
-  }
-
-  .story-emoji-avatar {
-    width: 32px !important;
-    height: 32px !important;
-    font-size: 1.25rem !important;
-  }
-
-  .story-name-row {
-    flex-direction: column !important;
-    align-items: flex-start !important;
-    gap: 2px !important;
-    margin-bottom: 1px !important;
-  }
-
-  .story-name-row strong {
-    font-size: 0.82rem !important;
-  }
-
-  .story-badge-highlight {
-    font-size: 0.65rem !important;
-    padding: 1px 6px !important;
-  }
-
-  .story-mini-info small {
-    font-size: 0.7rem !important;
-  }
-
-  .story-mini-info p {
-    font-size: 0.72rem !important;
-    line-height: 1.35 !important;
-  }
-
-  /* Act 5: Consultation Outro */
-  .outro-headline {
-    font-size: 1.35rem !important;
-    margin-bottom: 0.35rem !important;
-  }
-
-  .outro-subtext {
-    font-size: 0.82rem !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  .outro-contact-actions {
-    flex-direction: column !important;
-    width: 100% !important;
-    gap: 0.55rem !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  .outro-btn-primary,
-  .outro-btn-whatsapp {
-    width: 100% !important;
-    justify-content: center !important;
-    padding: 0.6rem 1rem !important;
-    font-size: 0.82rem !important;
-  }
-
-  .outro-phone-numbers {
-    flex-direction: column !important;
-    gap: 4px !important;
-    font-size: 0.76rem !important;
   }
 }
 

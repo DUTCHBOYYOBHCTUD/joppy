@@ -47,9 +47,9 @@ const SkyTowerModel = ({ scrollProgress }) => {
 
   const { size } = useThree();
   const isMobile = size.width < 768;
-  // Monumental desktop scale, calibrated high-presence mobile scale
+  // Monumental desktop scale, calibrated high-presence mobile scale centered in middle
   const modelScale = isMobile ? 1.95 : 2.65;
-  const modelY = isMobile ? 0.95 : 0.0;
+  const modelY = isMobile ? 0.22 : 0.0;
 
   return (
     <Center position={[0, modelY, 0]}>
@@ -73,13 +73,13 @@ const DESKTOP_TOWER_WAYPOINTS = [
   { p: 1.00, pos: new THREE.Vector3(-0.3, 0.2, 7.2), look: new THREE.Vector3(-0.5, 0.2, 0), fov: 45 }
 ];
 
-// Mobile: Dramatic portrait tracking with height-specific angles, optical zoom, and coordinated lateral framing
+// Mobile: Center-framed dramatic tracking with height-specific angles and optical zoom, keeping the landmark visible in the middle
 const MOBILE_TOWER_WAYPOINTS = [
-  { p: 0.00, pos: new THREE.Vector3(0.0, 4.4, 4.6), look: new THREE.Vector3(0.0, 2.2, 0), fov: 42 },
-  { p: 0.28, pos: new THREE.Vector3(0.38, 1.4, 3.2), look: new THREE.Vector3(0.12, 0.9, 0), fov: 28 },
-  { p: 0.52, pos: new THREE.Vector3(-0.42, -1.8, 3.5), look: new THREE.Vector3(-0.14, 1.3, 0), fov: 52 },
-  { p: 0.76, pos: new THREE.Vector3(0.36, 2.3, 4.1), look: new THREE.Vector3(0.08, 1.0, 0), fov: 36 },
-  { p: 1.00, pos: new THREE.Vector3(0.0, 0.9, 7.0), look: new THREE.Vector3(0.0, 0.7, 0), fov: 45 }
+  { p: 0.00, pos: new THREE.Vector3(0.0, 3.8, 4.4), look: new THREE.Vector3(0.0, 1.5, 0), fov: 42 },
+  { p: 0.28, pos: new THREE.Vector3(0.0, 1.0, 3.1), look: new THREE.Vector3(0.0, 0.6, 0), fov: 28 },
+  { p: 0.52, pos: new THREE.Vector3(0.0, -2.0, 3.6), look: new THREE.Vector3(0.0, 0.9, 0), fov: 52 },
+  { p: 0.76, pos: new THREE.Vector3(0.24, 2.0, 4.0), look: new THREE.Vector3(0.0, 0.8, 0), fov: 36 },
+  { p: 1.00, pos: new THREE.Vector3(0.0, 0.6, 7.2), look: new THREE.Vector3(0.0, 0.4, 0), fov: 46 }
 ];
 
 const interpolateTowerWaypoints = (p, targetPos, targetLook, targetFovRef, waypoints) => {
