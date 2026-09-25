@@ -73,13 +73,13 @@ const DESKTOP_TOWER_WAYPOINTS = [
   { p: 1.00, pos: new THREE.Vector3(-0.3, 0.2, 7.2), look: new THREE.Vector3(-0.5, 0.2, 0), fov: 45 }
 ];
 
-// Mobile: Close, dramatic portrait tracking with height-specific angles, optical zoom, and visible rotation in upper 55%
+// Mobile: Dramatic portrait tracking with height-specific angles, optical zoom, and coordinated lateral framing
 const MOBILE_TOWER_WAYPOINTS = [
   { p: 0.00, pos: new THREE.Vector3(0.0, 4.4, 4.6), look: new THREE.Vector3(0.0, 2.2, 0), fov: 42 },
-  { p: 0.28, pos: new THREE.Vector3(0.0, 1.5, 3.2), look: new THREE.Vector3(0.0, 1.0, 0), fov: 28 },
-  { p: 0.52, pos: new THREE.Vector3(0.0, -1.8, 3.6), look: new THREE.Vector3(0.0, 1.4, 0), fov: 52 },
-  { p: 0.76, pos: new THREE.Vector3(0.35, 2.4, 4.2), look: new THREE.Vector3(0.0, 1.1, 0), fov: 36 },
-  { p: 1.00, pos: new THREE.Vector3(0.0, 1.2, 7.2), look: new THREE.Vector3(0.0, 0.8, 0), fov: 46 }
+  { p: 0.28, pos: new THREE.Vector3(0.38, 1.4, 3.2), look: new THREE.Vector3(0.12, 0.9, 0), fov: 28 },
+  { p: 0.52, pos: new THREE.Vector3(-0.42, -1.8, 3.5), look: new THREE.Vector3(-0.14, 1.3, 0), fov: 52 },
+  { p: 0.76, pos: new THREE.Vector3(0.36, 2.3, 4.1), look: new THREE.Vector3(0.08, 1.0, 0), fov: 36 },
+  { p: 1.00, pos: new THREE.Vector3(0.0, 0.9, 7.0), look: new THREE.Vector3(0.0, 0.7, 0), fov: 45 }
 ];
 
 const interpolateTowerWaypoints = (p, targetPos, targetLook, targetFovRef, waypoints) => {

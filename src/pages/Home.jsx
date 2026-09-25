@@ -33,7 +33,10 @@ const Home = () => {
     if (p >= 0.19) return 0;
     return Math.max(0, Math.min(1, 1 - (p - 0.12) / 0.07));
   });
-  const heroY = useTransform(scrollYProgress, () => 0);
+  const heroY = useTransform(scrollYProgress, (p) => {
+    if (p <= 0.08) return 0;
+    return -Math.min(24, ((p - 0.08) / 0.11) * 24);
+  });
   const heroPointer = useTransform(scrollYProgress, (p) => (p <= 0.18 ? 'auto' : 'none'));
 
   // Act 2: About Us (0.14 -> 0.45) - Telephoto zoom into 220m Observation Deck (Waypoint at 0.28)
@@ -44,9 +47,10 @@ const Home = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.38) / 0.07));
   });
   const aboutY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.14) return 18;
-    if (p < 0.22) return (1 - (p - 0.14) / 0.08) * 18;
-    return 0;
+    if (p < 0.14) return 24;
+    if (p < 0.22) return (1 - (p - 0.14) / 0.08) * 24;
+    if (p <= 0.38) return -((p - 0.22) / 0.16) * 14;
+    return -14 - ((p - 0.38) / 0.07) * 20;
   });
   const aboutPointer = useTransform(scrollYProgress, (p) => (p >= 0.15 && p <= 0.44 ? 'auto' : 'none'));
 
@@ -58,9 +62,10 @@ const Home = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.63) / 0.07));
   });
   const servicesY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.39) return 18;
-    if (p < 0.46) return (1 - (p - 0.39) / 0.07) * 18;
-    return 0;
+    if (p < 0.39) return 24;
+    if (p < 0.46) return (1 - (p - 0.39) / 0.07) * 24;
+    if (p <= 0.63) return -((p - 0.46) / 0.17) * 14;
+    return -14 - ((p - 0.63) / 0.07) * 20;
   });
   const servicesPointer = useTransform(scrollYProgress, (p) => (p >= 0.40 && p <= 0.69 ? 'auto' : 'none'));
 
@@ -72,9 +77,10 @@ const Home = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.85) / 0.07));
   });
   const storiesY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.64) return 18;
-    if (p < 0.71) return (1 - (p - 0.64) / 0.07) * 18;
-    return 0;
+    if (p < 0.64) return 24;
+    if (p < 0.71) return (1 - (p - 0.64) / 0.07) * 24;
+    if (p <= 0.85) return -((p - 0.71) / 0.14) * 14;
+    return -14 - ((p - 0.85) / 0.07) * 20;
   });
   const storiesPointer = useTransform(scrollYProgress, (p) => (p >= 0.65 && p <= 0.91 ? 'auto' : 'none'));
 
@@ -86,9 +92,9 @@ const Home = () => {
     return Math.max(0, Math.min(1, 1 - (p - 0.985) / 0.015));
   });
   const ctaY = useTransform(scrollYProgress, (p) => {
-    if (p < 0.86) return 18;
-    if (p < 0.92) return (1 - (p - 0.86) / 0.06) * 18;
-    return 0;
+    if (p < 0.86) return 24;
+    if (p < 0.92) return (1 - (p - 0.86) / 0.06) * 24;
+    return -((p - 0.92) / 0.08) * 10;
   });
   const ctaPointer = useTransform(scrollYProgress, (p) => (p >= 0.87 && p <= 0.995 ? 'auto' : 'none'));
 
