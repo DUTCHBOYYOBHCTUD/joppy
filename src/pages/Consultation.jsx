@@ -76,6 +76,7 @@ const Consultation = () => {
 
     // Read configured Vercel EmailJS environment variables for Outlook
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const autoReplyServiceId = import.meta.env.VITE_EMAILJS_AUTOREPLY_SERVICE_ID || serviceId;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
     const welcomeTemplateId = import.meta.env.VITE_EMAILJS_WELCOME_TEMPLATE_ID || import.meta.env.VITE_EMAILJS_TEMPLATE_ID_COMPANY;
     const autoReplyTemplateId = import.meta.env.VITE_EMAILJS_AUTOREPLY_TEMPLATE_ID || import.meta.env.VITE_EMAILJS_TEMPLATE_ID_STUDENT;
@@ -158,7 +159,7 @@ const Consultation = () => {
       // Dispatch Auto-Reply (to applicant email) if template ID is provided
       if (autoReplyTemplateId) {
         try {
-          const resAuto = await emailjs.send(serviceId, autoReplyTemplateId, templateParams, publicKey);
+          const resAuto = await emailjs.send(autoReplyServiceId, autoReplyTemplateId, templateParams, publicKey);
           console.log('EmailJS Auto-Reply sent successfully to applicant:', resAuto.status, resAuto.text);
         } catch (autoErr) {
           console.warn('Auto-reply dispatch warning (applicant email or template settings):', autoErr);
